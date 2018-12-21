@@ -58,11 +58,6 @@ public class Vendedor extends javax.swing.JFrame {
         });
 
         jButton2.setText("Voltar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
 
         jButton1.setText("Identificar");
 
@@ -173,6 +168,7 @@ public class Vendedor extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Vendedor().setVisible(true);
             }
