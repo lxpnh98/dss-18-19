@@ -1,4 +1,4 @@
-package configuraFacil.classes;
+package configurafacil;
 
 import java.util.Set;
 import java.util.HashSet;

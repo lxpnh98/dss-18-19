@@ -1,4 +1,4 @@
-package configuraFacil.classes;
+package configurafacil;
 
 import java.util.ArrayList;
 import java.util.Queue;
