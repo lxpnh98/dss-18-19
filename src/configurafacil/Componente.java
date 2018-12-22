@@ -1,4 +1,4 @@
-package configuraFacil.classes;
+package configurafacil;
 
 /**
  *
