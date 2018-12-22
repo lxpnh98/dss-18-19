@@ -24,12 +24,12 @@
 hs_err_pid*
 
 #netbeans
-nbproject/private/
 build/
 nbbuild/
+nbproject/
 dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
-/Interface/nbproject/private/
-/Interface/nbproject/Interface/nbproject/private/
+manifest.mf
+build.xml
