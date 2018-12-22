@@ -1,4 +1,4 @@
-package pkginterface;
+package configuraFacil.classes;
 
 import java.util.Set;
 import java.util.HashSet;

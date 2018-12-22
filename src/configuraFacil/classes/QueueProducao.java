@@ -1,4 +1,4 @@
-package pkginterface;
+package configuraFacil.classes;
 
 import java.util.ArrayList;
 import java.util.Queue;

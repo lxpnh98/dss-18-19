@@ -1,4 +1,4 @@
-package pkginterface;
+package configuraFacil.classes;
 
 /**
  *
