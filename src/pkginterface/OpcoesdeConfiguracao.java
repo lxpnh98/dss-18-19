@@ -43,34 +43,14 @@ public class OpcoesdeConfiguracao extends javax.swing.JFrame {
         jLabel1.setText("Configurações Avançadas");
 
         jButton1.setText("Adicionar Pacote");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         jButton2.setText("Adicionarcomponente Individual");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
 
         jButton3.setText("Voltar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
 
         jButton4.setText("Próximo");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
 
-        jButton5.setText("Configuração ótima");
+        jButton5.setText("Solução ótima");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -122,7 +102,7 @@ public class OpcoesdeConfiguracao extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             new Pacotes(this.config).setVisible(true);
-        } catch (SemConfigBasicaException e) {
+        } catch (SemConfigBasicaException e) { // TODO: Criar exceção
             
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -130,7 +110,7 @@ public class OpcoesdeConfiguracao extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             new Individuais(this.config).setVisible(true);
-        } catch (SemConfigBasicaException e) {
+        } catch (SemConfigBasicaException e) { // TODO: Criar exceção
             
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -138,7 +118,7 @@ public class OpcoesdeConfiguracao extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         try {
             new ConfiguraçãoOtima(this.config).setVisible(true);
-        } catch (SemConfigBasicaException e) {
+        } catch (SemConfigBasicaException e) { // TODO: Criar exceção
             
         }
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -146,9 +126,9 @@ public class OpcoesdeConfiguracao extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         try {
             new Confirmacao(this.config).setVisible(true);
-        } catch (SemConfigBasicaException e) {
+        } catch (SemConfigBasicaException e) { // TODO: Criar exceção
             
-        } catch (SemConfigException e) {
+        } catch (SemConfigException e) { // TODO: Criar exceção
             
         }
     }//GEN-LAST:event_jButton4ActionPerformed

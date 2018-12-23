@@ -1,6 +1,7 @@
 package pkgdados;
 
-import ConfiguraFacil.*;
+import java.util.Set;
+import configurafacil.*;
 
 public class DadosFacade {
 

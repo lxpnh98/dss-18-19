@@ -1,5 +1,8 @@
 package configurafacil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  *
  * @author TIagoasfasf
@@ -9,6 +12,8 @@ public class Componente {
     private int id;
     private String nome;
     private float preco;
+    private Set<Integer> necessarios;
+    private Set<Integer> incompativeis;
 
     public Componente () {
         this.id = 0;
@@ -39,6 +44,24 @@ public class Componente {
     public float getPreco() {
         return this.preco;
     }
+    
+    public Set<Integer> getComponentesNecessarios() {
+        HashSet<Integer> r;
+        r = new HashSet<>();
+        for(int i : this.necessarios) {
+            r.add(i);
+        }
+        return r;
+    }
+    
+    public Set<Integer> getComponentesIncompativeis() {
+        HashSet<Integer> r;
+        r = new HashSet<>();
+        for(int i : this.incompativeis) {
+            r.add(i);
+        }
+        return r;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -50,6 +73,14 @@ public class Componente {
 
     public void setPreco(float preco) {
         this.preco = preco;
+    }
+    
+    public void setComponentesNecessarios(int idComponente) {
+        this.necessarios.add(idComponente);
+    }
+    
+    public void setComponentesIncompativeis(int idComponente) {
+        this.incompativeis.add(idComponente);
     }
 
     public Componente clone() {

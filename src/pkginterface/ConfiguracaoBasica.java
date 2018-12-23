@@ -36,7 +36,7 @@ public class ConfiguracaoBasica extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Configurações = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable_Componentes = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -64,18 +64,15 @@ public class ConfiguracaoBasica extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(Configurações);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_Componentes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Componente", "Cor", "Preço", "Disponibilidade"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(jTable_Componentes);
 
         jButton3.setText("Adicionar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -154,6 +151,6 @@ public class ConfiguracaoBasica extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable_Componentes;
     // End of variables declaration//GEN-END:variables
 }

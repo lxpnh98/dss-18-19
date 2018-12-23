@@ -5,7 +5,7 @@ package pkginterface;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import configurafacil*;
+import configurafacil.*;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Observable;
@@ -27,7 +27,7 @@ public class ConfiguraçãoOtima extends javax.swing.JFrame implements Serializa
     public ConfiguraçãoOtima(Configuracao config) {
         this.configA = config;
         this.configO = calculaConfiguracaoOtima();
-        this.configA.addObserver(this);
+        this.configA.addObserver(this.configA);
         initComponents();
         showConfiguracaoAtual();
         showConfiguracaoOtima();
@@ -43,14 +43,14 @@ public class ConfiguraçãoOtima extends javax.swing.JFrame implements Serializa
     
     public void showConfiguracaoAtual() {
 
-       Collection<Integer> ids = this.configA.getConponente().values();
+       Collection<Integer> ids = this.configA.getComponentes();
        DefaultTableModel model = (DefaultTableModel)jTable_Atual.getModel();
        Object[] row = new Object[2];
        model.setRowCount(0);
        int i = 0;
        for(Integer id : ids) {
-           row[0] = id.getComponente().getNome();
-           row[1] = id.getComponente().getPreco();
+           row[0] = getComponente(id).getNome(); // TODO: Corrigir
+           row[1] = getComponente(id).getPreco(); // TODO: Corrigir
            i++;
            model.addRow(row);
        }
@@ -58,14 +58,14 @@ public class ConfiguraçãoOtima extends javax.swing.JFrame implements Serializa
     
     public void showConfiguracaoOtima() {
 
-       Collection<Integer> ids = this.configO.getConponente().values();
+       Collection<Integer> ids = this.configO.getComponentes();
        DefaultTableModel model = (DefaultTableModel)jTable_Otima.getModel();
        Object[] row = new Object[2];
        model.setRowCount(0);
        int i = 0;
        for(Integer id : ids) {
-           row[0] = id.getComponente().getNome();
-           row[1] = id.getComponente().getPreco();
+           row[0] = getComponente(id).getNome(); // TODO: Corrigir
+           row[1] = getComponente(id).getPreco(); // TODO: Corrigir
            i++;
            model.addRow(row);
        }
@@ -181,7 +181,7 @@ public class ConfiguraçãoOtima extends javax.swing.JFrame implements Serializa
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        setConfiguracao(configO);
+        this.configA.setConfiguracao(configO);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

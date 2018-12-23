@@ -79,4 +79,12 @@ public class Configuracao {
     public String toString() {
         return "Id da configuracao: " + this.id + "\nPacotes: " + this.pacotes + "\nComponentes: " + this.componentes;
     }
+    
+    public void addConfBasica(){
+        // TODO implementar método
+    }
+    
+    public void setConfiguracao(Configuracao config){
+        // TODO implementar método
+    }
 }

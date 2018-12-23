@@ -1,6 +1,6 @@
 package pkgdados;
 
-import ConfiguraFacil.*;
+import configurafacil.*;
 
 public class QueueProducaoDAO {
 

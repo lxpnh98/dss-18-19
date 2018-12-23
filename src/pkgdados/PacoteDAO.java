@@ -1,5 +1,8 @@
 package pkgdados;
 
+import java.util.Set;
+import configurafacil.*;
+
 public class PacoteDAO {
 
 	public Set<Integer> keySet() {

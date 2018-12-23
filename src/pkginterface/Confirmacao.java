@@ -32,14 +32,14 @@ public class Confirmacao extends javax.swing.JFrame implements Serializable, Obs
     
     public void showConfiguracao() {
 
-       Collection<Integer> ids = this.config.getConponente().values();
+       Collection<Integer> ids = this.config.getComponentes();
        DefaultTableModel model = (DefaultTableModel)jTable_Config.getModel();
        Object[] row = new Object[2];
        model.setRowCount(0);
        int i = 0;
        for(Integer id : ids) {
-           row[0] = id.getComponente().getNome();
-           row[1] = id.getComponente().getPreco();
+           row[0] = getComponente(id).getNome();
+           row[1] = getComponente(id).getPreco();
            i++;
            model.addRow(row);
        }
