@@ -39,7 +39,7 @@ public class Pacotes extends javax.swing.JFrame implements Serializable, Observe
     public void showPacote() {
 
        Collection<Integer> componentes = this.pacote.getComponentes();
-       DefaultTableModel model = (DefaultTableModel)jTable_Pacote.getModel();
+       DefaultTableModel model = (DefaultTableModel)jTable_Componentes.getModel();
        Object[] row = new Object[1];
        model.setRowCount(0);
        int i = 0;
@@ -70,6 +70,11 @@ public class Pacotes extends javax.swing.JFrame implements Serializable, Observe
         jTable_Componentes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel1.setText("Pacotes disponíveis");
 
@@ -158,9 +163,9 @@ public class Pacotes extends javax.swing.JFrame implements Serializable, Observe
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton5)
+                    .addComponent(jButton4))
                 .addContainerGap())
         );
 
@@ -186,6 +191,10 @@ public class Pacotes extends javax.swing.JFrame implements Serializable, Observe
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         pacote = new Pacote(); // TODO Adicionar pacote Económico
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        this.pacote.deleteObservers();
+    }//GEN-LAST:event_formWindowClosed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

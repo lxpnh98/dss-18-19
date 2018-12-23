@@ -7,7 +7,7 @@ import java.util.Set;
  *
  * @author TIagoasfasf
  */
-public class Componente {
+public class Componente extends java.util.Observable {
 
     private int id;
     private String nome;

@@ -4,7 +4,7 @@ package configurafacil;
  *
  * @author TIagoasfasf
  */
-public class Carro {
+public class Carro extends java.util.Observable {
     private int id;
     private int idCliente;
     private int idConfig;
@@ -64,5 +64,14 @@ public class Carro {
 
     public String toString() {
         return "Carero id: " + this.id + "\nCliente id: " + this.idCliente + "\nConfig id: " + this.idConfig;
+    }
+    
+    public Configuracao getConfiguracao(){
+        Configuracao config = new Configuracao();
+        int id = this.getIdConfig();
+        
+        // TODO Implementar método
+        
+        return config;
     }
 }

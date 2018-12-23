@@ -6,7 +6,7 @@ import java.util.HashSet;
  *
  * @author TIagoasfasf
  */
-public class Pacote {
+public class Pacote extends java.util.Observable {
 
     private int id;
     private String nome;

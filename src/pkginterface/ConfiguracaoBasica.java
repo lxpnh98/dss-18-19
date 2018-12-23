@@ -69,7 +69,7 @@ public class ConfiguracaoBasica extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Componente", "Cor", "Preço", "Disponibilidade"
+                "Componente", "Preço", "Disponibilidade"
             }
         ));
         jScrollPane2.setViewportView(jTable_Componentes);

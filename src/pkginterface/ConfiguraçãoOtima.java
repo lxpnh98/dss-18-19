@@ -13,7 +13,6 @@ import java.util.Observer;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
  * @author ASUS
  */
 public class ConfiguraçãoOtima extends javax.swing.JFrame implements Serializable, Observer {
@@ -91,6 +90,11 @@ public class ConfiguraçãoOtima extends javax.swing.JFrame implements Serializa
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jTable_Atual.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -187,6 +191,11 @@ public class ConfiguraçãoOtima extends javax.swing.JFrame implements Serializa
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new OpcoesdeConfiguracao(configA).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        this.configA.deleteObservers();
+        this.configO.deleteObservers();
+    }//GEN-LAST:event_formWindowClosed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

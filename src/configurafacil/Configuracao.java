@@ -3,11 +3,17 @@ package configurafacil;
 import java.util.Set;
 import java.util.HashSet;
 
+class SemConfigBasicaException extends Exception {
+    public SemConfigBasicaException(int num) {
+        super("" + num);
+    }
+}
+
 /**
  *
  * @author TIagoasfasf
  */
-public class Configuracao {
+public class Configuracao extends java.util.Observable {
 
     private int id;
     private Set<Integer> pacotes;
@@ -82,9 +88,13 @@ public class Configuracao {
     
     public void addConfBasica(){
         // TODO implementar método
+        setChanged();
+        notifyObservers();
     }
     
     public void setConfiguracao(Configuracao config){
         // TODO implementar método
+        setChanged();
+        notifyObservers();
     }
 }

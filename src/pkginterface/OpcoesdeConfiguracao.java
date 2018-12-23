@@ -100,34 +100,20 @@ public class OpcoesdeConfiguracao extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            new Pacotes(this.config).setVisible(true);
-        } catch (SemConfigBasicaException e) { // TODO: Criar exceção
-            
-        }
+        new Pacotes(this.config).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            new Individuais(this.config).setVisible(true);
-        } catch (SemConfigBasicaException e) { // TODO: Criar exceção
-            
-        }
+        new Individuais(this.config).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        try {
-            new ConfiguraçãoOtima(this.config).setVisible(true);
-        } catch (SemConfigBasicaException e) { // TODO: Criar exceção
-            
-        }
+        new ConfiguraçãoOtima(this.config).setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         try {
             new Confirmacao(this.config).setVisible(true);
-        } catch (SemConfigBasicaException e) { // TODO: Criar exceção
-            
         } catch (SemConfigException e) { // TODO: Criar exceção
             
         }
