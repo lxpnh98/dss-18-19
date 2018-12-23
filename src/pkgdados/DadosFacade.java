@@ -23,13 +23,14 @@ public class DadosFacade {
 
     private Connection connect() {
         try {
-            return new DriverManager.getConnection("jdbc:mysql://localhost/ConfiguraFacil?" +
-                                                   "user=" + this.user + "&" +
-                                                   "password=" + this.password);
+            return DriverManager.getConnection("jdbc:mysql://localhost/ConfiguraFacil?" +
+                                               "user=" + this.user + "&" +
+                                               "password=" + this.password);
         } catch (SQLException e) {
             e.printStackTrace();
             System.exit(2);
         }
+        return null;
     }
 
 	public QueueProducao getQueueProducao() {
@@ -40,8 +41,13 @@ public class DadosFacade {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            c.close();
+            try {
+                c.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+        return null;
 	}
 
 	public void setQueueProducao(QueueProducao q) {
@@ -51,7 +57,11 @@ public class DadosFacade {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            c.close();
+            try {
+                c.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 	}
 
@@ -63,8 +73,13 @@ public class DadosFacade {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            c.close();
+            try {
+                c.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+        return null;
 	}
 
 	public Pacote getPacote(int id) {
@@ -75,8 +90,13 @@ public class DadosFacade {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            c.close();
+            try {
+                c.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+        return null;
 	}
 
 	public Configuracao getConfiguracaoAtual() {
@@ -87,8 +107,13 @@ public class DadosFacade {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            c.close();
+            try {
+                c.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+        return null;
 	}
 
 	public void setConfiguracao(Configuracao config) {
@@ -98,7 +123,11 @@ public class DadosFacade {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            c.close();
+            try {
+                c.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 	}
 
@@ -110,8 +139,13 @@ public class DadosFacade {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            c.close();
+            try {
+                c.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+        return null;
 	}
 
 	public Componente getComponente(int id) {
@@ -122,8 +156,13 @@ public class DadosFacade {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            c.close();
+            try {
+                c.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+        return null;
 	}
 
 	public Cliente getClienteAtual() {
@@ -134,18 +173,27 @@ public class DadosFacade {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            c.close();
+            try {
+                c.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+        return null;
 	}
 
-	public void setCliente(Cliente c) {
+	public void setCliente(Cliente client) {
         Connection c =  connect();
         try {
-            (new ClienteDAO(c)).setCliente();
+            (new ClienteDAO(c)).setCliente(client);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            c.close();
+            try {
+                c.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 	}
 
@@ -157,7 +205,12 @@ public class DadosFacade {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            c.close();
+            try {
+                c.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+        return null;
 	}
 }

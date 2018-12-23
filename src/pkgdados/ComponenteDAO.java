@@ -1,16 +1,15 @@
 package pkgdados;
 
 import configurafacil.*;
+import java.sql.*;
 
 public class ComponenteDAO extends DAO {
 
-	/**
-	 * 
-	 * @param id
-	 */
-	public Componente get(int id) {
-		// TODO - implement ComponenteDAO.get
-		throw new UnsupportedOperationException();
+    public ComponenteDAO(Connection c) {
+        super(c);
+    }
+
+	public Componente get(int id) throws SQLException {
 	}
 
 }
