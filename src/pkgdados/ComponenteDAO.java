@@ -2,7 +2,7 @@ package pkgdados;
 
 import configurafacil.*;
 
-public class ComponenteDAO {
+public class ComponenteDAO extends DAO {
 
 	/**
 	 * 

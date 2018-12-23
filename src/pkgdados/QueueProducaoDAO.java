@@ -2,20 +2,12 @@ package pkgdados;
 
 import configurafacil.*;
 
-public class QueueProducaoDAO {
+public class QueueProducaoDAO extends DAO {
 
 	public QueueProducao getQueueProducao() {
-		// TODO - implement QueueProducaoDAO.getQueueProducao
-		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 * 
-	 * @param QueueProducao
-	 */
-	public void setQueueProducao(int QueueProducao) {
-		// TODO - implement QueueProducaoDAO.setQueueProducao
-		throw new UnsupportedOperationException();
+	public void setQueueProducao(QueueProducao q) {
 	}
 
 }

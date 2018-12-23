@@ -1,91 +1,163 @@
 package pkgdados;
 
 import java.util.Set;
+import java.sql.*;
 import configurafacil.*;
 
 public class DadosFacade {
+    private String user;
+    private String password;
+
+    public DadosFacade(String user, String password) {
+        this.user = user;
+        this.password = password;
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+    }
+
+    private Connection connect() {
+        try {
+            return new DriverManager.getConnection("jdbc:mysql://localhost/ConfiguraFacil?" +
+                                                   "user=" + this.user + "&" +
+                                                   "password=" + this.password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.exit(2);
+        }
+    }
 
 	public QueueProducao getQueueProducao() {
-		// TODO - implement DadosFacade.getQueueProducao
-		throw new UnsupportedOperationException();
+        Connection c =  connect();
+        try {
+            QueueProducao r = (new QueueProducaoDAO(c)).getQueueProducao();
+            return r;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            c.close();
+        }
 	}
 
-	/**
-	 * 
-	 * @param QueueProducao
-	 */
-	public void setQueueProducao(int QueueProducao) {
-		// TODO - implement DadosFacade.setQueueProducao
-		throw new UnsupportedOperationException();
+	public void setQueueProducao(QueueProducao q) {
+        Connection c =  connect();
+        try {
+            (new QueueProducaoDAO(c)).setQueueProducao(q);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            c.close();
+        }
 	}
 
 	public Set<Integer> listaPacotes() {
-		// TODO - implement DadosFacade.listaPacotes
-		throw new UnsupportedOperationException();
+        Connection c =  connect();
+        try {
+            Set<Integer> r = (new PacoteDAO(c)).keySet();
+            return r;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            c.close();
+        }
 	}
 
-	/**
-	 * 
-	 * @param id
-	 */
 	public Pacote getPacote(int id) {
-		// TODO - implement DadosFacade.getPacote
-		throw new UnsupportedOperationException();
+        Connection c =  connect();
+        try {
+            Pacote r = (new PacoteDAO(c)).get(id);
+            return r;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            c.close();
+        }
 	}
 
 	public Configuracao getConfiguracaoAtual() {
-		// TODO - implement DadosFacade.getConfiguracaoAtual
-		throw new UnsupportedOperationException();
+        Connection c =  connect();
+        try {
+            Configuracao r = (new ConfiguracaoDAO(c)).getConfiguracaoAtual();
+            return r;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            c.close();
+        }
 	}
 
-	/**
-	 * 
-	 * @param c
-	 */
-	public void setConfiguracao(Configuracao c) {
-		// TODO - implement DadosFacade.setConfiguracao
-		throw new UnsupportedOperationException();
+	public void setConfiguracao(Configuracao config) {
+        Connection c =  connect();
+        try {
+            (new ConfiguracaoDAO(c)).setConfiguracao(config);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            c.close();
+        }
 	}
 
-	/**
-	 * 
-	 * @param id
-	 */
 	public Configuracao getConfiguracao(int id) {
-		// TODO - implement DadosFacade.getConfiguracao
-		throw new UnsupportedOperationException();
+        Connection c =  connect();
+        try {
+            Configuracao r = (new ConfiguracaoDAO(c)).get(id);
+            return r;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            c.close();
+        }
 	}
 
-	/**
-	 * 
-	 * @param id
-	 */
 	public Componente getComponente(int id) {
-		// TODO - implement DadosFacade.getComponente
-		throw new UnsupportedOperationException();
+        Connection c =  connect();
+        try {
+            Componente r = (new ComponenteDAO(c)).get(id);
+            return r;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            c.close();
+        }
 	}
 
 	public Cliente getClienteAtual() {
-		// TODO - implement DadosFacade.getClienteAtual
-		throw new UnsupportedOperationException();
+        Connection c =  connect();
+        try {
+            Cliente r = (new ClienteDAO(c)).getClienteAtual();
+            return r;            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            c.close();
+        }
 	}
 
-	/**
-	 * 
-	 * @param c
-	 */
 	public void setCliente(Cliente c) {
-		// TODO - implement DadosFacade.setCliente
-		throw new UnsupportedOperationException();
+        Connection c =  connect();
+        try {
+            (new ClienteDAO(c)).setCliente();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            c.close();
+        }
 	}
 
-	/**
-	 * 
-	 * @param id
-	 */
 	public Cliente getCliente(int id) {
-		// TODO - implement DadosFacade.getCliente
-		throw new UnsupportedOperationException();
+        Connection c =  connect();
+        try {
+            Cliente r = (new ClienteDAO(c)).get(id);
+            return r;            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            c.close();
+        }
 	}
-
 }
