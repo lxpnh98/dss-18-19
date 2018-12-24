@@ -38,8 +38,8 @@ public class Confirmacao extends javax.swing.JFrame implements Serializable, Obs
        model.setRowCount(0);
        int i = 0;
        for(Integer id : ids) {
-           row[0] = getComponente(id).getNome();
-           row[1] = getComponente(id).getPreco();
+           //row[0] = getComponente(id).getNome();
+           //row[1] = getComponente(id).getPreco();
            i++;
            model.addRow(row);
        }

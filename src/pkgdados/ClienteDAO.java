@@ -10,12 +10,14 @@ public class ClienteDAO extends DAO {
     }
 
 	public Cliente getClienteAtual() throws SQLException {
+            return new Cliente();
 	}
 
 	public void setCliente(Cliente c) throws SQLException {
 	}
 
 	public Cliente get(int id) throws SQLException {
+            return new Cliente();
 	}
 
 }

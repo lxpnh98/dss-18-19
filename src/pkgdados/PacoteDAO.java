@@ -3,6 +3,7 @@ package pkgdados;
 import java.util.Set;
 import configurafacil.*;
 import java.sql.*;
+import java.util.HashSet;
 
 public class PacoteDAO extends DAO {
  
@@ -11,9 +12,13 @@ public class PacoteDAO extends DAO {
     }
 
 	public Set<Integer> keySet() throws SQLException {
+            HashSet<Integer> r;
+            r = new HashSet<>();
+            return r;
 	}
 
 	public Pacote get(int id) throws SQLException {
+            return new Pacote();
 	}
 
 }

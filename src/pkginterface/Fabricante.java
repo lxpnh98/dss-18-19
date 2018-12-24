@@ -17,7 +17,7 @@ public class Fabricante extends javax.swing.JFrame {
      * Creates new form Fabricante
      */
     public Fabricante(/*Status*/) {
-        this.queue = getQueue();
+        //this.queue = getQueue();
         initComponents();
     }
 

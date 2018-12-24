@@ -10,12 +10,14 @@ public class ConfiguracaoDAO extends DAO {
     }
 
 	public Configuracao getConfiguracaoAtual() throws SQLException {
+            return new Configuracao();
 	}
 
 	public void setConfiguracao(Configuracao c) throws SQLException {
 	}
 
 	public Configuracao get(int id) throws SQLException {
+            return new Configuracao();
 	}
 
 }

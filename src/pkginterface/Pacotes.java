@@ -44,7 +44,7 @@ public class Pacotes extends javax.swing.JFrame implements Serializable, Observe
        model.setRowCount(0);
        int i = 0;
        for(Integer id : componentes) {
-           row[0] = getComponente(id).getNome(); // TODO: Corrigir
+           //row[0] = getComponente(id).getNome(); // TODO: Corrigir
            i++;
            model.addRow(row);
        }

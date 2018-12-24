@@ -112,11 +112,11 @@ public class OpcoesdeConfiguracao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        try {
+        //try {
             new Confirmacao(this.config).setVisible(true);
-        } catch (SemConfigException e) { // TODO: Criar exceção
+        //} catch (SemConfigException e) { // TODO: Criar exceção
             
-        }
+        //}
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

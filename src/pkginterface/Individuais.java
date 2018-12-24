@@ -23,6 +23,7 @@ public class Individuais extends javax.swing.JFrame implements Serializable, Obs
 
     /**
      * Creates new form Individuais
+     * @param config
      */
     public Individuais(Configuracao config) {
         this.config = config;
@@ -37,8 +38,8 @@ public class Individuais extends javax.swing.JFrame implements Serializable, Obs
        model.setRowCount(0);
        int i = 0;
        for(Integer id : ids) {
-           row[0] = getComponente(id).getNome(); // TODO: Corrigir
-           row[1] = getComponente(id).getPreco(); // TODO: Corrigir
+           //row[0] = getComponente(id).getNome(); // TODO: Corrigir
+           //row[1] = getComponente(id).getPreco(); // TODO: Corrigir
            i++;
            model.addRow(row);
        }

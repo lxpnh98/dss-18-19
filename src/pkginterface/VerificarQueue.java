@@ -34,7 +34,7 @@ public class VerificarQueue extends javax.swing.JFrame {
        model.setRowCount(0);
        int i = 0;
        for(Integer id : ids) {
-           row[0] = getComponente(id).getNome(); // TODO: Corrigir
+           //row[0] = getComponente(id).getNome(); // TODO: Corrigir
            i++;
            model.addRow(row);
        }

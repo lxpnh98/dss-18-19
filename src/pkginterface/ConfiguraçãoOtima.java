@@ -25,8 +25,8 @@ public class ConfiguraçãoOtima extends javax.swing.JFrame implements Serializa
      */
     public ConfiguraçãoOtima(Configuracao config) {
         this.configA = config;
-        this.configO = calculaConfiguracaoOtima();
-        this.configA.addObserver(this.configA);
+        //this.configO = calculaConfiguracaoOtima();
+        this.configA.addObserver(this);
         initComponents();
         showConfiguracaoAtual();
         showConfiguracaoOtima();
@@ -48,8 +48,8 @@ public class ConfiguraçãoOtima extends javax.swing.JFrame implements Serializa
        model.setRowCount(0);
        int i = 0;
        for(Integer id : ids) {
-           row[0] = getComponente(id).getNome(); // TODO: Corrigir
-           row[1] = getComponente(id).getPreco(); // TODO: Corrigir
+           //row[0] = getComponente(id).getNome(); // TODO: Corrigir
+           //row[1] = getComponente(id).getPreco(); // TODO: Corrigir
            i++;
            model.addRow(row);
        }
@@ -63,8 +63,8 @@ public class ConfiguraçãoOtima extends javax.swing.JFrame implements Serializa
        model.setRowCount(0);
        int i = 0;
        for(Integer id : ids) {
-           row[0] = getComponente(id).getNome(); // TODO: Corrigir
-           row[1] = getComponente(id).getPreco(); // TODO: Corrigir
+           //row[0] = getComponente(id).getNome(); // TODO: Corrigir
+           //row[1] = getComponente(id).getPreco(); // TODO: Corrigir
            i++;
            model.addRow(row);
        }
