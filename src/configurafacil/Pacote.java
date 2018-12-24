@@ -1,7 +1,5 @@
 package configurafacil;
 
-import java.util.Set;
-import java.util.HashSet;
 /**
  *
  * @author TIagoasfasf

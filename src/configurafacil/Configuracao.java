@@ -1,8 +1,5 @@
 package configurafacil;
 
-import java.util.Set;
-import java.util.HashSet;
-
 class SemConfigBasicaException extends Exception {
     public SemConfigBasicaException(int num) {
         super("" + num);

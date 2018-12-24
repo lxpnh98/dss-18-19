@@ -1,5 +1,7 @@
 package configurafacil;
 
+import java.lang.String;
+
 /**
  *
  * @author TIagoasfasf
@@ -7,19 +9,19 @@ package configurafacil;
 public class Cliente {
     private int id;
     private String nome;
-    private long tlmv;
+    private String tlmv;
     private String email;
-    private long nif;
+    private String nif;
 
     public Cliente() {
         this.id = 0;
         this.nome = "";
-        this.tlmv = 0;
+        this.tlmv = "";
         this.email = "";
-        this.nif = 0;
+        this.nif = "";
     }
 
-    public Cliente(int id, String nome, long tlmv, String email, long nif) {
+    public Cliente(int id, String nome, String tlmv, String email, String nif) {
         this.id = id;
         this.nome = nome;
         this.tlmv = tlmv;
@@ -43,7 +45,7 @@ public class Cliente {
         return this.nome;
     }
     
-    public long getTlmv() {
+    public String getTlmv() {
         return this.tlmv;
     }
 
@@ -51,7 +53,7 @@ public class Cliente {
         return this.email;
     }
     
-    public long getNif() {
+    public String getNif() {
         return this.nif;
     }
 
@@ -63,7 +65,7 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public void setTlmv(long tlmv) {
+    public void setTlmv(String tlmv) {
         this.tlmv = tlmv;
     }
 
@@ -71,8 +73,47 @@ public class Cliente {
         this.email = email;
     }
 
-    public void setNif(long nif) {
+    public void setNif(String nif) {
         this.nif = nif;
+    }
+
+    public boolean validaInfo(String nome, String tlmv, String email, String nif) {
+        if(numerosValidos(tlmv) && numerosValidos(nif) && nome.length()!=0 && verificaMail(email)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean numerosValidos(String numeros) {
+        int length = numeros.length();
+        if(length != 9) {
+            return false;
+        }
+        for (int i = 0, i < length; i++) {
+            if(numeros.charAt(i)=='1' || numeros.charAt(i)=='2' || numeros.charAt(i)=='3' ||
+               numeros.charAt(i)=='4' || numeros.charAt(i)=='5' || numeros.charAt(i)=='6' ||
+               numeros.charAt(i)=='7' || numeros.charAt(i)=='8' || numeros.charAt(i)=='9'    ) {
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean verificaMail(String mail) {
+        int contador = 0;
+        for(int i = 0; i < mail.length(); i++)  {
+            if(mail.charAt(i)=='@')
+                contador++;
+            if(contador>1) 
+                break;
+        }
+        if(contador==1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public Cliente clone() {
@@ -84,8 +125,8 @@ public class Cliente {
         if((o == null) || (o.getClass() != this.getClass())) return false;
         Cliente c = (Cliente) o;
         return (this.id == c.getId()) && (this.nome.equals(c.getNome())) &&
-               (this.tlmv == c.getTlmv()) && (this.email.equals(c.getEmail())) &&
-               (this.nif == c.getNif());
+               (this.tlmv.equals(c.getTlmv())) && (this.email.equals(c.getEmail())) &&
+               (this.nif.equals(c.getNif()));
     }
 
     public String toString() {

@@ -151,15 +151,15 @@ public class Vendedor extends javax.swing.JFrame {
 
     private void jButton_AdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AdicionarActionPerformed
         String nome;
-        long tlmv;
+        String tlmv;
         String email;
-        long nif;
+        String nif;
         Cliente cliente;
         
         nome = jTextField_Name.getText();
-        tlmv = Long.parseLong(jTextField_Numero.getText());
+        tlmv = jTextField_Numero.getText();
         email = jTextField_Email.getText();
-        nif = Long.parseLong(jTextField_NIF.getText());
+        nif = jTextField_NIF.getText();
        
         cliente = new Cliente(/*id*/1, nome, tlmv, email,nif);
         
