@@ -63,7 +63,7 @@ public class Carro extends java.util.Observable {
     }
 
     public String toString() {
-        return "Carero id: " + this.id + "\nCliente id: " + this.idCliente + "\nConfig id: " + this.idConfig;
+        return "Carro {id: " + this.id + ", Cliente_id: " + this.idCliente + ", Configuracao_id: " + this.idConfig + "}";
     }
     
     public Configuracao getConfiguracao(){
