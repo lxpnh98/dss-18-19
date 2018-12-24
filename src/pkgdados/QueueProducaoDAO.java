@@ -10,6 +10,7 @@ public class QueueProducaoDAO extends DAO {
     }
 
 	public QueueProducao getQueueProducao() throws SQLException {
+        QueueProducao q = new QueueProducao();
         return null;
 	}
 

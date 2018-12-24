@@ -1,16 +1,27 @@
 package configurafacil;
 
-import java.util.ArrayList;
-import java.util.Queue;
+import java.util.*;
 
-/**
- *
- * @author TIagoasfasf
- */
 public class QueueProducao {
-    Queue<String> queue;
+    public LinkedList<Carro> queue;
     
     public QueueProducao() {
-        this.queue = (Queue<String>) new ArrayList<String>();
-    }   
+        this.queue = new LinkedList<>();
+    }
+
+    public void add(Carro c) {
+        this.queue.add(c);
+    }
+
+    public Carro remove() {
+        return this.queue.remove();
+    }
+
+    public Carro getCarro(int id) {
+        for (Carro c : this.queue) {
+            if (c.getId() == id)
+                return c;
+        }
+        return null;
+    }
 }

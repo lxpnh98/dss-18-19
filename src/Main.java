@@ -1,4 +1,4 @@
-import pkginterface.*;
+import pkginterface.MenuInicial;
 import pkgdados.DadosFacade;
 //import configurafacil.ConfiguraFacil;
 
