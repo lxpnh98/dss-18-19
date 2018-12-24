@@ -19,6 +19,9 @@ public class Main {
 
         DadosFacade dados = new DadosFacade(user, password);
 
+        // para testar
+        dados.getQueueProducao();
+
         //ConfiguraFacil cf = new ConfiguraFacil(dados);
 
         //MenuInicial menu = new MenuInicial(cf);
