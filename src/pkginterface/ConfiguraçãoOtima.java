@@ -6,6 +6,7 @@ package pkginterface;
  * and open the template in the editor.
  */
 import configurafacil.*;
+import pkgdados.DadosFacade;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Observable;
@@ -19,12 +20,14 @@ public class ConfiguraçãoOtima extends javax.swing.JFrame implements Serializa
 
     private Configuracao configA;
     private Configuracao configO;
+    private DadosFacade dados;
     
     /**
      * Creates new form ConfiguraçãoOtima
      */
-    public ConfiguraçãoOtima(Configuracao config) {
+    public ConfiguraçãoOtima(Configuracao config) { // TODO passar argumento DadosFacade
         this.configA = config;
+        this.dados = dados;
         //this.configO = calculaConfiguracaoOtima();
         this.configA.addObserver(this);
         initComponents();
@@ -48,8 +51,8 @@ public class ConfiguraçãoOtima extends javax.swing.JFrame implements Serializa
        model.setRowCount(0);
        int i = 0;
        for(Integer id : ids) {
-           //row[0] = getComponente(id).getNome(); // TODO: Corrigir
-           //row[1] = getComponente(id).getPreco(); // TODO: Corrigir
+           row[0] = dados.getComponente(id).getNome();
+           row[1] = dados.getComponente(id).getPreco();
            i++;
            model.addRow(row);
        }

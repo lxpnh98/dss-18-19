@@ -16,29 +16,42 @@ class SemConfigBasicaException extends Exception {
 public class Configuracao extends java.util.Observable {
 
     private int id;
+    private Set<String> configBasica;
     private Set<Integer> pacotes;
     private Set<Integer> componentes;
 
     public Configuracao () {
         this.id = 0;
+        this.configBasica = new HashSet<>();
         this.pacotes = new HashSet<>();
         this.componentes = new HashSet<>();
     }
 
     public Configuracao(int id) {
         this.id = id;
+        this.configBasica = new HashSet<>();
         this.pacotes = new HashSet<>();
         this.componentes = new HashSet<>();
     }
 
     public Configuracao(Configuracao c) {
         this.id = c.getId();
+        this.configBasica = c.getConfigBasica();
         this.pacotes = c.getPacotes();
         this.componentes = c.getComponentes();
     }
 
     public int getId() {
         return this.id;
+    }
+    
+    public Set<String> getConfigBasica() {
+        HashSet<String> r;
+        r = new HashSet<>();
+        for(String i : this.configBasica) {
+            r.add(i);
+        }
+        return r;
     }
 
     public Set<Integer> getPacotes() {
@@ -63,6 +76,12 @@ public class Configuracao extends java.util.Observable {
         this.id = id;
     }
 
+    public void setConfigBasica(String componente) {
+        this.configBasica.add(componente);
+        setChanged();
+        notifyObservers();
+    }
+    
     public void setPacotes(int idPacote) {
         this.pacotes.add(idPacote);
     }
@@ -84,12 +103,6 @@ public class Configuracao extends java.util.Observable {
 
     public String toString() {
         return "Id da configuracao: " + this.id + "\nPacotes: " + this.pacotes + "\nComponentes: " + this.componentes;
-    }
-    
-    public void addConfBasica(){
-        // TODO implementar método
-        setChanged();
-        notifyObservers();
     }
     
     public void setConfiguracao(Configuracao config){

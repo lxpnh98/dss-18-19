@@ -6,6 +6,7 @@ package pkginterface;
  * and open the template in the editor.
  */
 import configurafacil.*;
+import pkgdados.DadosFacade;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Observable;
@@ -19,12 +20,14 @@ import javax.swing.table.DefaultTableModel;
 public class Confirmacao extends javax.swing.JFrame implements Serializable, Observer {
 
     private Configuracao config;
+    private DadosFacade dados;
     
     /**
      * Creates new form Confirmacao
      */
-    public Confirmacao(Configuracao config) {
+    public Confirmacao(Configuracao config) { // TODO passar argumento DadosFacade
         this.config = config;
+        this.dados = dados;
         this.config.addObserver(this);
         initComponents();
         showConfiguracao();
@@ -38,8 +41,8 @@ public class Confirmacao extends javax.swing.JFrame implements Serializable, Obs
        model.setRowCount(0);
        int i = 0;
        for(Integer id : ids) {
-           //row[0] = getComponente(id).getNome();
-           //row[1] = getComponente(id).getPreco();
+           row[0] = dados.getComponente(id).getNome();
+           row[1] = dados.getComponente(id).getPreco();
            i++;
            model.addRow(row);
        }

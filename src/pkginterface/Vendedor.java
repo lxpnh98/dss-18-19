@@ -163,6 +163,7 @@ public class Vendedor extends javax.swing.JFrame {
        
         cliente = new Cliente(/*id*/1, nome, tlmv, email,nif);
         
+        new ConfiguracaoBasica(new Configuracao()).setVisible(true);
         // TODO Adicionar Cliente
         // TODO Verificar ID
        

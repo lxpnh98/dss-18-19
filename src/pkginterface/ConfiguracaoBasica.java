@@ -6,21 +6,72 @@ package pkginterface;
  * and open the template in the editor.
  */
 import configurafacil.*;
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.Observable;
+import java.util.Observer;
+import javax.swing.table.DefaultTableModel;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
- *
  * @author ASUS
  */
-public class ConfiguracaoBasica extends javax.swing.JFrame {
+public class ConfiguracaoBasica extends javax.swing.JFrame implements Serializable, Observer {
 
     private Configuracao config;
+    private Set<String> configbasica;
+    
     /**
      * Creates new form ConfiguracaoBasica
      */
-    public ConfiguracaoBasica() {
-        this.config = new Configuracao();
+    public ConfiguracaoBasica(Configuracao config) {
+        this.configbasica = initConfigBasica();
+        this.config = config;
+        this.config.addObserver(this);
         initComponents();
+        showConfiguracao();
+        showConfiguracaoselecionada();
     }
 
+    public Set<String> initConfigBasica(){
+        HashSet<String> r;
+        r = new HashSet<>();
+        r.add("Motor");
+        r.add("Jantes");
+        r.add("Pneus");
+        r.add("Pintura");
+        r.add("Detalhes Internos");
+        r.add("Detalhes Externos");
+        return r;
+    }
+    
+    public void showConfiguracaoselecionada() {
+       Collection<String> componentes = this.config.getConfigBasica();
+       DefaultTableModel model = (DefaultTableModel)jTable_Componentes.getModel();
+       Object[] row = new Object[1];
+       model.setRowCount(0);
+       int i = 0;
+       for(String componente : componentes) {
+           row[0] = componente;
+           i++;
+           model.addRow(row);
+       }
+    }
+    
+    public void showConfiguracao() {
+       Collection<String> componentes = this.configbasica;
+       DefaultTableModel model = (DefaultTableModel)jTable_basica.getModel();
+       Object[] row = new Object[1];
+       model.setRowCount(0);
+       int i = 0;
+       for(String componente : componentes) {
+           row[0] = componente;
+           i++;
+           model.addRow(row);
+       }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,13 +84,20 @@ public class ConfiguracaoBasica extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        Configurações = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_Componentes = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable_basica = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField_Componente = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel1.setText("Configurações básicas do carro");
 
@@ -56,13 +114,6 @@ public class ConfiguracaoBasica extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-
-        Configurações.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Pintura", "Jantes", "Pneus", "Motor", "..." };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(Configurações);
 
         jTable_Componentes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -81,6 +132,18 @@ public class ConfiguracaoBasica extends javax.swing.JFrame {
             }
         });
 
+        jTable_basica.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Componente"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable_basica);
+
+        jLabel2.setText("Componente a Adicionar:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -89,22 +152,24 @@ public class ConfiguracaoBasica extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jTextField_Componente, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE))
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton2))
+                                .addGap(0, 10, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                                .addContainerGap())))))
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,12 +177,16 @@ public class ConfiguracaoBasica extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(4, 4, 4)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                    .addComponent(jTextField_Componente))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
@@ -140,17 +209,30 @@ public class ConfiguracaoBasica extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        this.config.addConfBasica();
+        String componente = jTextField_Componente.getText();
+        
+        this.config.setConfigBasica(componente);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        this.config.deleteObservers();
+    }//GEN-LAST:event_formWindowClosed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> Configurações;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable_Componentes;
+    private javax.swing.JTable jTable_basica;
+    private javax.swing.JTextField jTextField_Componente;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+       showConfiguracaoselecionada();
+    }
 }

@@ -11,8 +11,7 @@ import configurafacil.*;
  * @author ASUS
  */
 public class Fabricante extends javax.swing.JFrame {
-
-    private QueueProducao queue;
+    
     /**
      * Creates new form Fabricante
      */
@@ -37,11 +36,6 @@ public class Fabricante extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Verificar Queue de Produção");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         jButton2.setText("Atualizar Queue");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +78,7 @@ public class Fabricante extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new VerificarQueue(this.queue).setVisible(true);
+        new VerificarQueue().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
