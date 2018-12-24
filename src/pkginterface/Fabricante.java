@@ -15,7 +15,7 @@ public class Fabricante extends javax.swing.JFrame {
     /**
      * Creates new form Fabricante
      */
-    public Fabricante(/*Status*/) {
+    public Fabricante() {
         //this.queue = getQueue();
         initComponents();
     }
@@ -36,6 +36,11 @@ public class Fabricante extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Verificar Queue de Produção");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Atualizar Queue");
         jButton2.addActionListener(new java.awt.event.ActionListener() {

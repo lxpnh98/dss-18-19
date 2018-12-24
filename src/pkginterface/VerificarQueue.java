@@ -26,7 +26,7 @@ public class VerificarQueue extends javax.swing.JFrame {
      * @param queue
      */
     public VerificarQueue() {
-        this.queue = this.dados.getQueueProducao();
+        //this.queue = this.dados.getQueueProducao();
         initComponents();
     }
     

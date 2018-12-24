@@ -44,6 +44,11 @@ public class MenuInicial extends javax.swing.JFrame {
         jLabel1.setText("Bem Vindo");
 
         jButton2.setText("Fabricante");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
