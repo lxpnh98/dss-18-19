@@ -9,19 +9,22 @@ public class Carro extends java.util.Observable {
     private int idCliente;
     private int idConfig;
     private float preco;
+    private LocalDateTime dataEncomenda;
 
     public Carro() {
         this.id = 0;
         this.idCliente = 0;
         this.idConfig = 0;
         this.preco = 0.0f;
+        this.dataEncomenda = LocalDateTime.now(); 
     }
 
-    public Carro(int id, int cliente, int config, float preco) {
+    public Carro(int id, int cliente, int config, float preco, LocalDateTime dataEncomenda) {
         this.id = id;
         this.idCliente = cliente;
         this.idConfig = config;
         this.preco = preco;
+        this.dataEncomenda = dataEncomenda;
     }
 
     public Carro(Carro carro) {
@@ -29,6 +32,7 @@ public class Carro extends java.util.Observable {
         this.idCliente = carro.getIdCliente();
         this.idConfig = carro.getIdConfig();
         this.preco = carro.getPreco();
+        this.dataEncomenda = carro.getDataEncomenda();
     }
 
     public int getId() {
@@ -47,6 +51,10 @@ public class Carro extends java.util.Observable {
         return this.preco;
     }
 
+    public LocalDateTime getDataEncomenda() {
+        return this.dataEncomenda.clone();
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -63,6 +71,10 @@ public class Carro extends java.util.Observable {
         this.preco = preco;
     }
 
+    public void setDataEncomenda(LocalDateTime dataEncomenda) {
+        this.dataEncomenda = dataEncomenda;
+    }
+
     public Carro clone() {
         return new Carro(this);
     }
@@ -71,19 +83,11 @@ public class Carro extends java.util.Observable {
         if(o == this) return true;
         if((o == null) || (o.getClass() != this.getClass())) return false;
         Carro c = (Carro) o;
-        return (this.id == c.getId()) && (this.idCliente == c.getIdCliente()) && (this.idConfig == c.getIdConfig());
+        return (this.id == c.getId()) && (this.idCliente == c.getIdCliente()) && (this.idConfig == c.getIdConfig()) &&
+               (this.preco == c.getPreco()) && (this.dataEncomenda.equals(c.getDataEncomenda()));
     }
 
     public String toString() {
-        return "Carro {id: " + this.id + ", Cliente_id: " + this.idCliente + ", Configuracao_id: " + this.idConfig + ", preco: " + this.preco + "}";
-    }
-    
-    public Configuracao getConfiguracao(){
-        Configuracao config = new Configuracao();
-        int id = this.getIdConfig();
-        
-        // TODO Implementar método
-        
-        return config;
+        return "Carro {id: " + this.id + ", Cliente_id: " + this.idCliente + ", Configuracao_id: " + this.idConfig + ", preco: " + this.preco + ", data encomenda: " + this.dataEncomenda + "}";
     }
 }

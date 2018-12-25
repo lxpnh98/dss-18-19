@@ -1,6 +1,6 @@
 import pkginterface.MenuInicial;
 import pkgdados.DadosFacade;
-//import configurafacil.ConfiguraFacil;
+import configurafacil.ConfiguraFacil;
 import configurafacil.*;
 
 public class Main {
@@ -20,7 +20,7 @@ public class Main {
 
         DadosFacade dados = new DadosFacade(user, password);
 
-        //ConfiguraFacil cf = new ConfiguraFacil(dados);
+        ConfiguraFacil cf = new ConfiguraFacil(dados);
 
         //MenuInicial menu = new MenuInicial(cf);
 
