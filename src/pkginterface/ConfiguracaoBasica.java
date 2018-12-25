@@ -47,16 +47,18 @@ public class ConfiguracaoBasica extends javax.swing.JFrame implements Serializab
     }
     
     public void showConfiguracaoselecionada() {
-       Collection<String> componentes = this.config.getConfigBasica();
-       DefaultTableModel model = (DefaultTableModel)jTable_Componentes.getModel();
-       Object[] row = new Object[1];
-       model.setRowCount(0);
-       int i = 0;
-       for(String componente : componentes) {
-           row[0] = componente;
-           i++;
-           model.addRow(row);
-       }
+        //Collection<String> componentes = this.config.getConfigBasica();
+        Collection<String> componentes = new HashSet<>();
+        // TODO: reimplementar com variáveis de instância
+        DefaultTableModel model = (DefaultTableModel)jTable_Componentes.getModel();
+        Object[] row = new Object[1];
+        model.setRowCount(0);
+        int i = 0;
+        for(String componente : componentes) {
+             row[0] = componente;
+             i++;
+             model.addRow(row);
+        }
     }
     
     public void showConfiguracao() {
@@ -211,7 +213,9 @@ public class ConfiguracaoBasica extends javax.swing.JFrame implements Serializab
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         String componente = jTextField_Componente.getText();
         
-        this.config.setConfigBasica(componente);
+        // TODO: reimplementar com variáveis de instância
+        //this.config.setConfigBasica(componente);
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed

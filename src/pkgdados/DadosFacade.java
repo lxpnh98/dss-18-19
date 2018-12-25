@@ -99,6 +99,21 @@ public class DadosFacade {
         return null;
 	}
 
+	public void createConfiguracao() {
+        Connection c =  connect();
+        try {
+            (new ConfiguracaoDAO(c)).createConfiguracao();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                c.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+	}
+
 	public Configuracao getConfiguracaoAtual() {
         Connection c =  connect();
         try {
@@ -116,10 +131,10 @@ public class DadosFacade {
         return null;
 	}
 
-	public void setConfiguracao(Configuracao config) {
+	public void setConfiguracaoAtual(Configuracao config) {
         Connection c =  connect();
         try {
-            (new ConfiguracaoDAO(c)).setConfiguracao(config);
+            (new ConfiguracaoDAO(c)).setConfiguracaoAtual(config);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
