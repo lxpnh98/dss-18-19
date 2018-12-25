@@ -156,10 +156,4 @@ public class Configuracao extends java.util.Observable {
     public String toString() {
         return "Id da configuracao: " + this.id + "\nPacotes: " + this.pacotes + "\nComponentes: " + this.componentes;
     }
-    
-    public void setConfiguracao(Configuracao config){
-        // TODO implementar método
-        setChanged();
-        notifyObservers();
-    }
 }

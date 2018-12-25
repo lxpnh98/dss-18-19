@@ -6,15 +6,18 @@ package pkginterface;
  */
 
 import configurafacil.*;
+import java.io.Serializable;
 import pkgdados.DadosFacade;
 import java.util.Collection;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author ASUS
  */
-public class VerificarQueue extends javax.swing.JFrame {
+public class VerificarQueue extends javax.swing.JFrame implements Serializable, Observer {
 
     private QueueProducao queue;
     private Carro carro;
@@ -28,11 +31,26 @@ public class VerificarQueue extends javax.swing.JFrame {
     public VerificarQueue() {
         //this.queue = this.dados.getQueueProducao();
         initComponents();
+        this.queue.addObserver(this);
+        //showQueue();
     }
-    
-    public void showConfiguracaoCarro() {
+    /*
+    public void showQueue() {
+       DefaultTableModel model = (DefaultTableModel)jTable_Componentes.getModel();
+       Object[] row = new Object[2];
+       model.setRowCount(0);
+       int i = 0;
+       for (Carro c : (LinkedList)this.queue) {
+           row[0] = c.getId();
+           row[2] = this.dados.getCliente(c.getIdCliente()).getNome();
+           i++;
+           model.addRow(row);
+       }
+    }
+    */
+    public void showConfiguracaoCarro(Configuracao config) {
 
-       Collection<Integer> ids = this.dados.getConfiguracao(this.carro.getIdConfig()).getComponentes();
+       Collection<Integer> ids = config.getComponentes();
        DefaultTableModel model = (DefaultTableModel)jTable_Componentes.getModel();
        Object[] row = new Object[1];
        model.setRowCount(0);
@@ -97,13 +115,19 @@ public class VerificarQueue extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id"
+                "Id", "Cliente"
             }
         ));
         jScrollPane3.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
         }
+
+        jTextField_ID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_IDActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Id do Carro a Verificar:");
 
@@ -178,11 +202,14 @@ public class VerificarQueue extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int id = Integer.parseInt(jTextField_ID.getText());
-        
-        // TODO Procurar carro na queue
-        
+        carro = queue.getCarro(id);
         this.config = dados.getConfiguracao(carro.getIdConfig());
+        showConfiguracaoCarro(config);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_IDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_IDActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -196,4 +223,10 @@ public class VerificarQueue extends javax.swing.JFrame {
     private javax.swing.JTable jTable_Componentes;
     private javax.swing.JTextField jTextField_ID;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+        //showQueue();
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

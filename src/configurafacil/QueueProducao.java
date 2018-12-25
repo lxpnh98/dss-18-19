@@ -2,7 +2,7 @@ package configurafacil;
 
 import java.util.*;
 
-public class QueueProducao {
+public class QueueProducao extends java.util.Observable {
     public LinkedList<Carro> queue;
     
     public QueueProducao() {
