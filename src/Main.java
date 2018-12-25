@@ -1,6 +1,7 @@
 import pkginterface.MenuInicial;
 import pkgdados.DadosFacade;
 //import configurafacil.ConfiguraFacil;
+import configurafacil.*;
 
 public class Main {
     
@@ -18,9 +19,6 @@ public class Main {
         String password = "password";//args[2];
 
         DadosFacade dados = new DadosFacade(user, password);
-
-        // para testar
-        dados.getQueueProducao();
 
         //ConfiguraFacil cf = new ConfiguraFacil(dados);
 

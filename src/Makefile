@@ -8,3 +8,6 @@ build:
 # como utilizar (exemplo): make run USER=user PASS=hunter2
 run:
 	java -cp .:/usr/share/java/mysql-connector-java.jar Main -- $(USER) $(PASS)
+
+clean:
+	rm *.class */*.class

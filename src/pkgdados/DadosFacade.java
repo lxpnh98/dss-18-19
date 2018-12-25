@@ -25,7 +25,7 @@ public class DadosFacade {
         try {
             return DriverManager.getConnection("jdbc:mysql://localhost/ConfiguraFacil?" +
                                                "user=" + this.user + "&" +
-                                               "password=" + this.password);
+                                               "password=" + this.password + "&useSSL=false");
         } catch (SQLException e) {
             e.printStackTrace();
             System.exit(2);

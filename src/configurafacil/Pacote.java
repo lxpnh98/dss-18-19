@@ -1,5 +1,7 @@
 package configurafacil;
 
+import java.util.*;
+
 /**
  *
  * @author TIagoasfasf

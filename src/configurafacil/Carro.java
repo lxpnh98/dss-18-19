@@ -8,23 +8,27 @@ public class Carro extends java.util.Observable {
     private int id;
     private int idCliente;
     private int idConfig;
+    private float preco;
 
     public Carro() {
         this.id = 0;
         this.idCliente = 0;
         this.idConfig = 0;
+        this.preco = 0.0f;
     }
 
-    public Carro(int id, int cliente, int config) {
+    public Carro(int id, int cliente, int config, float preco) {
         this.id = id;
         this.idCliente = cliente;
         this.idConfig = config;
+        this.preco = preco;
     }
 
     public Carro(Carro carro) {
         this.id = carro.getId();
         this.idCliente = carro.getIdCliente();
         this.idConfig = carro.getIdConfig();
+        this.preco = carro.getPreco();
     }
 
     public int getId() {
@@ -39,6 +43,10 @@ public class Carro extends java.util.Observable {
         return this.idConfig;
     }
 
+    public float getPreco() {
+        return this.preco;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -51,8 +59,12 @@ public class Carro extends java.util.Observable {
         this.idConfig = config;
     }
 
+    public void setPreco(float preco) {
+        this.preco = preco;
+    }
+
     public Carro clone() {
-        return this;
+        return new Carro(this);
     }
 
     public boolean equals(Object o) {
@@ -63,7 +75,7 @@ public class Carro extends java.util.Observable {
     }
 
     public String toString() {
-        return "Carro {id: " + this.id + ", Cliente_id: " + this.idCliente + ", Configuracao_id: " + this.idConfig + "}";
+        return "Carro {id: " + this.id + ", Cliente_id: " + this.idCliente + ", Configuracao_id: " + this.idConfig + ", preco: " + this.preco + "}";
     }
     
     public Configuracao getConfiguracao(){

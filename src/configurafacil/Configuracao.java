@@ -1,5 +1,7 @@
 package configurafacil;
 
+import java.util.*;
+
 class SemConfigBasicaException extends Exception {
     public SemConfigBasicaException(int num) {
         super("" + num);

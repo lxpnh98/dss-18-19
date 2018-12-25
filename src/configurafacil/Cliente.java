@@ -90,7 +90,7 @@ public class Cliente {
         if(length != 9) {
             return false;
         }
-        for (int i = 0, i < length; i++) {
+        for (int i = 0; i < length; i++) {
             if(numeros.charAt(i)=='1' || numeros.charAt(i)=='2' || numeros.charAt(i)=='3' ||
                numeros.charAt(i)=='4' || numeros.charAt(i)=='5' || numeros.charAt(i)=='6' ||
                numeros.charAt(i)=='7' || numeros.charAt(i)=='8' || numeros.charAt(i)=='9'    ) {
