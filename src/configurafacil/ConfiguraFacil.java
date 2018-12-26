@@ -49,38 +49,75 @@ public class ConfiguraFacil extends java.util.Observable {
         Cliente cliente = this.dados.getClienteAtual();
         QueueProducao q = this.dados.getQueueProducao();
 
+
+        Set<Integer> componentes = config.getComponentes();
+        Set<Integer> pacotes = config.getPacotes();
+
         int idConfig = config.getId();
         int idCliente = cliente.getId();
-        boolean pronto = estaPronto(config);
-        float preco = 0; // calcular preco.
+        boolean pronto = estaPronto(componentes,pacotes);
+        float preco = getPreco(componentes,pacotes);
 
         Carro carro = new Carro(0,idConfig,idCliente,preco,LocalDateTime.now(),pronto);
 
         q.queue.add(carro);
         this.dados.setQueueProducao(q);
+        if(pronto == true) {
+            atualizaComponente(componentes,pacotes); 
+        }
     }
 
-    //Auxiliar à adicionaCarro()
-    public boolean estaPronto(Configuracao config) {
-		Set<Integer> componentes = config.getComponentes();
-		Set<Integer> pacotes = config.getPacotes();
-		
-		for(Integer i : pacotes) {
-			Pacote p = this.dados.getPacote(i);
-			Set<Integer> c = p.getComponentes();
-			for(Integer j : c) {
-				componentes.add(j);
-			}
-		}
-		
-		for(Integer k : componentes) {
-			Componente c = this.dados.getComponente(k);
-			if(c.getStock() == 0) {
-				return false;
-			}
-		}
+    //Auxiliar da adicionaCarro()
+    public boolean estaPronto(Set<Integer> componentes,Set<Integer> pacotes) {
+        for(Integer i : pacotes) {
+            Pacote p = this.dados.getPacote(i);
+            Set<Integer> c = p.getComponentes();
+            for(Integer j : c) {
+                componentes.add(j);
+            }
+        }
 
-		return true;
+        for(Integer k : componentes) {
+            Componente c = this.dados.getComponente(k);
+            if(c.getStock() == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //Auxiliar da adicionaCarro()
+    public float getPreco(Set<Integer> componentes,Set<Integer> pacotes) {
+        float preco = 0;
+
+        for(Integer i : pacotes) {
+            Pacote p = this.dados.getPacote(i);
+            preco += p.getPreco();
+        }
+        
+        for(Integer j : componentes) {
+            Componente c = this.dados.getComponente(j);
+            preco += c.getPreco();
+        }
+        return preco;
+    }
+
+    //Auxiliar da adicionaCarro()
+    public void atualizaComponente(Set<Integer> componentes,Set<Integer> pacotes) {
+        for(Integer i : pacotes) {
+            Pacote p = this.dados.getPacote(i);
+            Set<Integer> c = p.getComponentes();
+            for(Integer j : c) {
+                componentes.add(j);
+            }
+        }
+        
+        for(Integer k : componentes) {
+            Componente c = this.dados.getComponente(k);
+            int quantidade = c.getStock()-1;
+            c.setStock(quantidade);
+            this.dados.setComponente(c);
+        }
     }
 
     public void atualizaQueue() {
