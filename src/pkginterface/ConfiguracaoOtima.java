@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ConfiguracaoOtima extends javax.swing.JFrame implements Observer {
 
+    private static final long serialVersionUID = 1;
     private Configuracao configA;
     private Configuracao configO;
     private DadosFacade dados;

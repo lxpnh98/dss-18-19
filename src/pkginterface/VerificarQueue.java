@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VerificarQueue extends javax.swing.JFrame implements Observer {
 
+    private static final long serialVersionUID = 1;
     private QueueProducao queue;
     private Carro carro;
     private Configuracao config;

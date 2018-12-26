@@ -11,6 +11,7 @@ import configurafacil.*;
  */
 public class Vendedor extends javax.swing.JFrame {
 
+    private static final long serialVersionUID = 1;
     /**
      * Creates new form Vendedor
      */

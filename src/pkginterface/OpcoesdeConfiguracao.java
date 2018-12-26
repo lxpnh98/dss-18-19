@@ -12,6 +12,7 @@ import configurafacil.*;
  */
 public class OpcoesdeConfiguracao extends javax.swing.JFrame {
     
+    private static final long serialVersionUID = 1;
     private Configuracao config;
 
     /**

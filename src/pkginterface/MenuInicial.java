@@ -12,6 +12,7 @@ import configurafacil.*;
  */
 public class MenuInicial extends javax.swing.JFrame {
 
+    private static final long serialVersionUID = 1;
     /**
      * Creates new form NewJFrame
      */

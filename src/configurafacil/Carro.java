@@ -93,14 +93,6 @@ public class Carro extends java.util.Observable {
         return new Carro(this);
     }
 
-    public boolean equals(Object o) {
-        if(o == this) return true;
-        if((o == null) || (o.getClass() != this.getClass())) return false;
-        Carro c = (Carro) o;
-        return (this.id == c.getId()) && (this.idCliente == c.getIdCliente()) && (this.idConfig == c.getIdConfig()) &&
-               (this.preco == c.getPreco()) && (this.pronto == c.getPronto()) && (this.dataEncomenda.equals(c.getDataEncomenda()));
-    }
-
     public String toString() {
         return "Carro {id: " + this.id + ", Cliente_id: " + this.idCliente + 
                ", Configuracao_id: " + this.idConfig + ", preco: " + this.preco + 

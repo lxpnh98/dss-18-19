@@ -15,6 +15,7 @@ import java.util.Set;
  */
 public class ConfiguracaoBasica extends javax.swing.JFrame implements Observer {
 
+    private static final long serialVersionUID = 1;
     private Configuracao config;
     
     /**
@@ -30,7 +31,7 @@ public class ConfiguracaoBasica extends javax.swing.JFrame implements Observer {
 
     public void showCategorias() {
        
-        DefaultListModel cat = new DefaultListModel();
+        DefaultListModel<String> cat = new DefaultListModel<>();
         cat.addElement("Motor");
         cat.addElement("Jantes");
         cat.addElement("Pneus");

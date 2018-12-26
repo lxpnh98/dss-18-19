@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Pacotes extends javax.swing.JFrame implements Observer {
     
+    private static final long serialVersionUID = 1;
     private Configuracao config;
     private Pacote pacote;
     private DadosFacade dados;

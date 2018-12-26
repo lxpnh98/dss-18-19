@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Individuais extends javax.swing.JFrame implements Observer {
     
+    private static final long serialVersionUID = 1;
     private Configuracao config;
     private Componente componente;
     private DadosFacade dados;

@@ -116,15 +116,6 @@ public class Cliente {
         return new Cliente(this);
     }
 
-    public boolean equals(Object o) {
-        if(o == this) return true;
-        if((o == null) || (o.getClass() != this.getClass())) return false;
-        Cliente c = (Cliente) o;
-        return (this.id == c.getId()) && (this.nome.equals(c.getNome())) &&
-               (this.tlmv.equals(c.getTlmv())) && (this.email.equals(c.getEmail())) &&
-               (this.nif.equals(c.getNif()));
-    }
-
     public String toString() {
         return "Nome: " + this.nome + "\nId:" + this.id + "\nTlmv: " + this.tlmv +
                "\nEmail: " + this.email + "\nNif: " + this.nif;

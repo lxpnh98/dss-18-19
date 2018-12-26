@@ -78,14 +78,6 @@ public class Pacote extends java.util.Observable {
         return new Pacote(this);
     }
 
-    public boolean equals(Object o) {
-        if(o == this) return true;
-        if((o == null) || (o.getClass() != this.getClass())) return false;
-        Pacote p = (Pacote) o;
-        return (this.id == p.getId()) && (this.nome.equals(p.getNome())) &&
-               (this.preco == p.getPreco()) && (this.componentes.equals(p.getComponentes()));
-    }
-
     public String toString() {
         return "Nome: " + this.nome + "\nId:" + this.id + "\nPreco: " + this.preco + "\nComponentes: " + this.componentes;
     }

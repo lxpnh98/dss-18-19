@@ -2,12 +2,6 @@ package configurafacil;
 
 import java.util.*;
 
-class SemConfigBasicaException extends Exception {
-    public SemConfigBasicaException(int num) {
-        super("" + num);
-    }
-}
-
 public class Configuracao extends java.util.Observable {
 
     private int id;
@@ -154,13 +148,6 @@ public class Configuracao extends java.util.Observable {
 
     public Configuracao clone() {
         return new Configuracao(this);
-    }
-
-    public boolean equals(Object o) {
-        if(o == this) return true;
-        if((o == null) || (o.getClass() != this.getClass())) return false;
-        Configuracao c = (Configuracao) o;
-        return (this.id == c.getId()) && (this.pacotes.equals(c.getPacotes())) && (this.componentes.equals(c.getComponentes()));
     }
 
     public String toString() {

@@ -114,14 +114,6 @@ public class Componente extends java.util.Observable {
         return new Componente(this);
     }
 
-    public boolean equals(Object o) {
-        if(o == this) return true;
-        if((o == null) || (o.getClass() != this.getClass())) return false;
-        Componente c = (Componente) o;
-        return (this.id == c.getId()) && (this.nome.equals(c.getNome())) &&
-               (this.preco == c.getPreco()) && (this.stock == c.getStock());
-    }
-
     public String toString() {
         return "Nome: " + this.nome + "\nId:" + this.id + "\nPreco: " + this.preco +
                "\nStock: " + this.stock;
