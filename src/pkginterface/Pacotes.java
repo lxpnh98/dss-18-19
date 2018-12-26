@@ -176,7 +176,7 @@ public class Pacotes extends javax.swing.JFrame implements Serializable, Observe
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        this.config.setPacotes(pacote.getId());
+        this.config.addPacote(pacote.getId());
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

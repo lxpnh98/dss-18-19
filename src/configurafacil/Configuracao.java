@@ -130,12 +130,26 @@ public class Configuracao extends java.util.Observable {
         this.id = id;
     }
 
-    public void setPacotes(int idPacote) {
+    public void addPacote(int idPacote) {
         this.pacotes.add(idPacote);
     }
 
-    public void setComponentes(int idComponente) {
+    public void addComponente(int idComponente) {
         this.componentes.add(idComponente);
+    }
+
+    public void setPacotes(Set<Integer> s) {
+        this.pacotes = new HashSet<>();
+        for(int i : s) {
+            this.pacotes.add(i);
+        }
+    }
+
+    public void setComponentes(Set<Integer> s) {
+        this.componentes = new HashSet<>();
+        for(int i : s) {
+            this.componentes.add(i);
+        }
     }
 
     public Configuracao clone() {

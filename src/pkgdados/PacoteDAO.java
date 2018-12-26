@@ -43,12 +43,14 @@ public class PacoteDAO extends DAO {
         if (r == null) return null;
 
         // get ids dos componentes do pacote
-        PreparedStatement ps2 = this.connection.prepareStatement("select Componente_id as id from ConfiguraFacil.PacoteCompoenente where Pacote_id = ?;");
+        PreparedStatement ps2 = this.connection.prepareStatement("select Componente_id as id from ConfiguraFacil.PacoteComponente where Pacote_id = ?;");
         ps2.setInt(1, id);
         ResultSet rs2 = ps2.executeQuery();
         while (rs2.next()) {
             r.addComponente(rs2.getInt("id"));
         }
+        rs2.close();
+        ps2.close();
 
         return r;
 	}

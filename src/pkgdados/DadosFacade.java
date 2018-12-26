@@ -180,6 +180,22 @@ public class DadosFacade {
         return null;
 	}
 
+	public Componente setComponente(Componente componente) {
+        Connection c =  connect();
+        try {
+            (new ComponenteDAO(c)).set(componente);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                c.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+	}
+
 	public Cliente getClienteAtual() {
         Connection c =  connect();
         try {

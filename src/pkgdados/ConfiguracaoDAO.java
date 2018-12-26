@@ -15,12 +15,57 @@ public class ConfiguracaoDAO extends DAO {
         s.close();
     }
 
-	public Configuracao getConfiguracaoAtual() throws SQLException {
-            return new Configuracao();
+    public Configuracao getConfiguracaoAtual() throws SQLException {
+        Configuracao conf;
+
+        // get configuracao básica
+        Statement s = null;
+        ResultSet rs = null;
+        try {
+            s = this.connection.createStatement();
+            rs = s.executeQuery("select * from ConfiguraFacil.Configuracao order by id desc limit 1;");
+            if (rs.next()) {
+                conf = new Configuracao(rs.getInt("id"),
+                                        rs.getString("motor"),
+                                        rs.getString("pintura"),
+                                        rs.getString("jantes"),
+                                        rs.getString("pneus"),
+                                        rs.getString("detalhes_interiores"),
+                                        rs.getString("detalhes_exteriores"));
+            } else {
+                throw new SQLException("ConfiguraFacil.Configuracao is empty.");
+            }
+        } finally {
+            if (rs != null) rs.close();
+            if (s != null) s.close();
+        }
+
+        // get componentes
+        PreparedStatement ps1 = this.connection.prepareStatement(
+            "select Componente_id as id from ConfiguraFacil.ConfiguracaoComponente where Configuracao_id = ?;");
+        ps1.setInt(1, conf.getId());
+        ResultSet rs1 = ps1.executeQuery();
+        while (rs1.next()) {
+            conf.addComponente(rs1.getInt("id"));
+        }
+        rs1.close();
+        ps1.close();
+
+        // get pacotes
+        PreparedStatement ps2 = this.connection.prepareStatement(
+            "select Pacote_id as id from ConfiguraFacil.ConfiguracaoPacote where Configuracao_id = ?;");
+        ps2.setInt(1, conf.getId());
+        ResultSet rs2 = ps2.executeQuery();
+        while (rs2.next()) {
+            conf.addComponente(rs2.getInt("id"));
+        }
+        rs2.close();
+        ps2.close();
+
+        return conf;
 	}
 
 	public void setConfiguracaoAtual(Configuracao c) throws SQLException {
-        // TODO: transformar setConfiguracaoAtual em transação
         int id;
 
         // get id

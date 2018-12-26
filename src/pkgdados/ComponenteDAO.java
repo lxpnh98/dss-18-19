@@ -13,4 +13,6 @@ public class ComponenteDAO extends DAO {
             return new Componente();
 	}
 
+	public void set(Componente c) throws SQLException {
+	}
 }
