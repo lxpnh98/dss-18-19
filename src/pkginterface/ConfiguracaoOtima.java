@@ -25,7 +25,7 @@ public class ConfiguracaoOtima extends javax.swing.JFrame implements Serializabl
     /**
      * Creates new form ConfiguraçãoOtima
      */
-    public ConfiguraçãoOtima(Configuracao config) { // TODO passar argumento DadosFacade
+    public ConfiguracaoOtima(Configuracao config) { // TODO passar argumento DadosFacade
         this.configA = config;
         this.dados = dados;
         //this.configO = calculaConfiguracaoOtima();
