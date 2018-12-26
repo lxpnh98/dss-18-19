@@ -2,16 +2,12 @@ package configurafacil;
 
 import java.util.*;
 
-/**
- *
- * @author TIagoasfasf
- */
 public class Componente extends java.util.Observable {
 
     private int id;
     private String nome;
     private float preco;
-    //TODO: int stock
+    private int stock;
     private Set<Integer> necessarios;
     private Set<Integer> incompativeis;
 
@@ -19,18 +15,21 @@ public class Componente extends java.util.Observable {
         this.id = 0;
         this.nome = "";
         this.preco = 0;
+        this.stock = 0;
     }
 
-    public Componente(int id, String nome, float preco) {
+    public Componente(int id, String nome, float preco, int stock) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
+        this.stock = stock;
     }
 
     public Componente(Componente c) {
         this.id = c.getId();
         this.nome = c.getNome();
         this.preco = c.getPreco();
+        this.stock = c.getStock();
     }
 
     public int getId() {
@@ -43,6 +42,10 @@ public class Componente extends java.util.Observable {
 
     public float getPreco() {
         return this.preco;
+    }
+
+    public int getStock() {
+        return this.stock;
     }
     
     public Set<Integer> getComponentesNecessarios() {
@@ -75,6 +78,9 @@ public class Componente extends java.util.Observable {
         this.preco = preco;
     }
     
+    public int setStock(int stock) {
+        this.stock = stock;
+    }
     public void setComponentesNecessarios(int idComponente) {
         this.necessarios.add(idComponente);
     }
@@ -91,10 +97,12 @@ public class Componente extends java.util.Observable {
         if(o == this) return true;
         if((o == null) || (o.getClass() != this.getClass())) return false;
         Componente c = (Componente) o;
-        return (this.id == c.getId()) && (this.nome.equals(c.getNome())) && (this.preco == c.getPreco());
+        return (this.id == c.getId()) && (this.nome.equals(c.getNome())) &&
+               (this.preco == c.getPreco()) && (this.stock == c.getStock());
     }
 
     public String toString() {
-        return "Nome: " + this.nome + "\nId:" + this.id + "\nPreco: " + this.preco;
+        return "Nome: " + this.nome + "\nId:" + this.id + "\nPreco: " + this.preco +
+               "\nStock: " + this.stock;
     }
 }

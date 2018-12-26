@@ -3,10 +3,6 @@ package configurafacil;
 import java.util.*;
 import pkgdados.DadosFacade;
 
-/**
- *
- * @author TIagoasfasf
- */
 public class ConfiguraFacil extends java.util.Observable {
     private DadosFacade dados;
 
@@ -15,7 +11,7 @@ public class ConfiguraFacil extends java.util.Observable {
     }
 
     //lista de necessarios componentes
-    public Set<Integer> listaDependencias(Int id) {
+    public Set<Integer> listaDependencias(int id) {
         Set<Integer> lista = new HashSet<Integer>();
         return lista;
     }
