@@ -3,10 +3,6 @@ package configurafacil;
 import java.util.*;
 import pkgdados.DadosFacade;
 
-/**
- *
- * @author TIagoasfasf
- */
 public class ConfiguraFacil extends java.util.Observable {
     private DadosFacade dados;
 

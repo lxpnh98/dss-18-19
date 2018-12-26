@@ -2,10 +2,6 @@ package configurafacil;
 
 import java.util.*;
 
-/**
- *
- * @author TIagoasfasf
- */
 public class Pacote extends java.util.Observable {
 
     private int id;

@@ -1,9 +1,5 @@
 package configurafacil;
 
-/**
- *
- * @author TIagoasfasf
- */
 public class CarroInfo extends java.util.Observable {
 	private Cliente client;
 	private Configuracao config;

@@ -8,10 +8,6 @@ class SemConfigBasicaException extends Exception {
     }
 }
 
-/**
- *
- * @author TIagoasfasf
- */
 public class Configuracao extends java.util.Observable {
 
     private int id;
