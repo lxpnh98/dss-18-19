@@ -13,11 +13,13 @@ public class ConfiguraFacil extends java.util.Observable {
         this.dados = dados;
     }
 
+    //lista de necessarios componentes
     public Set<Integer> listaDependencias(Int id) {
         Set<Integer> lista = new HashSet<Integer>();
         return lista;
     }
 
+    // recebe uma lista de componentes e verifica se eles são ou nao incompativeis
     //TODO: verificaIncompatibilidades()
 
     //TODO: adicionaComponentes()
@@ -26,16 +28,17 @@ public class ConfiguraFacil extends java.util.Observable {
 
     //TODO: identificaCliente()
 
+    //adiciona carro à queue
     //TODO: adicionaCarro()
 
     public void atualizaQueue() {
         QueueProducao queue = new QueueProducao();
         queue = this.dados.getQueueProducao();
         if(queue.size()>0) {
-            queue.remove(); //é possivel que isto esteja errado.
+            queue.remove();
             this.dados.setQueueProducao(queue);
         } else {
-            //TODO: retirar o else, isto é apenas para um futuro teste.
+            // retirar o else, isto é apenas para um futuro teste.
             System.out.println("queue vazia");
         }
     }
