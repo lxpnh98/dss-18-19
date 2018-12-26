@@ -11,6 +11,7 @@ public class Componente extends java.util.Observable {
     private int id;
     private String nome;
     private float preco;
+    //TODO: int stock
     private Set<Integer> necessarios;
     private Set<Integer> incompativeis;
 
