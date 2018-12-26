@@ -5,11 +5,11 @@ import configurafacil.*;
 
 public class Main {
     
-    private static void displayInterface() {
+    private static void displayInterface(ConfiguraFacil cf) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new MenuInicial().setVisible(true);
+                new MenuInicial().setVisible(true); // TODO: passar cf como argumento
             }
         });
     }
@@ -22,11 +22,6 @@ public class Main {
 
         ConfiguraFacil cf = new ConfiguraFacil(dados);
 
-        //MenuInicial menu = new MenuInicial(cf);
-
-        // TODO: iniciar GUI
-        // ...
-        
-        displayInterface();
+        displayInterface(cf);
     }
 }

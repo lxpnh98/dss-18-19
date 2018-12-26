@@ -8,8 +8,8 @@ public class Carro extends java.util.Observable {
     private int idCliente;
     private int idConfig;
     private float preco;
-    private boolean	pronto;
     private LocalDateTime dataEncomenda;
+    private boolean pronto;
 
     public Carro() {
         this.id = 0;
@@ -18,15 +18,17 @@ public class Carro extends java.util.Observable {
         this.preco = 0.0f;
         this.pronto = false;
         this.dataEncomenda = LocalDateTime.now(); 
+        this.pronto = false;
     }
 
-    public Carro(int id, int cliente, int config, float preco, boolean pronto, LocalDateTime dataEncomenda) {
+    public Carro(int id, int cliente, int config, float preco, LocalDateTime dataEncomenda, boolean pronto) {
         this.id = id;
         this.idCliente = cliente;
         this.idConfig = config;
         this.preco = preco;
         this.pronto = pronto;
         this.dataEncomenda = dataEncomenda;
+        this.pronto = pronto;
     }
 
     public Carro(Carro carro) {
@@ -36,6 +38,7 @@ public class Carro extends java.util.Observable {
         this.preco = carro.getPreco();
         this.pronto = carro.getPronto();
         this.dataEncomenda = carro.getDataEncomenda();
+        this.pronto = carro.getPronto();
     }
 
     public int getId() {
@@ -54,12 +57,12 @@ public class Carro extends java.util.Observable {
         return this.preco;
     }
 
-    public boolean getPronto() {
-    	return this.pronto;
-    }
-
     public LocalDateTime getDataEncomenda() {
         return this.dataEncomenda;
+    }
+
+    public boolean getPronto() {
+        return this.pronto;
     }
 
     public void setId(int id) {

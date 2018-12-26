@@ -78,7 +78,7 @@ public class Componente extends java.util.Observable {
         this.preco = preco;
     }
     
-    public int setStock(int stock) {
+    public void setStock(int stock) {
         this.stock = stock;
     }
     public void setComponentesNecessarios(int idComponente) {
@@ -90,7 +90,7 @@ public class Componente extends java.util.Observable {
     }
 
     public Componente clone() {
-        return this;
+        return new Componente(this);
     }
 
     public boolean equals(Object o) {

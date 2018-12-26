@@ -113,7 +113,7 @@ public class Cliente {
     }
 
     public Cliente clone() {
-        return this;
+        return new Cliente(this);
     }
 
     public boolean equals(Object o) {
