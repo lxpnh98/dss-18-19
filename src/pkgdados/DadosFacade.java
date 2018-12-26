@@ -180,7 +180,7 @@ public class DadosFacade {
         return null;
 	}
 
-	public Componente getComponente(Componente componente) {
+	public Componente setComponente(Componente componente) {
         Connection c =  connect();
         try {
             (new ComponenteDAO(c)).set(componente);

@@ -34,7 +34,7 @@ public class ConfiguraFacil extends java.util.Observable {
     //TODO: adicionaComponente()
 
     public void identificaCliente(String nome, String tlmv, String email, String nif) {
-        if (Cliente.validaInfo(nome,tlmv,email,nif) {
+        if (Cliente.validaInfo(nome,tlmv,email,nif)) {
             Cliente c = new Cliente(0,nome,tlmv,email,nif);
             this.dados.setCliente(c);
             System.out.println("Identificação realizada com sucesso");

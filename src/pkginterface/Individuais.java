@@ -194,7 +194,7 @@ public class Individuais extends javax.swing.JFrame implements Serializable, Obs
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int id = Integer.parseInt(jTextField_ID.getText());
         
-        this.config.setComponentes(id);
+        this.config.addComponente(id);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
