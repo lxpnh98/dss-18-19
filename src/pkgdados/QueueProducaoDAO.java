@@ -1,6 +1,7 @@
 package pkgdados;
 
 import configurafacil.*;
+import java.time.*;
 import java.sql.*;
 
 public class QueueProducaoDAO extends DAO {
@@ -16,7 +17,7 @@ public class QueueProducaoDAO extends DAO {
         ResultSet r = s.executeQuery("select * from Carro order by id asc;");
 
         while (r.next()) {
-            Carro c = new Carro(r.getInt("id"), r.getInt("Cliente_id"), r.getInt("Configuracao_id"), r.getFloat("preco"));
+            Carro c = new Carro(r.getInt("id"), r.getInt("Cliente_id"), r.getInt("Configuracao_id"), r.getFloat("preco"), LocalDateTime.now());
             System.out.println(c);
             q.add(c);
         }

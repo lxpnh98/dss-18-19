@@ -1,7 +1,7 @@
 package configurafacil;
 
 import java.util.*;
-
+import pkgdados.DadosFacade;
 /**
  *
  * @author TIagoasfasf
@@ -13,7 +13,7 @@ public class ConfiguraFacil extends java.util.Observable {
         this.dados = dados;
     }
 
-    public Set<Integer> listaDependencias(Int id) {
+    public Set<Integer> listaDependencias(int id) {
         Set<Integer> lista = new HashSet<Integer>();
         return lista;
     }
@@ -29,11 +29,10 @@ public class ConfiguraFacil extends java.util.Observable {
     //TODO: adicionaCarro()
 
     public void atualizaQueue() {
-        QueueProducao queue = new QueueProducao();
-        queue = this.dados.getQueueProducao();
-        if(queue.size()>0) {
-            queue.remove(); //é possivel que isto esteja errado.
-            this.dados.setQueueProducao(queue);
+        QueueProducao q = this.dados.getQueueProducao();
+        if(q.queue.size()>0) {
+            q.queue.remove(); //é possivel que isto esteja errado.
+            this.dados.setQueueProducao(q);
         } else {
             //TODO: retirar o else, isto é apenas para um futuro teste.
             System.out.println("queue vazia");
@@ -44,17 +43,15 @@ public class ConfiguraFacil extends java.util.Observable {
 
     //TODO: calculaConfiguracaoOtima()
     
-    public Carro verCarro(Int id) {
-        QueueProducao queue = new QueueProducao();
-        queue = this.dados.getQueueProducao();
+    public Carro verCarro(int id) {
+        QueueProducao q = this.dados.getQueueProducao();
         Carro car = new Carro();
-        car = queue.getCarro(id);
+        car = q.getCarro(id);
         return car;
     }
 
     public QueueProducao verQueueProducao() {
-        QueueProducao queue = new QueueProducao();
-        queue = this.dados.getQueueProducao();
-        return queue;
+        QueueProducao q = this.dados.getQueueProducao();
+        return q;
     }
 }
