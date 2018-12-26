@@ -1,6 +1,7 @@
 package configurafacil;
 
 import java.util.*;
+import java.time.LocalDateTime;
 import pkgdados.DadosFacade;
 
 public class ConfiguraFacil extends java.util.Observable {
@@ -34,7 +35,7 @@ public class ConfiguraFacil extends java.util.Observable {
     //TODO: adicionaComponente()
 
     public void identificaCliente(String nome, String tlmv, String email, String nif) {
-        if (Cliente.validaInfo(nome,tlmv,email,nif) {
+        if (Cliente.validaInfo(nome,tlmv,email,nif)) {
             Cliente c = new Cliente(0,nome,tlmv,email,nif);
             this.dados.setCliente(c);
             System.out.println("Identificação realizada com sucesso");
@@ -43,16 +44,44 @@ public class ConfiguraFacil extends java.util.Observable {
         }
     }
 
-    //adiciona carro à queue
-    //TODO: adicionaCarro()
-    /*public void adicionaCarro() {
+    public void adicionaCarro() {
         Configuracao config = this.dados.getConfiguracaoAtual();
         Cliente cliente = this.dados.getClienteAtual();
         QueueProducao q = this.dados.getQueueProducao();
 
-        Carro carro = new Carro(0,)
+        int idConfig = config.getId();
+        int idCliente = cliente.getId();
+        boolean pronto = estaPronto(config);
+        float preco = 0; // calcular preco.
 
-    }*/
+        Carro carro = new Carro(0,idConfig,idCliente,preco,LocalDateTime.now(),pronto);
+
+        q.queue.add(carro);
+        this.dados.setQueueProducao(q);
+    }
+
+    //Auxiliar à adicionaCarro()
+    public boolean estaPronto(Configuracao config) {
+		Set<Integer> componentes = config.getComponentes();
+		Set<Integer> pacotes = config.getPacotes();
+		
+		for(Integer i : pacotes) {
+			Pacote p = this.dados.getPacote(i);
+			Set<Integer> c = p.getComponentes();
+			for(Integer j : c) {
+				componentes.add(j);
+			}
+		}
+		
+		for(Integer k : componentes) {
+			Componente c = this.dados.getComponente(k);
+			if(c.getStock() == 0) {
+				return false;
+			}
+		}
+
+		return true;
+    }
 
     public void atualizaQueue() {
         QueueProducao q = this.dados.getQueueProducao();
