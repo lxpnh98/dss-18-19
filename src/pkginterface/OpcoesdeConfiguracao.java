@@ -120,7 +120,7 @@ public class OpcoesdeConfiguracao extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_OtimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_OtimaActionPerformed
-        new ConfiguraçãoOtima(this.config).setVisible(true);
+        new ConfiguracaoOtima(this.config).setVisible(true);
     }//GEN-LAST:event_jButton_OtimaActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
