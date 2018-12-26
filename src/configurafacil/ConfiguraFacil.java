@@ -2,6 +2,7 @@ package configurafacil;
 
 import java.util.*;
 import pkgdados.DadosFacade;
+
 /**
  *
  * @author TIagoasfasf
@@ -22,6 +23,7 @@ public class ConfiguraFacil extends java.util.Observable {
     // recebe uma lista de componentes e verifica se eles são ou nao incompativeis
     //TODO: verificaIncompatibilidades()
 
+    // 
     //TODO: adicionaComponentes()
 
     //TODO: adicionaComponente()
@@ -34,11 +36,8 @@ public class ConfiguraFacil extends java.util.Observable {
     public void atualizaQueue() {
         QueueProducao q = this.dados.getQueueProducao();
         if(q.queue.size()>0) {
-            q.queue.remove(); //é possivel que isto esteja errado.
+            q.queue.remove();
             this.dados.setQueueProducao(q);
-        } else {
-            // retirar o else, isto é apenas para um futuro teste.
-            System.out.println("queue vazia");
         }
     }
 
@@ -46,11 +45,18 @@ public class ConfiguraFacil extends java.util.Observable {
 
     //TODO: calculaConfiguracaoOtima()
     
-    public Carro verCarro(int id) {
+    public CarroInfo verCarro(int id) {
         QueueProducao q = this.dados.getQueueProducao();
-        Carro car = new Carro();
-        car = q.getCarro(id);
-        return car;
+        Carro car = q.getCarro(id);
+
+        int idCliente = car.getIdCliente();
+        int idConfig = car.getIdConfig();
+        float preco = car.getPreco();
+
+        Cliente cliente = this.dados.getCliente(idCliente);
+        Configuracao config = this.dados.getConfiguracao(idConfig);
+        CarroInfo carro = new CarroInfo(cliente,config,preco);
+        return carro;
     }
 
     public QueueProducao verQueueProducao() {

@@ -7,24 +7,24 @@ package configurafacil;
 public class CarroInfo extends java.util.Observable {
 	private Cliente client;
 	private Configuracao config;
-	private Pacote pacote;
+	private float preco;
 
 	public CarroInfo() {
 		this.client = new Cliente();
 		this.config = new Configuracao();
-		this.pacote = new Pacote();
+		this.preco = 0;
 	}
 
-	public CarroInfo(Cliente client, Configuracao config, Pacote pacote) {
+	public CarroInfo(Cliente client, Configuracao config, float preco) {
 		this.client = client;
 		this.config = config;
-		this.pacote = pacote;
+		this.preco = preco;
 	}
 
 	public CarroInfo(CarroInfo car) {
 		this.client = car.getClient();
 		this.config = car.getConfig();
-		this.pacote = car.getPacote();
+		this.preco = car.getPreco();
 	}
 
 	public Cliente getClient() {
@@ -35,7 +35,7 @@ public class CarroInfo extends java.util.Observable {
 		return this.config;
 	}
 
-	public Pacote getPacote() {
-		return this.pacote;
+	public float getPreco() {
+		return this.preco;
 	}
 }
