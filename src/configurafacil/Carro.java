@@ -1,5 +1,6 @@
 package configurafacil;
 
+import java.time.LocalDateTime;
 /**
  *
  * @author TIagoasfasf
@@ -52,7 +53,7 @@ public class Carro extends java.util.Observable {
     }
 
     public LocalDateTime getDataEncomenda() {
-        return this.dataEncomenda.clone();
+        return this.dataEncomenda;
     }
 
     public void setId(int id) {
