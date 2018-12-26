@@ -52,7 +52,7 @@ public class ConfiguraFacil extends java.util.Observable {
         int idConfig = config.getId();
         int idCliente = cliente.getId();
         boolean pronto = estaPronto(config);
-        float preco = 0; // calcular preco.
+        float preco = getPreco(config);
 
         Carro carro = new Carro(0,idConfig,idCliente,preco,LocalDateTime.now(),pronto);
 
@@ -60,7 +60,7 @@ public class ConfiguraFacil extends java.util.Observable {
         this.dados.setQueueProducao(q);
     }
 
-    //Auxiliar à adicionaCarro()
+    //Auxiliar da adicionaCarro()
     public boolean estaPronto(Configuracao config) {
 		Set<Integer> componentes = config.getComponentes();
 		Set<Integer> pacotes = config.getPacotes();
@@ -81,6 +81,25 @@ public class ConfiguraFacil extends java.util.Observable {
 		}
 
 		return true;
+    }
+
+    //Auxiliar da adicionaCarro()
+    public float getPreco(Configuracao config) {
+    	float preco = 0;
+		Set<Integer> componentes = config.getComponentes();
+		Set<Integer> pacotes = config.getPacotes();
+		
+		for(Integer i : pacotes) {
+			Pacote p = this.dados.getPacote(i);
+			preco += p.getPreco();
+		}
+		
+		for(Integer j : componentes) {
+			Componente c = this.dados.getComponente(j);
+			preco += c.getPreco();
+		}
+
+		return preco;
     }
 
     public void atualizaQueue() {
