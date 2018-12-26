@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 /**
  * @author ASUS
  */
-public class ConfiguracaoOtima extends javax.swing.JFrame implements Serializable, Observer {
+public class ConfiguracaoOtima extends javax.swing.JFrame implements Observer {
 
     private Configuracao configA;
     private Configuracao configO;

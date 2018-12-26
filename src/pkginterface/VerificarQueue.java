@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ASUS
  */
-public class VerificarQueue extends javax.swing.JFrame implements Serializable, Observer {
+public class VerificarQueue extends javax.swing.JFrame implements Observer {
 
     private QueueProducao queue;
     private Carro carro;

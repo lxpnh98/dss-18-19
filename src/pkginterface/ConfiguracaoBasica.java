@@ -13,7 +13,7 @@ import java.util.Set;
 /**
  * @author ASUS
  */
-public class ConfiguracaoBasica extends javax.swing.JFrame implements Serializable, Observer {
+public class ConfiguracaoBasica extends javax.swing.JFrame implements Observer {
 
     private Configuracao config;
     
@@ -61,7 +61,7 @@ public class ConfiguracaoBasica extends javax.swing.JFrame implements Serializab
     }
     
     public void showOpcoes(){
-        DefaultListModel opcoes = new DefaultListModel();
+        DefaultListModel<String> opcoes = new DefaultListModel<>();
         String s = jList_Categorias.getSelectedValue();
         
         switch(s){

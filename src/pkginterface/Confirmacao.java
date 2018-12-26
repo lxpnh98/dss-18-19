@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ASUS
  */
-public class Confirmacao extends javax.swing.JFrame implements Serializable, Observer {
+public class Confirmacao extends javax.swing.JFrame implements Observer {
 
     private Configuracao config;
     private DadosFacade dados;
