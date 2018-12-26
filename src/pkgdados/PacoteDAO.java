@@ -15,7 +15,6 @@ public class PacoteDAO extends DAO {
         HashSet<Integer> r = new HashSet<>();
 
         Statement s = this.connection.createStatement();
-
         ResultSet rs = s.executeQuery("select id from ConfiguraFacil.Pacote;");
 
         while (rs.next()) {
@@ -31,16 +30,25 @@ public class PacoteDAO extends DAO {
     public Pacote get(int id) throws SQLException {
         Pacote r = null;
 
-        PreparedStatement ps = this.connection.prepareStatement("select * from ConfiguraFacil.Pacote where id = ?;");
-        ps.setInt(1, id);
-
-        ResultSet rs = ps.executeQuery();
-        if (rs.next()) {
-            r = new Pacote(rs.getInt("id"), rs.getString("nome"), rs.getFloat("preco"));
+        // get id, nome, e preço do pacote
+        PreparedStatement ps1 = this.connection.prepareStatement("select * from ConfiguraFacil.Pacote where id = ?;");
+        ps1.setInt(1, id);
+        ResultSet rs1 = ps1.executeQuery();
+        if (rs1.next()) {
+            r = new Pacote(rs1.getInt("id"), rs1.getString("nome"), rs1.getFloat("preco"));
         }
+        rs1.close();
+        ps1.close();
 
-        rs.close();
-        ps.close();
+        if (r == null) return null;
+
+        // get ids dos componentes do pacote
+        PreparedStatement ps2 = this.connection.prepareStatement("select Componente_id as id from ConfiguraFacil.PacoteCompoenente where Pacote_id = ?;");
+        ps2.setInt(1, id);
+        ResultSet rs2 = ps2.executeQuery();
+        while (rs2.next()) {
+            r.addComponente(rs2.getInt("id"));
+        }
 
         return r;
 	}

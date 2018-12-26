@@ -67,12 +67,19 @@ public class Pacote extends java.util.Observable {
         this.preco = preco;
     }
 
-    public void setComponentes(int i) {
+    public void setComponentes(Set<Integer> s) {
+        this.componentes = new HashSet<>();
+        for(int i : s) {
+            this.componentes.add(i);
+        }
+    }
+
+    public void addComponente(int i) {
         this.componentes.add(i);
     }
 
     public Pacote clone() {
-        return this;
+        return new Pacote(this);
     }
 
     public boolean equals(Object o) {

@@ -84,7 +84,7 @@ public class Componente extends java.util.Observable {
     }
 
     public Componente clone() {
-        return this;
+        return new Componente(this);
     }
 
     public boolean equals(Object o) {

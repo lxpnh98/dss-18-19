@@ -143,7 +143,7 @@ public class Configuracao extends java.util.Observable {
     }
 
     public Configuracao clone() {
-        return this;
+        return new Configuracao(this);
     }
 
     public boolean equals(Object o) {
