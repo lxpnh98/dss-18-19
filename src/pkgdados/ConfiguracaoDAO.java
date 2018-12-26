@@ -15,8 +15,10 @@ public class ConfiguracaoDAO extends DAO {
         s.close();
     }
 
-	public Configuracao getConfiguracaoAtual() throws SQLException {
-            return new Configuracao();
+    public Configuracao getConfiguracaoAtual() throws SQLException {
+        //return new Configuracao();
+
+        
 	}
 
 	public void setConfiguracaoAtual(Configuracao c) throws SQLException {
