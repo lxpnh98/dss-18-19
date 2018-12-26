@@ -73,7 +73,7 @@ public class Cliente {
         this.nif = nif;
     }
 
-    public boolean validaInfo(String nome, String tlmv, String email, String nif) {
+    public static boolean validaInfo(String nome, String tlmv, String email, String nif) {
         if(numerosValidos(tlmv) && numerosValidos(nif) && nome.length()!=0 && verificaMail(email)) {
             return true;
         } else {
@@ -81,7 +81,7 @@ public class Cliente {
         }
     }
 
-    public boolean numerosValidos(String numeros) {
+    public static boolean numerosValidos(String numeros) {
         int length = numeros.length();
         if(length != 9) {
             return false;
@@ -97,7 +97,7 @@ public class Cliente {
         return true;
     }
 
-    public boolean verificaMail(String mail) {
+    public static boolean verificaMail(String mail) {
         int contador = 0;
         for(int i = 0; i < mail.length(); i++)  {
             if(mail.charAt(i)=='@')
