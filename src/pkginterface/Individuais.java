@@ -33,7 +33,7 @@ public class Individuais extends javax.swing.JFrame implements Serializable, Obs
     
     public void showNecessidadesComponente(Componente comp) {
 
-       Collection<Integer> ids = componente.getComponentesNecessarios();
+       Collection<Integer> ids = componente.getDependencias();
        DefaultTableModel model = (DefaultTableModel)jTable_Necessarios.getModel();
        Object[] row = new Object[3];
        model.setRowCount(0);
@@ -49,7 +49,7 @@ public class Individuais extends javax.swing.JFrame implements Serializable, Obs
 
     public void showComponentes() {
         // Adicionar lista de todos os componentes
-       Collection<Integer> ids = this.componente.getComponentesNecessarios();
+       Collection<Integer> ids = this.componente.getDependencias();
        DefaultTableModel model = (DefaultTableModel)jTable_Necessarios.getModel();
        Object[] row = new Object[3];
        model.setRowCount(0);

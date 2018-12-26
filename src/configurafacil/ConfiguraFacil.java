@@ -14,13 +14,13 @@ public class ConfiguraFacil extends java.util.Observable {
     public Set<Integer> listaDependencias(int id) {
         Set<Integer> lista = new HashSet<Integer>();
         Componente componente = this.dados.getComponente(id);
-        lista = componente.getComponentesNecessarios();
+        lista = componente.getDependencias();
         return lista;
     }
 
     public boolean verificaIncompatibilidades(int id, Set<Integer> componentes) {
         Componente c = this.dados.getComponente(id);
-        Set<Integer> incompativeis = c.getComponentesIncompativeis();
+        Set<Integer> incompativeis = c.getIncompativeis();
 
         for(Integer i : componentes) {
             if(!incompativeis.contains(i)) {

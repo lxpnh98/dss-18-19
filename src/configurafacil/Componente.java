@@ -8,7 +8,7 @@ public class Componente extends java.util.Observable {
     private String nome;
     private float preco;
     private int stock;
-    private Set<Integer> necessarios;
+    private Set<Integer> dependencias;
     private Set<Integer> incompativeis;
 
     public Componente () {
@@ -16,6 +16,8 @@ public class Componente extends java.util.Observable {
         this.nome = "";
         this.preco = 0;
         this.stock = 0;
+        this.dependencias = new HashSet<>();
+        this.incompativeis = new HashSet<>();
     }
 
     public Componente(int id, String nome, float preco, int stock) {
@@ -23,6 +25,8 @@ public class Componente extends java.util.Observable {
         this.nome = nome;
         this.preco = preco;
         this.stock = stock;
+        this.dependencias = new HashSet<>();
+        this.incompativeis = new HashSet<>();
     }
 
     public Componente(Componente c) {
@@ -30,6 +34,8 @@ public class Componente extends java.util.Observable {
         this.nome = c.getNome();
         this.preco = c.getPreco();
         this.stock = c.getStock();
+        this.dependencias = c.getDependencias();
+        this.incompativeis = c.getIncompativeis();
     }
 
     public int getId() {
@@ -48,16 +54,16 @@ public class Componente extends java.util.Observable {
         return this.stock;
     }
     
-    public Set<Integer> getComponentesNecessarios() {
+    public Set<Integer> getDependencias() {
         HashSet<Integer> r;
         r = new HashSet<>();
-        for(int i : this.necessarios) {
+        for(int i : this.dependencias) {
             r.add(i);
         }
         return r;
     }
     
-    public Set<Integer> getComponentesIncompativeis() {
+    public Set<Integer> getIncompativeis() {
         HashSet<Integer> r;
         r = new HashSet<>();
         for(int i : this.incompativeis) {
@@ -81,12 +87,27 @@ public class Componente extends java.util.Observable {
     public void setStock(int stock) {
         this.stock = stock;
     }
-    public void setComponentesNecessarios(int idComponente) {
-        this.necessarios.add(idComponente);
+
+    public void addDependencia(int idComponente) {
+        this.dependencias.add(idComponente);
     }
     
-    public void setComponentesIncompativeis(int idComponente) {
+    public void addIncompativel(int idComponente) {
         this.incompativeis.add(idComponente);
+    }
+
+    public void setDependencias(Set<Integer> s) {
+        this.dependencias = new HashSet<>();
+        for(int i : s) {
+            this.dependencias.add(i);
+        }
+    }
+    
+    public void setIncompativeis(Set<Integer> s) {
+        this.incompativeis = new HashSet<>();
+        for(int i : s) {
+            this.incompativeis.add(i);
+        }
     }
 
     public Componente clone() {
