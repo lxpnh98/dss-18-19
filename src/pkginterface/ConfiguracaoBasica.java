@@ -5,6 +5,8 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import static pkginterface.Confirmacao.infoBox;
 
 /**
  * @author ASUS
@@ -93,6 +95,19 @@ public class ConfiguracaoBasica extends javax.swing.JFrame implements Observer {
         }    
     }
     
+    public boolean verificaBasica(){
+        return this.config.getMotor().equals("")         || 
+               this.config.getJantes().equals("")        || 
+               this.config.getPneus().equals("")         ||
+               this.config.getPintura().equals("")       || 
+               this.config.getDetInteriores().equals("") || 
+               this.config.getDetExteriores().equals("");
+    }
+    
+    public static void infoBox(String infoMessage, String titleBar) {
+        
+        JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -235,12 +250,12 @@ public class ConfiguracaoBasica extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       // try { 
+        if (!verificaBasica()){
             new OpcoesdeConfiguracao(this.config).setVisible(true);
             this.dispose();
-       // } catch (SemConfigBasicaException e) {
-        
-        //}
+        } else {
+            infoBox("Configuração básica não definida", "Informação de configuração básica");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
