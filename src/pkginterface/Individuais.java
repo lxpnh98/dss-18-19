@@ -215,10 +215,10 @@ public class Individuais extends javax.swing.JFrame implements Observer {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Componente comp;
-        //int id = Integer.parseInt(jTextField_ID.getText());
-        //comp = this.dados.getComponente(id);
+        int id = Integer.parseInt(jTextField_ID.getText());
+        comp = this.dados.getComponente(id);
         
-        //showNecessidadesComponente(comp);
+        showNecessidadesComponente(comp);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
