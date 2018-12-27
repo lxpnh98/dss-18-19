@@ -30,9 +30,16 @@ public class ConfiguraFacil extends java.util.Observable {
         return true;
     }
 
-    //TODO: adicionaComponentes()
+    public void adicionaComponentes(Set<Integer> ids) {
+        for(Integer i : ids) {
+            adicionaComponente(i);
+        }
+    }
 
-    //TODO: adicionaComponente()
+    public void adicionaComponente(int id) {
+        Configuracao config = this.dados.getConfiguracaoAtual();
+        config.addComponente(id);
+    }
 
     public void identificaCliente(String nome, String tlmv, String email, String nif) {
         if (Cliente.validaInfo(nome,tlmv,email,nif)) {
