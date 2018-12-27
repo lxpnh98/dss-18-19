@@ -90,12 +90,11 @@ public class OpcoesdeConfiguracao extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton4))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButton_Individual, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton_Pacote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jButton_Otima, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton_Individual, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_Pacote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_Otima, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 191, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -122,11 +121,13 @@ public class OpcoesdeConfiguracao extends javax.swing.JFrame {
 
     private void jButton_OtimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_OtimaActionPerformed
         new ConfiguracaoOtima(this.config).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton_OtimaActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         //try {
             new Confirmacao(this.config).setVisible(true);
+            this.dispose();
         //} catch (SemConfigException e) { // TODO: Criar exceção
             
         //}
@@ -134,14 +135,17 @@ public class OpcoesdeConfiguracao extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         new ConfiguracaoBasica(this.config).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton_PacoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_PacoteActionPerformed
         new Pacotes(this.config).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton_PacoteActionPerformed
 
     private void jButton_IndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_IndividualActionPerformed
         new Individuais(this.config).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton_IndividualActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
