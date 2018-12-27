@@ -5,6 +5,7 @@ package pkginterface;
  * and open the template in the editor.
  */
 import configurafacil.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author ASUS
@@ -20,7 +21,11 @@ public class Vendedor extends javax.swing.JFrame {
         this.config = config;
         initComponents();
     }
-
+    
+    public static void infoBox(String infoMessage, String titleBar) {
+        
+        JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -164,11 +169,16 @@ public class Vendedor extends javax.swing.JFrame {
         tlmv = jTextField_Numero.getText();
         email = jTextField_Email.getText();
         nif = jTextField_NIF.getText();
-       
-        cliente = new Cliente(/*id*/1, nome, tlmv, email,nif);
         
-        new ConfiguracaoBasica(this.config).setVisible(true);
-        this.dispose();
+        if (Cliente.validaInfo(nome, tlmv, email, nif)){
+       
+            cliente = new Cliente(/*id*/1, nome, tlmv, email,nif);
+        
+            new ConfiguracaoBasica(this.config).setVisible(true);
+            this.dispose();
+        } else {
+            infoBox("Dados inseridos estão incorretos", "Informação de identificação de cliente");
+        }
         // TODO Adicionar Cliente
         // TODO Verificar ID
        

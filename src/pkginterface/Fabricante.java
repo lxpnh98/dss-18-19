@@ -5,7 +5,7 @@ package pkginterface;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import configurafacil.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author ASUS
@@ -20,7 +20,12 @@ public class Fabricante extends javax.swing.JFrame {
         //this.queue = getQueue();
         initComponents();
     }
-
+    
+    public static void infoBox(String infoMessage, String titleBar) {
+        
+        JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,8 +90,7 @@ public class Fabricante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new VerificarQueue().setVisible(true);
-        this.dispose();
+        infoBox("Queue atualizada com sucesso!", "Informação de queue de produção");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

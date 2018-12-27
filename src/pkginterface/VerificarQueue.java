@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 public class VerificarQueue extends javax.swing.JFrame implements Observer {
 
     private static final long serialVersionUID = 1;
-    private QueueProducao queue;
+    private QueueProducao q;
     private Carro carro;
     private Configuracao config;
     private DadosFacade dados;
@@ -31,23 +31,23 @@ public class VerificarQueue extends javax.swing.JFrame implements Observer {
     public VerificarQueue() {
         //this.queue = this.dados.getQueueProducao();
         initComponents();
-        this.queue.addObserver(this);
+        this.q.addObserver(this);
         //showQueue();
     }
-    /*
+
     public void showQueue() {
        DefaultTableModel model = (DefaultTableModel)jTable_Componentes.getModel();
        Object[] row = new Object[2];
        model.setRowCount(0);
        int i = 0;
-       for (Carro c : (LinkedList)this.queue) {
+       for (Carro c : this.q.queue) {
            row[0] = c.getId();
            row[2] = this.dados.getCliente(c.getIdCliente()).getNome();
            i++;
            model.addRow(row);
        }
     }
-    */
+
     public void showConfiguracaoCarro(Configuracao config) {
 
        Collection<Integer> ids = config.getComponentes();
@@ -189,7 +189,7 @@ public class VerificarQueue extends javax.swing.JFrame implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO: Info do carro selecionado
+
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -203,13 +203,13 @@ public class VerificarQueue extends javax.swing.JFrame implements Observer {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int id = Integer.parseInt(jTextField_ID.getText());
-        carro = queue.getCarro(id);
+        carro = q.getCarro(id);
         this.config = dados.getConfiguracao(carro.getIdConfig());
         showConfiguracaoCarro(config);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_IDActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jTextField_IDActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

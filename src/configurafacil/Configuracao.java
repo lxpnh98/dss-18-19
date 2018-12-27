@@ -16,12 +16,12 @@ public class Configuracao extends java.util.Observable {
 
     public Configuracao () {
         this.id = 0;
-        this.motor = motor;
-        this.pintura = pintura;
-        this.jantes = jantes;
-        this.pneus = pneus;
-        this.detalhesInteriores = detalhesInteriores;
-        this.detalhesExteriores = detalhesExteriores;
+        this.motor = "";
+        this.pintura = "";
+        this.jantes = "";
+        this.pneus = "";
+        this.detalhesInteriores = "";
+        this.detalhesExteriores = "";
         this.pacotes = new HashSet<>();
         this.componentes = new HashSet<>();
     }

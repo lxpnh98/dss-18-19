@@ -96,13 +96,15 @@ public class ConfiguraFacil extends java.util.Observable {
         this.dados.setConfiguracaoAtual(config);
     }
 
-    public void identificaCliente(String nome, String tlmv, String email, String nif) {
+    public boolean identificaCliente(String nome, String tlmv, String email, String nif) {
         if (Cliente.validaInfo(nome,tlmv,email,nif)) {
             Cliente c = new Cliente(0,nome,tlmv,email,nif);
             this.dados.setCliente(c);
             System.out.println("Identificação realizada com sucesso");
+            return true;
         } else {
             System.out.println("Identificação sem sucesso");
+            return false;
         }
     }
 
