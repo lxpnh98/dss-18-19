@@ -57,7 +57,11 @@ public class DadosFacade {
             (new QueueProducaoDAO(c)).setQueueProducao(q);
             c.commit();
         } catch (SQLException e) {
-            c.rollback();
+            try {
+                c.rollback();
+            } catch (SQLException e2) {
+                e2.printStackTrace();
+            }
             e.printStackTrace();
         } finally {
             try {
@@ -141,7 +145,11 @@ public class DadosFacade {
             (new ConfiguracaoDAO(c)).setConfiguracaoAtual(config);
             c.commit();
         } catch (SQLException e) {
-            c.rollback();
+            try {
+                c.rollback();
+            } catch (SQLException e2) {
+                e2.printStackTrace();
+            }
             e.printStackTrace();
         } finally {
             try {
@@ -193,7 +201,11 @@ public class DadosFacade {
             (new ComponenteDAO(c)).set(componente);
             c.commit();
         } catch (SQLException e) {
-            c.rollback();
+            try {
+                c.rollback();
+            } catch (SQLException e2) {
+                e2.printStackTrace();
+            }
             e.printStackTrace();
         } finally {
             try {
