@@ -6,7 +6,6 @@ import java.util.Observer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-import static pkginterface.Confirmacao.infoBox;
 
 /**
  * @author ASUS

@@ -5,9 +5,7 @@ package pkginterface;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import configurafacil.*;
 import javax.swing.JOptionPane;
-import static pkginterface.Confirmacao.infoBox;
 /**
  *
  * @author ASUS
