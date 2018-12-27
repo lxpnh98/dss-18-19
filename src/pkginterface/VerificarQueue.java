@@ -6,7 +6,6 @@ package pkginterface;
  */
 
 import configurafacil.*;
-import java.io.Serializable;
 import pkgdados.DadosFacade;
 import java.util.Collection;
 import java.util.Observable;
@@ -195,6 +194,7 @@ public class VerificarQueue extends javax.swing.JFrame implements Observer {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         new Fabricante().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed

@@ -103,7 +103,7 @@ public class ConfiguracaoDAO extends DAO {
 	}
 
     public Configuracao get(int id) throws SQLException {
-        Configuracao conf;
+        Configuracao conf = null;
 
         // get configuracao básica
         PreparedStatement ps1 = this.connection.prepareStatement("select * from ConfiguraFacil.Configuracao where id = ?;");

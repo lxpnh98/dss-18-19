@@ -32,13 +32,11 @@
                       <Component id="jButton4" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jButton_Individual" alignment="1" max="32767" attributes="0"/>
-                              <Component id="jLabel1" alignment="1" max="32767" attributes="0"/>
-                              <Component id="jButton_Pacote" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="jButton_Otima" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jButton_Individual" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jLabel1" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jButton_Pacote" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jButton_Otima" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="191" max="32767" attributes="0"/>
                   </Group>

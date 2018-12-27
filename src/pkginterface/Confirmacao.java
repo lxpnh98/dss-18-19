@@ -7,10 +7,10 @@ package pkginterface;
  */
 import configurafacil.*;
 import pkgdados.DadosFacade;
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -49,6 +49,11 @@ public class Confirmacao extends javax.swing.JFrame implements Observer {
        }
     }
     
+    public static void infoBox(String infoMessage, String titleBar) {
+        
+        JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,8 +79,18 @@ public class Confirmacao extends javax.swing.JFrame implements Observer {
         jLabel1.setText("Configuração final do carro:");
 
         jButton1.setText("Encomendar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Voltar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jTable_ConfigFinal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -123,11 +138,18 @@ public class Confirmacao extends javax.swing.JFrame implements Observer {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new OpcoesdeConfiguracao(this.config).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         this.config.deleteObservers();
     }//GEN-LAST:event_formWindowClosed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        infoBox("Encomenda realizada com sucesso!", "Informação de encomenda");
+        new MenuInicial().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

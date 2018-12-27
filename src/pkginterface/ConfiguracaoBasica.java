@@ -1,14 +1,10 @@
 package pkginterface;
 
 import configurafacil.*;
-import java.io.Serializable;
-import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.DefaultListModel;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * @author ASUS
@@ -235,11 +231,13 @@ public class ConfiguracaoBasica extends javax.swing.JFrame implements Observer {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         new MenuInicial().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        // try { 
             new OpcoesdeConfiguracao(this.config).setVisible(true);
+            this.dispose();
        // } catch (SemConfigBasicaException e) {
         
         //}
