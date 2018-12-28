@@ -6,6 +6,7 @@ package pkginterface;
  * and open the template in the editor.
  */
 import javax.swing.JOptionPane;
+import configurafacil.*;
 /**
  *
  * @author ASUS
@@ -13,10 +14,12 @@ import javax.swing.JOptionPane;
 public class Fabricante extends javax.swing.JFrame {
     
     private static final long serialVersionUID = 1;
+    private ConfiguraFacil cf;
     /**
      * Creates new form Fabricante
      */
-    public Fabricante() {
+    public Fabricante(ConfiguraFacil cf) {
+        this.cf = cf;
         //this.queue = getQueue();
         initComponents();
     }
@@ -90,16 +93,17 @@ public class Fabricante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.cf.atualizaQueue();
         infoBox("Queue atualizada com sucesso!", "Informação de queue de produção");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new VerificarQueue().setVisible(true);
+        new VerificarQueue(this.cf).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        new MenuInicial().setVisible(true);
+        new MenuInicial(this.cf).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 

@@ -32,7 +32,7 @@ public class ClienteDAO extends DAO {
     }
 
     public void setCliente(Cliente c) throws SQLException {
-        PreparedStatement ps = this.connection.prepareStatement("insert into ConfiguraFacil.Configuracao values (default,?,?,?,?)");
+        PreparedStatement ps = this.connection.prepareStatement("insert into ConfiguraFacil.Cliente values (default,?,?,?,?)");
         ps.setString(1, c.getNome());
         ps.setString(2, c.getTlmv());
         ps.setString(3, c.getEmail());

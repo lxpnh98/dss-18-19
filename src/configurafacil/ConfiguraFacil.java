@@ -11,7 +11,36 @@ public class ConfiguraFacil extends java.util.Observable {
     public ConfiguraFacil(DadosFacade dados) {
         this.dados = dados;
     }
-
+    
+    
+    public void createConfiguracao(){
+        this.dados.createConfiguracao();
+    }
+    
+    public Configuracao getConfiguracao(int id){
+        return this.dados.getConfiguracao(id);
+    }
+    
+    public Configuracao getConfiguracaoAtual(){
+        return this.dados.getConfiguracaoAtual();
+    }
+    
+    public Componente getComponente(int id){
+        return this.dados.getComponente(id);
+    }
+    
+    public void setConfigAtual(Configuracao config){
+        this.dados.setConfiguracaoAtual(config);
+    }
+    
+    public Cliente getCliente(int id){
+        return this.dados.getCliente(id);
+    }
+    
+    public void setCliente(Cliente cliente){
+        this.dados.setCliente(cliente);
+    }
+    
     public Set<Integer> listaDependencias(int id) {
         Set<Integer> lista = new HashSet<Integer>();
         Set<Integer> deps = new HashSet<Integer>();
@@ -23,6 +52,24 @@ public class ConfiguraFacil extends java.util.Observable {
             if(!lista.contains(dep)) {
                 lista.add(dep);
                 Set<Integer> depDeps = listaDependencias(dep);
+                lista.addAll(depDeps);
+            } 
+        }
+
+        return lista;
+    }
+    
+    public Set<Integer> listaIncompatibilidades(int id) {
+        Set<Integer> lista = new HashSet<Integer>();
+        Set<Integer> deps = new HashSet<Integer>();
+
+        Componente componente = this.dados.getComponente(id);
+        deps = componente.getIncompativeis();
+
+        for(Integer dep : deps) {
+            if(!lista.contains(dep)) {
+                lista.add(dep);
+                Set<Integer> depDeps = listaIncompatibilidades(dep);
                 lista.addAll(depDeps);
             } 
         }

@@ -6,7 +6,6 @@ package pkginterface;
  * and open the template in the editor.
  */
 import configurafacil.*;
-import pkgdados.DadosFacade;
 import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
@@ -19,46 +18,35 @@ import javax.swing.table.DefaultTableModel;
 public class Pacotes extends javax.swing.JFrame implements Observer {
     
     private static final long serialVersionUID = 1;
-    private Configuracao config;
+    private ConfiguraFacil cf;
     private Pacote pacote;
-    private DadosFacade dados;
 
     /**
      * Creates new form Pacotes
-     * @param config
+     * @param cf
      */
-    public Pacotes(Configuracao config) { // TODO passar argumento "DadosFacade"
-        this.config = config;
-        this.dados = dados;
-        this.config.addObserver(this);
+    public Pacotes(ConfiguraFacil cf) {
+        this.cf = cf;
         initComponents();
-    }
-    
-    public Configuracao getConfig(){
-        return this.config;
     }
     
     public void showPacote(Pacote pacote) {
 
-       Collection<Integer> componentes = this.pacote.getComponentes();
+       Collection<Integer> componentes = pacote.getComponentes();
        DefaultTableModel model = (DefaultTableModel)jTable_Componentes.getModel();
+       DefaultTableModel model2 = (DefaultTableModel)jTable_Preco.getModel();
        Object[] row = new Object[1];
        model.setRowCount(0);
        int i = 0;
        for(Integer id : componentes) {
-           row[0] = dados.getComponente(id).getNome();
+           row[0] = this.cf.getComponente(id).getNome();
            i++;
            model.addRow(row);
        }
-    }
-    
-    public void showPreco() {
-
-        DefaultTableModel model = (DefaultTableModel)jTable_Preco.getModel();
-        Object[] row = new Object[1];
-        model.setRowCount(0);
-        row[0] = this.pacote.getPreco();
-        model.addRow(row);
+       
+        model2.setRowCount(0);
+        row[0] = pacote.getPreco();
+        model2.addRow(row);
     }
 
     /**
@@ -218,30 +206,27 @@ public class Pacotes extends javax.swing.JFrame implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        this.config.addPacote(pacote.getId());
+        this.cf.addPacote(pacote.getId());
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        new OpcoesdeConfiguracao(this.config).setVisible(true);
+        new OpcoesdeConfiguracao(this.cf).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         pacote = new Pacote(); // TODO Adicionar pacote Desportivo
         showPacote(pacote);
-        showPreco();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         pacote = new Pacote(); // TODO Adicionar pacote Conforto
         showPacote(pacote);
-        showPreco();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         pacote = new Pacote(); // TODO Adicionar pacote Económico
         showPacote(pacote);
-        showPreco();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed

@@ -13,12 +13,13 @@ import javax.swing.JOptionPane;
 public class Vendedor extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
-    private Configuracao config;
+    private ConfiguraFacil cf;
+    
     /**
      * Creates new form Vendedor
      */
-    public Vendedor(Configuracao config) {
-        this.config = config;
+    public Vendedor(ConfiguraFacil cf) {
+        this.cf = cf;
         initComponents();
     }
     
@@ -150,11 +151,11 @@ public class Vendedor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField_NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_NameActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jTextField_NameActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new MenuInicial().setVisible(true);
+        new MenuInicial(cf).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -172,16 +173,14 @@ public class Vendedor extends javax.swing.JFrame {
         
         if (Cliente.validaInfo(nome, tlmv, email, nif)){
        
-            cliente = new Cliente(/*id*/1, nome, tlmv, email,nif);
+            cliente = new Cliente(1, nome, tlmv, email, nif);
+            this.cf.setCliente(cliente);
         
-            new ConfiguracaoBasica(this.config).setVisible(true);
+            new ConfiguracaoBasica(this.cf).setVisible(true);
             this.dispose();
         } else {
             infoBox("Dados inseridos estão incorretos", "Informação de identificação de cliente");
         }
-        // TODO Adicionar Cliente
-        // TODO Verificar ID
-       
     }//GEN-LAST:event_jButton_AdicionarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
