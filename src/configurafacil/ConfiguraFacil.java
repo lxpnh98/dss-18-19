@@ -1,5 +1,6 @@
-\package configurafacil;
+package configurafacil;
 
+import java.util.stream.Collectors;
 import java.util.*;
 import java.time.LocalDateTime;
 import pkgdados.DadosFacade;
@@ -204,11 +205,28 @@ public class ConfiguraFacil extends java.util.Observable {
         this.dados.setConfiguracaoAtual(config);
     }
 
-    /*
-    public Configuracao calculaConfiguracaoOtima() {
+    public Configuracao calculaConfiguracaoOtima(float orcamento) {
+        Configuracao config = this.dados.getConfiguracaoAtual();
+        Set<Integer> listaPacotes = this.dados.listaPacotes();
 
+        List<Pacote> pacotes = listaPacotes.stream()
+                                        .map(i -> (Pacote)this.dados.getPacote(i))
+                                        .collect(Collectors.toList());
+        Collections.sort(pacotes, (p1, p2) -> (new Float (p1.getPreco())).compareTo(p2.getPreco()));
+        
+        float orcamentoDisp = orcamento;
+
+        for(Pacote p : pacotes) {
+            if(p.getPreco() > orcamentoDisp) {
+                return null; // calculaComponentes(orcamento); 
+            } else {
+                config.addPacote(p.getId());
+                this.dados.setConfiguracaoAtual(config);
+                orcamentoDisp = orcamentoDisp - p.getPreco();
+            }
+        }
+        return config;
     }
-    */
 
     public CarroInfo verCarro(int id) {
         QueueProducao q = this.dados.getQueueProducao();
