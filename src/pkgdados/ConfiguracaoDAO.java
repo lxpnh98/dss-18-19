@@ -58,8 +58,8 @@ public class ConfiguracaoDAO extends DAO {
 
         // set configuração básica
         PreparedStatement ps1 = this.connection.prepareStatement(
-            "update ConfiguraFacil.Configuracao" +
-            "set motor=?,pintura=?,jantes=?,pneus=?,detalhes_interiores=?,detalhes_exteriores=?" +
+            "update ConfiguraFacil.Configuracao " +
+            "set motor=?,pintura=?,jantes=?,pneus=?,detalhes_interiores=?,detalhes_exteriores=? " +
             "where id=?;");
         ps1.setString(1, c.getMotor());
         ps1.setString(2, c.getPintura());
@@ -72,7 +72,7 @@ public class ConfiguracaoDAO extends DAO {
         ps1.close();
 
         // delete antigos pacotes
-        PreparedStatement ps2 = this.connection.prepareStatement("delete ConfiguraFacil.ConfiguracaoPacote where Configuracao_id=?;");
+        PreparedStatement ps2 = this.connection.prepareStatement("delete from ConfiguraFacil.ConfiguracaoPacote where Configuracao_id=?;");
         ps2.setInt(1, id);
         ps2.executeUpdate();
         ps2.close();
@@ -87,7 +87,7 @@ public class ConfiguracaoDAO extends DAO {
         ps3.close();
 
         // delete antigos componentes
-        PreparedStatement ps4 = this.connection.prepareStatement("delete ConfiguraFacil.ConfiguracaoComponente where Configuracao_id=?;");
+        PreparedStatement ps4 = this.connection.prepareStatement("delete from ConfiguraFacil.ConfiguracaoComponente where Configuracao_id=?;");
         ps4.setInt(1, id);
         ps4.executeUpdate();
         ps4.close();

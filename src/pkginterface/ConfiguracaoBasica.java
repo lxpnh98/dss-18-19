@@ -15,6 +15,7 @@ public class ConfiguracaoBasica extends javax.swing.JFrame implements Observer {
     private static final long serialVersionUID = 1;
     private ConfiguraFacil cf;
     private Configuracao config;
+    private String categoria;
     
     /**
      * Creates new form ConfiguracaoBasica
@@ -24,6 +25,7 @@ public class ConfiguracaoBasica extends javax.swing.JFrame implements Observer {
         this.cf.createConfiguracao();
         this.config = this.cf.getConfiguracaoAtual();
         this.config.addObserver(this);
+        this.categoria = null;
         initComponents();
         showCategorias();
         showConfiguracao();
@@ -65,6 +67,9 @@ public class ConfiguracaoBasica extends javax.swing.JFrame implements Observer {
         DefaultListModel<String> opcoes = new DefaultListModel<>();
         String s = jList_Categorias.getSelectedValue();
         
+        // sem categoria escolhida
+        if (s == null) return;
+
         switch(s){
             case "Motor":
                 opcoes.addElement("Motor tipo 1");
@@ -273,6 +278,8 @@ public class ConfiguracaoBasica extends javax.swing.JFrame implements Observer {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         showOpcoes();
+        // definir categoria aquí para não poder mudar sem clicar em "Selecionar"
+        this.categoria = jList_Categorias.getSelectedValue(); 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -280,10 +287,12 @@ public class ConfiguracaoBasica extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_formWindowClosed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        String cat = jList_Categorias.getSelectedValue();
         String opt = jList_Opcoes.getSelectedValue();
-        
-        switch(cat){
+
+        // nenhuma categoria escolhida
+        if (this.categoria == null) return;
+ 
+        switch(this.categoria){
             case "Motor":
                 this.config.setMotor(opt);
                 showConfiguracao();
@@ -315,9 +324,11 @@ public class ConfiguracaoBasica extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        String cat = jList_Categorias.getSelectedValue();
         
-        switch(cat){
+        // sem categoria escolhida
+        if (this.categoria == null) return;
+
+        switch(this.categoria){
             case "Motor":
                 this.config.setMotor("");
                 showConfiguracao();

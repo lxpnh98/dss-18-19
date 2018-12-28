@@ -98,18 +98,11 @@ public class Cliente {
     }
 
     public static boolean verificaMail(String mail) {
-        int contador = 0;
         for(int i = 0; i < mail.length(); i++)  {
-            if(mail.charAt(i)=='@')
-                contador++;
-            if(contador>1) 
-                break;
+            if(mail.charAt(i)=='@' && i != mail.length()-1)
+                return true;
         }
-        if(contador==1) {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     public Cliente clone() {

@@ -41,7 +41,7 @@ public class VerificarQueue extends javax.swing.JFrame implements Observer {
        int i = 0;
        for (Carro c : this.q.queue) {
            row[0] = c.getId();
-           row[2] = this.cf.getCliente(c.getIdCliente()).getNome();
+           row[1] = this.cf.getCliente(c.getIdCliente()).getNome();
            i++;
            model.addRow(row);
        }
@@ -197,14 +197,18 @@ public class VerificarQueue extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        this.carro.deleteObservers();
+        if (this.carro != null) this.carro.deleteObservers(); // TODO: this.carro = null (erro?)
     }//GEN-LAST:event_formWindowClosed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int id = Integer.parseInt(jTextField_ID.getText());
         carro = q.getCarro(id);
-        this.config = this.cf.getConfiguracao(carro.getIdConfig());
-        showConfiguracaoCarro(config);
+        if (carro != null) {
+            this.config = this.cf.getConfiguracao(carro.getIdConfig());
+            showConfiguracaoCarro(config);
+        } else {
+            // TODO: carro não existe, mostrar aviso
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_IDActionPerformed
