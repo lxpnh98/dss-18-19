@@ -37,7 +37,7 @@ public class ComponenteDAO extends DAO {
 
         // get ids das incompatibilidades do componente
         PreparedStatement ps3 = this.connection.prepareStatement(
-            "select Imcompatibilidade_id as id from ConfiguraFacil.Imcompatibilidade where Componente_id = ?;");
+            "select Incompatibilidade_id as id from ConfiguraFacil.Incompatibilidade where Componente_id = ?;");
         ps3.setInt(1, id);
         ResultSet rs3 = ps3.executeQuery();
         while (rs3.next()) {
