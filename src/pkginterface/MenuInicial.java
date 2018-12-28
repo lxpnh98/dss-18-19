@@ -13,10 +13,13 @@ import configurafacil.*;
 public class MenuInicial extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
+    private ConfiguraFacil cf;
     /**
      * Creates new form NewJFrame
+     * @param cf
      */
-    public MenuInicial() {
+    public MenuInicial(ConfiguraFacil cf) {
+        this.cf = cf;
         initComponents();
     }
 
@@ -79,7 +82,7 @@ public class MenuInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new Vendedor(new Configuracao()).setVisible(true);
+        new Vendedor(this.cf).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -88,7 +91,7 @@ public class MenuInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new Fabricante().setVisible(true);
+        new Fabricante(this.cf).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -6,7 +6,6 @@ package pkginterface;
  * and open the template in the editor.
  */
 import configurafacil.*;
-import pkgdados.DadosFacade;
 import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
@@ -21,14 +20,14 @@ public class Confirmacao extends javax.swing.JFrame implements Observer {
 
     private static final long serialVersionUID = 1;
     private Configuracao config;
-    private DadosFacade dados;
+    private ConfiguraFacil cf;
     
     /**
      * Creates new form Confirmacao
      */
-    public Confirmacao(Configuracao config) { // TODO passar argumento DadosFacade
-        this.config = config;
-        this.dados = dados;
+    public Confirmacao(ConfiguraFacil cf) {
+        this.cf = cf;
+        this.config = this.cf.getConfiguracaoAtual();
         this.config.addObserver(this);
         initComponents();
         showConfiguracao();
@@ -42,8 +41,8 @@ public class Confirmacao extends javax.swing.JFrame implements Observer {
        model.setRowCount(0);
        int i = 0;
        for(Integer id : ids) {
-           row[0] = dados.getComponente(id).getNome();
-           row[1] = dados.getComponente(id).getPreco();
+           row[0] = this.cf.getComponente(id).getNome();
+           row[1] = this.cf.getComponente(id).getPreco();
            i++;
            model.addRow(row);
        }
@@ -137,7 +136,7 @@ public class Confirmacao extends javax.swing.JFrame implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new OpcoesdeConfiguracao(this.config).setVisible(true);
+        new OpcoesdeConfiguracao(this.cf).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -146,8 +145,9 @@ public class Confirmacao extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_formWindowClosed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.cf.adicionaCarro();
         infoBox("Encomenda realizada com sucesso!", "Informação de encomenda");
-        new MenuInicial().setVisible(true);
+        new MenuInicial(this.cf).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

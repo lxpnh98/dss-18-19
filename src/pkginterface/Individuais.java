@@ -19,24 +19,22 @@ import javax.swing.table.DefaultTableModel;
 public class Individuais extends javax.swing.JFrame implements Observer {
     
     private static final long serialVersionUID = 1;
-    private Configuracao config;
-    private Componente componente;
+    private ConfiguraFacil cf;
     private DadosFacade dados;
 
     /**
      * Creates new form Individuais
-     * @param config
+     * @param cf
      */
-    public Individuais(Configuracao config) {
-        this.config = config;
-        //this.componente.addObserver(this);
+    public Individuais(ConfiguraFacil cf) {
+        this.cf = cf;
         initComponents();
         
     }
     
     public void showNecessidadesComponente(Componente comp) {
         
-        Collection<Integer> ids = componente.getDependencias();
+        Collection<Integer> ids = this.cf.listaDependencias(comp.getId());
         DefaultTableModel model = (DefaultTableModel)jTable_Necessarios.getModel();
         Object[] row = new Object[3];
         model.setRowCount(0);
@@ -50,9 +48,10 @@ public class Individuais extends javax.swing.JFrame implements Observer {
        }
     }
     
-    public void showIncompatibilidadesComponente(Componente comp) {
+    
+    public void showIncompativeisComponente(Componente comp) {
         
-        Collection<Integer> ids = componente.getIncompativeis();
+        Collection<Integer> ids = this.cf.listaIncompatibilidades(comp.getId());
         DefaultTableModel model = (DefaultTableModel)jTable_Incompatives.getModel();
         Object[] row = new Object[3];
         model.setRowCount(0);
@@ -245,30 +244,31 @@ public class Individuais extends javax.swing.JFrame implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new OpcoesdeConfiguracao(this.config).setVisible(true);
+        new OpcoesdeConfiguracao(this.cf).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //int id = Integer.parseInt();
-        
-        //this.config.addComponente();
+        int id = Integer.parseInt(jTextField_ID.getText());
+        this.cf.adicionaComponente(id);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        this.componente.deleteObservers();
-    }//GEN-LAST:event_formWindowClosed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Componente comp;
         int id = Integer.parseInt(jTextField_ID.getText());
-        comp = this.dados.getComponente(id);
+        comp = this.cf.getComponente(id);
         
         showNecessidadesComponente(comp);
+        showIncompativeisComponente(comp);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO addComponentes(componente.getDependencias());
+        int id = Integer.parseInt(jTextField_ID.getText());
+        this.cf.adicionaComponentes(this.cf.listaDependencias(id));
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+
+    }//GEN-LAST:event_formWindowClosed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -1,7 +1,6 @@
 import pkginterface.MenuInicial;
 import pkgdados.DadosFacade;
 import configurafacil.ConfiguraFacil;
-import configurafacil.*;
 
 public class Main {
     
@@ -9,14 +8,14 @@ public class Main {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new MenuInicial().setVisible(true); // TODO: passar cf como argumento
+                new MenuInicial(cf).setVisible(true);
             }
         });
     }
     
     public static void main(String[] args) {
-        String user = "root";//args[1];
-        String password = "password";//args[2];
+        String user = args[1];
+        String password = args[2];
 
         DadosFacade dados = new DadosFacade(user, password);
 

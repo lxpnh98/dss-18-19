@@ -6,7 +6,6 @@
 package pkginterface;
 
 import configurafacil.*;
-import pkgdados.DadosFacade;
 import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
@@ -19,25 +18,22 @@ import javax.swing.table.DefaultTableModel;
 public class ConfiguracaoOtima extends javax.swing.JFrame implements Observer {
 
     private static final long serialVersionUID = 1;
+    private ConfiguraFacil cf;
     private Configuracao configA;
     private Configuracao configO;
-    private DadosFacade dados;
     
     /**
      * Creates new form ConfiguraçãoOtima
      */
-    public ConfiguracaoOtima(Configuracao config) { // TODO passar argumento DadosFacade
-        this.configA = config;
-        this.dados = dados;
+    public ConfiguracaoOtima(ConfiguraFacil cf) {
+        this.cf = cf;
+        this.configA = this.cf.getConfiguracaoAtual();
         //this.configO = calculaConfiguracaoOtima();
         this.configA.addObserver(this);
+        //this.configO.addObserver(this);
         initComponents();
         showConfiguracaoAtual();
         //showConfiguracaoOtima();
-    }
-    
-    public Configuracao getConfigAtual(){
-        return this.configA;
     }
     
     public Configuracao getConfigOtima(){
@@ -52,8 +48,8 @@ public class ConfiguracaoOtima extends javax.swing.JFrame implements Observer {
        model.setRowCount(0);
        int i = 0;
        for(Integer id : ids) {
-           row[0] = dados.getComponente(id).getNome();
-           row[1] = dados.getComponente(id).getPreco();
+           row[0] = this.cf.getComponente(id).getNome();
+           row[1] = this.cf.getComponente(id).getPreco();
            i++;
            model.addRow(row);
        }
@@ -67,8 +63,8 @@ public class ConfiguracaoOtima extends javax.swing.JFrame implements Observer {
        model.setRowCount(0);
        int i = 0;
        for(Integer id : ids) {
-           //row[0] = getComponente(id).getNome(); // TODO: Corrigir
-           //row[1] = getComponente(id).getPreco(); // TODO: Corrigir
+           //row[0] = this.cf.getComponente(id).getNome();
+           //row[1] = this.cf.getComponente(id).getPreco();
            i++;
            model.addRow(row);
        }
@@ -166,12 +162,12 @@ public class ConfiguracaoOtima extends javax.swing.JFrame implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new OpcoesdeConfiguracao(configA).setVisible(true);
+        new OpcoesdeConfiguracao(this.cf).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.configA = new Configuracao(configO);
+        this.cf.setConfigAtual(configO);
         showConfiguracaoAtual();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -189,5 +185,6 @@ public class ConfiguracaoOtima extends javax.swing.JFrame implements Observer {
     @Override
     public void update(Observable o, Object arg) {
        showConfiguracaoAtual();
+       //showConfiguracaoOtima();
     }
 }

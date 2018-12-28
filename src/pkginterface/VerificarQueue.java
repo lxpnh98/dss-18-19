@@ -6,7 +6,6 @@ package pkginterface;
  */
 
 import configurafacil.*;
-import pkgdados.DadosFacade;
 import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
@@ -19,20 +18,20 @@ import javax.swing.table.DefaultTableModel;
 public class VerificarQueue extends javax.swing.JFrame implements Observer {
 
     private static final long serialVersionUID = 1;
+    private ConfiguraFacil cf;;
     private QueueProducao q;
     private Carro carro;
     private Configuracao config;
-    private DadosFacade dados;
     
     /**
      * Creates new form VerificarQueue
-     * @param queue
+     * @param cf
      */
-    public VerificarQueue() {
-        //this.queue = this.dados.getQueueProducao();
+    public VerificarQueue(ConfiguraFacil cf) {
+        this.cf = cf;
+        this.q = this.cf.verQueueProducao();
         initComponents();
-        this.q.addObserver(this);
-        //showQueue();
+        showQueue();
     }
 
     public void showQueue() {
@@ -42,7 +41,7 @@ public class VerificarQueue extends javax.swing.JFrame implements Observer {
        int i = 0;
        for (Carro c : this.q.queue) {
            row[0] = c.getId();
-           row[2] = this.dados.getCliente(c.getIdCliente()).getNome();
+           row[2] = this.cf.getCliente(c.getIdCliente()).getNome();
            i++;
            model.addRow(row);
        }
@@ -56,7 +55,7 @@ public class VerificarQueue extends javax.swing.JFrame implements Observer {
        model.setRowCount(0);
        int i = 0;
        for(Integer id : ids) {
-           row[0] = this.dados.getComponente(id).getNome();
+           row[0] = this.cf.getComponente(id).getNome();
            i++;
            model.addRow(row);
        }
@@ -193,7 +192,7 @@ public class VerificarQueue extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new Fabricante().setVisible(true);
+        new Fabricante(this.cf).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -204,7 +203,7 @@ public class VerificarQueue extends javax.swing.JFrame implements Observer {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int id = Integer.parseInt(jTextField_ID.getText());
         carro = q.getCarro(id);
-        this.config = dados.getConfiguracao(carro.getIdConfig());
+        this.config = this.cf.getConfiguracao(carro.getIdConfig());
         showConfiguracaoCarro(config);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -227,7 +226,6 @@ public class VerificarQueue extends javax.swing.JFrame implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        //showQueue();
-        throw new UnsupportedOperationException("Not supported yet.");
+        showQueue();
     }
 }

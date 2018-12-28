@@ -13,7 +13,7 @@ public class DadosFacade {
         this.password = password;
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             System.exit(1);
@@ -25,7 +25,7 @@ public class DadosFacade {
         try {
             return DriverManager.getConnection("jdbc:mysql://localhost/ConfiguraFacil?" +
                                                "user=" + this.user + "&" +
-                                               "password=" + this.password + "&useSSL=false");
+                                               "password=" + this.password + "&useSSL=false" + "&allowPublicKeyRetrieval=true");
         } catch (SQLException e) {
             e.printStackTrace();
             System.exit(2);
