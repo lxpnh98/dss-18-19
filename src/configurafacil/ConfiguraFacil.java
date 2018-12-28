@@ -1,4 +1,4 @@
-package configurafacil;
+\package configurafacil;
 
 import java.util.*;
 import java.time.LocalDateTime;
@@ -192,10 +192,24 @@ public class ConfiguraFacil extends java.util.Observable {
         }
     }
 
-    //TODO: configuracaoBasica()
+    public void configuracaoBasica(String motor, String pintura, String pneus, String jantes,
+                                   String detInteriores,  String detExteriores) {
+        Configuracao config = this.dados.getConfiguracaoAtual();
+        config.setMotor(motor);
+        config.setPintura(pintura);
+        config.setPneus(pneus);
+        config.setJantes(jantes);
+        config.setDetInteriores(detInteriores);
+        config.setDetExteriores(detExteriores);
+        this.dados.setConfiguracaoAtual(config);
+    }
 
-    //TODO: calculaConfiguracaoOtima()
-    
+    /*
+    public Configuracao calculaConfiguracaoOtima() {
+
+    }
+    */
+
     public CarroInfo verCarro(int id) {
         QueueProducao q = this.dados.getQueueProducao();
         Carro car = q.getCarro(id);
