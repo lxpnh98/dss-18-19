@@ -4,7 +4,7 @@ import configurafacil.ConfiguraFacil;
 import configurafacil.*;
 
 public class Main {
-    
+
     private static void displayInterface(ConfiguraFacil cf) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
