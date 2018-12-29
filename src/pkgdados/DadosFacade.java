@@ -8,17 +8,11 @@ public class DadosFacade {
     private String user;
     private String password;
 
-    public DadosFacade(String user, String password) {
+    public DadosFacade(String user, String password, String driver) {
         this.user = user;
         this.password = password;
 
         try {
-            String driver;
-            if (System.getProperty("java.version").startsWith("1.8.")) {
-                driver = "com.mysql.jdbc.Driver";
-            } else {
-                driver = "com.mysql.cj.jdbc.Driver";
-            }
             Class.forName(driver);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
