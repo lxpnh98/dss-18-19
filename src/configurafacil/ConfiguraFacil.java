@@ -46,7 +46,7 @@ public class ConfiguraFacil extends java.util.Observable {
 
         Componente componente = this.dados.getComponente(id);
         deps = componente.getDependencias();
-
+        
         for(Integer dep : deps) {
             if(!lista.contains(dep)) {
                 lista.add(dep);
@@ -54,7 +54,7 @@ public class ConfiguraFacil extends java.util.Observable {
                 lista.addAll(depDeps);
             } 
         }
-
+        
         return lista;
     }
 

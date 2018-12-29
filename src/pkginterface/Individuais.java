@@ -47,6 +47,7 @@ public class Individuais extends javax.swing.JFrame implements Observer {
             model.addRow(row);
        }
     }
+    
     /*
     public void showComponentes() {
         // Adicionar lista de todos os componentes

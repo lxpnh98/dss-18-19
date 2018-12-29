@@ -41,7 +41,7 @@ public class ComponenteDAO extends DAO {
         ps3.setInt(1, id);
         ResultSet rs3 = ps3.executeQuery();
         while (rs3.next()) {
-            r.addDependencia(rs3.getInt("id"));
+            r.addIncompativel(rs3.getInt("id"));
         }
         rs3.close();
         ps3.close();
@@ -88,7 +88,7 @@ public class ComponenteDAO extends DAO {
         PreparedStatement ps5 = this.connection.prepareStatement(
             "insert ConfiguraFacil.Incompatibilidade (Componente_id, Incompatibilidade_id) values (?, ?);");
         ps5.setInt(1, id);
-        for (Integer componenteId : c.getDependencias()) {
+        for (Integer componenteId : c.getIncompativeis()) {
             ps5.setInt(2, componenteId);
             ps5.executeUpdate();
         }
