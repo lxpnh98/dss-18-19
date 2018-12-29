@@ -15,7 +15,7 @@ public class DadosFacade {
         try {
             String driver;
             if (System.getProperty("java.version").startsWith("1.8.")) {
-                driver = "com.mysql.jdbc.Driver";
+                driver = "com.mysql.cj.jdbc.Driver";
             } else {
                 driver = "com.mysql.cj.jdbc.Driver";
             }
