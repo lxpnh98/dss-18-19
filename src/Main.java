@@ -14,11 +14,11 @@ public class Main {
     }
     
     public static void main(String[] args) {
-        String user = args[1];
-        String password = args[2];
+        String user = args[0];
+        String password = args[1];
         String driver;
 
-        if (args.length <= 3) {
+        if (args.length <= 2) {
             driver = "com.mysql.cj.jdbc.Driver";
         } else {
             driver = "com.mysql.jdbc.Driver";
