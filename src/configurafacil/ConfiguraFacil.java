@@ -11,36 +11,35 @@ public class ConfiguraFacil extends java.util.Observable {
     public ConfiguraFacil(DadosFacade dados) {
         this.dados = dados;
     }
-    
-    
+
     public void createConfiguracao(){
         this.dados.createConfiguracao();
     }
-    
+
     public Configuracao getConfiguracao(int id){
         return this.dados.getConfiguracao(id);
     }
-    
+
     public Configuracao getConfiguracaoAtual(){
         return this.dados.getConfiguracaoAtual();
     }
-    
+
     public Componente getComponente(int id){
         return this.dados.getComponente(id);
     }
-    
+
     public void setConfigAtual(Configuracao config){
         this.dados.setConfiguracaoAtual(config);
     }
-    
+
     public Cliente getCliente(int id){
         return this.dados.getCliente(id);
     }
-    
+
     public void setCliente(Cliente cliente){
         this.dados.setCliente(cliente);
     }
-    
+
     public Set<Integer> listaDependencias(int id) {
         Set<Integer> lista = new HashSet<Integer>();
         Set<Integer> deps = new HashSet<Integer>();
@@ -49,8 +48,8 @@ public class ConfiguraFacil extends java.util.Observable {
         deps = componente.getDependencias();
 
         for(Integer dep : deps) {
-            lista.add(dep);
             if(!lista.contains(dep)) {
+                lista.add(dep);
                 Set<Integer> depDeps = listaDependencias(dep);
                 lista.addAll(depDeps);
             } 
@@ -161,7 +160,6 @@ public class ConfiguraFacil extends java.util.Observable {
         Cliente cliente = this.dados.getClienteAtual();
         QueueProducao q = this.dados.getQueueProducao();
 
-
         Set<Integer> componentes = config.getComponentes();
         Set<Integer> pacotes = config.getPacotes();
 
@@ -174,6 +172,7 @@ public class ConfiguraFacil extends java.util.Observable {
 
         q.queue.add(carro);
         this.dados.setQueueProducao(q);
+
         if(pronto == true) {
             atualizaComponente(componentes,pacotes); 
         }
