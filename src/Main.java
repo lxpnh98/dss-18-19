@@ -3,7 +3,7 @@ import pkgdados.DadosFacade;
 import configurafacil.ConfiguraFacil;
 
 public class Main {
-    
+
     private static void displayInterface(ConfiguraFacil cf) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
