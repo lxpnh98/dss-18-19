@@ -16,8 +16,15 @@ public class Main {
     public static void main(String[] args) {
         String user = args[1];
         String password = args[2];
+        String driver;
 
-        DadosFacade dados = new DadosFacade(user, password);
+        if (args.length <= 3) {
+            driver = "com.mysql.cj.jdbc.Driver";
+        } else {
+            driver = "com.mysql.jdbc.Driver";
+        }
+
+        DadosFacade dados = new DadosFacade(user, password, driver);
 
         ConfiguraFacil cf = new ConfiguraFacil(dados);
 

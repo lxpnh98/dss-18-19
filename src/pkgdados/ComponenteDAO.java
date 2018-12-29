@@ -61,7 +61,7 @@ public class ComponenteDAO extends DAO {
 
         // detele antigas dependencias
         PreparedStatement ps2 = this.connection.prepareStatement(
-            "delete ConfiguraFacil.Dependencia where Componente_id=?;");
+            "delete from ConfiguraFacil.Dependencia where Componente_id=?;");
         ps2.setInt(1, id);
         ps2.executeUpdate();
         ps2.close();
@@ -79,7 +79,7 @@ public class ComponenteDAO extends DAO {
 
         // detele antigas incompatibilidades
         PreparedStatement ps4 = this.connection.prepareStatement(
-            "delete ConfiguraFacil.Incompatibilidade where Componente_id=?;");
+            "delete from ConfiguraFacil.Incompatibilidade where Componente_id=?;");
         ps4.setInt(1, id);
         ps4.executeUpdate();
         ps4.close();

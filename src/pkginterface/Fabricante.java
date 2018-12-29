@@ -93,7 +93,7 @@ public class Fabricante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.cf.atualizaQueue();
+        this.cf.atualizaQueue(); // TODO: enviar outra mensagem caso queue já esteja vazia
         infoBox("Queue atualizada com sucesso!", "Informação de queue de produção");
     }//GEN-LAST:event_jButton2ActionPerformed
 

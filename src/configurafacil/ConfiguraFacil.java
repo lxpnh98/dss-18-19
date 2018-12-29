@@ -49,8 +49,8 @@ public class ConfiguraFacil extends java.util.Observable {
         deps = componente.getDependencias();
 
         for(Integer dep : deps) {
+            lista.add(dep);
             if(!lista.contains(dep)) {
-                lista.add(dep);
                 Set<Integer> depDeps = listaDependencias(dep);
                 lista.addAll(depDeps);
             } 

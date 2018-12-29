@@ -20,7 +20,6 @@ public class Individuais extends javax.swing.JFrame implements Observer {
     
     private static final long serialVersionUID = 1;
     private ConfiguraFacil cf;
-    private DadosFacade dados;
 
     /**
      * Creates new form Individuais
@@ -40,11 +39,12 @@ public class Individuais extends javax.swing.JFrame implements Observer {
         model.setRowCount(0);
         int i = 0;
         for(Integer id : ids) {
-           row[0] = dados.getComponente(id).getId();
-           row[1] = dados.getComponente(id).getNome();
-           row[2] = dados.getComponente(id).getPreco();
-           i++;
-           model.addRow(row);
+            Componente c = this.cf.getComponente(id);
+            row[0] = c.getId();
+            row[1] = c.getNome();
+            row[2] = c.getPreco();
+            i++;
+            model.addRow(row);
        }
     }
     
@@ -57,11 +57,12 @@ public class Individuais extends javax.swing.JFrame implements Observer {
         model.setRowCount(0);
         int i = 0;
         for(Integer id : ids) {
-           row[0] = dados.getComponente(id).getId();
-           row[1] = dados.getComponente(id).getNome();
-           row[2] = dados.getComponente(id).getPreco();
-           i++;
-           model.addRow(row);
+            Componente c = this.cf.getComponente(id);
+            row[0] = c.getId();
+            row[1] = c.getNome();
+            row[2] = c.getPreco();
+            i++;
+            model.addRow(row);
        }
     }
     /*
@@ -245,6 +246,7 @@ public class Individuais extends javax.swing.JFrame implements Observer {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new OpcoesdeConfiguracao(this.cf).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -258,7 +260,7 @@ public class Individuais extends javax.swing.JFrame implements Observer {
         comp = this.cf.getComponente(id);
         
         showNecessidadesComponente(comp);
-        showIncompativeisComponente(comp);
+        showIncompativeisComponente(comp); // TODO: os incompativeis estão a aparecer na tabela errada
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
