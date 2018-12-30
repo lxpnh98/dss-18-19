@@ -28,6 +28,7 @@ public class ConfiguracaoBasica extends javax.swing.JFrame implements Observer {
         this.categoria = null;
         initComponents();
         showCategorias();
+        showOpcoes();
         showConfiguracao();
     }
 
@@ -67,56 +68,58 @@ public class ConfiguracaoBasica extends javax.swing.JFrame implements Observer {
         DefaultListModel<String> opcoes = new DefaultListModel<>();
         String s = jList_Categorias.getSelectedValue();
         
-        // sem categoria escolhida
-        if (s == null) return;
-
-        switch(s){
-            case "Motor":
-                opcoes.addElement("Motor A                     2500");
-                opcoes.addElement("Motor B                     3000");
-                opcoes.addElement("Motor C                     3500");
-                jList_Opcoes.setModel(opcoes);
-                break;
-            case "Jantes":
-                opcoes.addElement("Jantes A                   100");
-                opcoes.addElement("Jantes B                   200");
-                opcoes.addElement("Jantes C                   400");
-                jList_Opcoes.setModel(opcoes);
-                break;
-            case "Pneus":
-                opcoes.addElement("Pneus A                    100");
-                opcoes.addElement("Pneus B                    200");
-                opcoes.addElement("Pneus C                    300");
-                jList_Opcoes.setModel(opcoes);
-                break;
-            case "Pintura":
-                opcoes.addElement("Preto                         200");
-                opcoes.addElement("Cinzento                   200");
-                opcoes.addElement("Branco                      200");
-                opcoes.addElement("Vermelho                 200");
-                opcoes.addElement("Preto e Branco       300");
-                opcoes.addElement("Preto Mate               350");
-                jList_Opcoes.setModel(opcoes);
-                break;
-            case "Detalhes Internos":
-                opcoes.addElement("Tipo 1");
-                jList_Opcoes.setModel(opcoes);
-                break;
-            case "Detalhes Externos":
-                opcoes.addElement("Tipo 1");
-                jList_Opcoes.setModel(opcoes);
-                break;
-            default:
-                opcoes.addElement("Algo errado não está certo");
-                jList_Opcoes.setModel(opcoes);
-                break;
-        }    
+        // nenhuma categoria selecionada
+        if (s == null) {opcoes.addElement("Sem categorias escolhidas");
+                        jList_Opcoes.setModel(opcoes);
+        } else {
+            switch(s){
+                case "Motor":
+                    opcoes.addElement("Motor A                     2500");
+                    opcoes.addElement("Motor B                     3000");
+                    opcoes.addElement("Motor C                     3500");
+                    jList_Opcoes.setModel(opcoes);
+                    break;
+                case "Jantes":
+                    opcoes.addElement("Jantes A                   100");
+                    opcoes.addElement("Jantes B                   200");
+                    opcoes.addElement("Jantes C                   400");
+                    jList_Opcoes.setModel(opcoes);
+                    break;
+                case "Pneus":
+                    opcoes.addElement("Pneus A                    100");
+                    opcoes.addElement("Pneus B                    200");
+                    opcoes.addElement("Pneus C                    300");
+                    jList_Opcoes.setModel(opcoes);
+                    break;
+                case "Pintura":
+                    opcoes.addElement("Preto                         200");
+                    opcoes.addElement("Cinzento                   200");
+                    opcoes.addElement("Branco                      200");
+                    opcoes.addElement("Vermelho                 200");
+                    opcoes.addElement("Preto e Branco       300");
+                    opcoes.addElement("Preto Mate               350");
+                    jList_Opcoes.setModel(opcoes);
+                    break;
+                case "Detalhes Internos":
+                    opcoes.addElement("Tipo 1");
+                    jList_Opcoes.setModel(opcoes);
+                    break;
+                case "Detalhes Externos":
+                    opcoes.addElement("Tipo 1");
+                    jList_Opcoes.setModel(opcoes);
+                    break;
+                default:
+                    opcoes.addElement("Algo errado não está certo");
+                    jList_Opcoes.setModel(opcoes);
+                    break;
+            }   
+        } 
     }
     
     public boolean verificaBasica(){
         return this.config.getMotor().equals("")         || 
-               this.config.getJantes().equals("")        || 
                this.config.getPneus().equals("")         ||
+               this.config.getJantes().equals("")        || 
                this.config.getPintura().equals("")       || 
                this.config.getDetInteriores().equals("") || 
                this.config.getDetExteriores().equals("");
@@ -291,7 +294,7 @@ public class ConfiguracaoBasica extends javax.swing.JFrame implements Observer {
             new OpcoesdeConfiguracao(this.cf).setVisible(true);
             this.dispose();
         } else {
-            infoBox("Configuração básica não definida", "Informação de configuração básica");
+            infoBox("Configuração básica não definida.", "Informação de configuração básica");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -308,44 +311,46 @@ public class ConfiguracaoBasica extends javax.swing.JFrame implements Observer {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         String opt = jList_Opcoes.getSelectedValue();
 
-        // nenhuma categoria escolhida
-        if (this.categoria == null) return;
- 
-        switch(this.categoria){
-            case "Motor":
-                this.config.setMotor(opt);
-                showConfiguracao();
-                break;
-            case "Jantes":
-                this.config.setJantes(opt);
-                showConfiguracao();
-                break;
-            case "Pneus":
-                this.config.setPneus(opt);
-                showConfiguracao();
-                break;
-            case "Pintura":
-                this.config.setPintura(opt);
-                showConfiguracao();
-                break;
-            case "Detalhes Internos":
-                this.config.setDetInteriores(opt);
-                showConfiguracao();
-                break;
-            case "Detalhes Externos":
-                this.config.setDetExteriores(opt);
-                showConfiguracao();
-                break;
-            default:
-                showConfiguracao();
-                break;
+        // nenhuma categoria selecionada
+        if (this.categoria == null){
+            infoBox("Nenhuma opção selecionada para adicionar.", "Informação de configuração básica");
+        } else {
+            switch(this.categoria){
+                case "Motor":
+                    this.config.setMotor(opt);
+                    showConfiguracao();
+                    break;
+                case "Jantes":
+                    this.config.setJantes(opt);
+                    showConfiguracao();
+                    break;
+                case "Pneus":
+                    this.config.setPneus(opt);
+                    showConfiguracao();
+                    break;
+                case "Pintura":
+                    this.config.setPintura(opt);
+                    showConfiguracao();
+                    break;
+                case "Detalhes Internos":
+                    this.config.setDetInteriores(opt);
+                    showConfiguracao();
+                    break;
+                case "Detalhes Externos":
+                    this.config.setDetExteriores(opt);
+                    showConfiguracao();
+                    break;
+                default:
+                    showConfiguracao();
+                    break;
+            }
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         
-        // sem categoria escolhida
-        if (this.categoria == null) return;
+        // sem categoria selecionada
+        if (this.categoria == null) infoBox("Nenhuma opção selecionada para remover.", "Informação de configuração básica");
 
         switch(this.categoria){
             case "Motor":

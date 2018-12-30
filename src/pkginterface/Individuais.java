@@ -210,7 +210,7 @@ public class Individuais extends javax.swing.JFrame implements Observer {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         int id = Integer.parseInt(jTextField_ID.getText());
-        
+        // TODO returnar Incompativeis
         this.cf.adicionaComponente(id);
         this.cf.adicionaComponentes(this.cf.listaDependencias(id));
     }//GEN-LAST:event_jButton4ActionPerformed
