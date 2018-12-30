@@ -96,6 +96,10 @@ public class Componente extends java.util.Observable {
         this.incompativeis.add(idComponente);
     }
 
+    public void addStock(int stock) {
+        this.stock += stock;
+    }
+
     public void setDependencias(Set<Integer> s) {
         this.dependencias = new HashSet<>();
         for(int i : s) {
