@@ -6,6 +6,8 @@
 package pkginterface;
 
 import configurafacil.*;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,6 +18,7 @@ public class EntregarComponentes extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
     private ConfiguraFacil cf;
+    private Set<Encomenda> listaEncomendas;
     
     /**
      * Creates new form EntregarComponentes
@@ -23,6 +26,7 @@ public class EntregarComponentes extends javax.swing.JFrame {
      */
     public EntregarComponentes(ConfiguraFacil cf) {
         this.cf = cf;
+        this.listaEncomendas = new HashSet<>();
         initComponents();
     }
     
@@ -34,6 +38,7 @@ public class EntregarComponentes extends javax.swing.JFrame {
         int i = 0;
         row[0] = comp.getNome();
         row[1] = stock;
+        this.listaEncomendas.add(new Encomenda(id, stock));
         i++;
         model.addRow(row);
     }
@@ -177,7 +182,11 @@ public class EntregarComponentes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO Atualizar Stock
+        this.cf.atualizaStock(this.listaEncomendas);
+        // Liberta a lsita para não permitir que o utilizador adicione duas vezes;
+        DefaultTableModel model = (DefaultTableModel)jTable_Componentes.getModel();
+        model.setRowCount(0);
+        this.listaEncomendas.clear();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
