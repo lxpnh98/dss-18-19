@@ -295,21 +295,23 @@ public class ConfiguraFacil extends java.util.Observable {
         QueueProducao q = this.dados.getQueueProducao();
         
         for(Carro c : q.queue) {
-            int idConfig = c.getIdConfig();
-            Configuracao config = this.dados.getConfiguracao(idConfig);
-            Set<Integer> comp = config.getComponentes();
-            Set<Integer> pacotes = config.getPacotes();
+            if (c.getPronto() == false) {
+                int idConfig = c.getIdConfig();
+                Configuracao config = this.dados.getConfiguracao(idConfig);
+                Set<Integer> comp = config.getComponentes();
+                Set<Integer> pacotes = config.getPacotes();
 
-            for(Integer idPacote : pacotes) {
-                Pacote p = this.dados.getPacote(idPacote);
-                Set<Integer> comps = p.getComponentes();
-                comp.addAll(comps);
-            }
+                for(Integer idPacote : pacotes) {
+                    Pacote p = this.dados.getPacote(idPacote);
+                    Set<Integer> comps = p.getComponentes();
+                    comp.addAll(comps);
+                }
 
-            boolean pronto = podeProduzir(comp);  
-            c.setPronto(pronto);
-            if(pronto==true) {
-                atualizaComponentes(comp);
+                boolean pronto = podeProduzir(comp);  
+                c.setPronto(pronto);
+                if(pronto==true) {
+                    atualizaComponentes(comp);
+                }
             }
         }
 

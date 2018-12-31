@@ -37,7 +37,6 @@ public class EntregarComponentes extends javax.swing.JFrame {
         Object[] row = new Object[2];
         row[0] = comp.getNome();
         row[1] = stock;
-        this.listaEncomendas.add(new Encomenda(id, stock));
         model.addRow(row);
     }
     
@@ -180,7 +179,7 @@ public class EntregarComponentes extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int id = Integer.parseInt(jText_ID.getText());
         int stock = Integer.parseInt(jText_Stock.getText());
-        
+        this.listaEncomendas.add(new Encomenda(id, stock));
         showComponentes(id, stock);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -191,16 +190,16 @@ public class EntregarComponentes extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.cf.atualizaStock(this.listaEncomendas);
-        // Liberta a lsita para não permitir que o utilizador adicione duas vezes;
+        this.cf.atualizarQueue();
+        // Liberta a lista para não permitir que o utilizador adicione duas vezes;
         DefaultTableModel model = (DefaultTableModel)jTable_Componentes.getModel();
         model.setRowCount(0);
-        Object[] row = new Object[2];
-        model.addRow(row);
+        //Object[] row = new Object[2];
+        //model.addRow(row);
         this.listaEncomendas.clear();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        this.cf.atualizarQueue();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
