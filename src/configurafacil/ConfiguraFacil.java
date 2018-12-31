@@ -278,4 +278,59 @@ public class ConfiguraFacil extends java.util.Observable {
         QueueProducao q = this.dados.getQueueProducao();
         return q;
     }
+
+    public void atualizaStock(Set<Encomenda> encomendas) {
+        int idComponente;
+        int quantidade;
+        for(Encomenda encomenda : encomendas) {
+            idComponente = encomenda.getIdComponente();
+            quantidade = encomenda.getQuantidade();
+            Componente c = this.dados.getComponente(idComponente);
+            c.addStock(quantidade);
+            this.dados.setComponente(c);
+        }
+    }
+
+    public void atualizarQueue() {
+        QueueProducao q = this.dados.getQueueProducao();
+        
+        for(Carro c : q.queue) {
+            int idConfig = c.getIdConfig();
+            Configuracao config = this.dados.getConfiguracao(idConfig);
+            Set<Integer> comp = config.getComponentes();
+            Set<Integer> pacotes = config.getPacotes();
+
+            for(Integer idPacote : pacotes) {
+                Pacote p = this.dados.getPacote(idPacote);
+                Set<Integer> comps = p.getComponentes();
+                comp.addAll(comps);
+            }
+
+            boolean pronto = podeProduzir(comp);  
+            c.setPronto(pronto);
+            if(pronto==true) {
+                atualizaComponentes(comp);
+            }
+        }
+
+        this.dados.setQueueProducao(q);
+    }
+
+    public boolean podeProduzir(Set<Integer> comp) {
+        for(Integer idComponente : comp) {
+            Componente c = this.dados.getComponente(idComponente);
+            if(c.getStock()<1) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void atualizaComponentes(Set<Integer> comp) {
+        for(Integer idComponente : comp) {
+            Componente c = this.dados.getComponente(idComponente);
+            c.setStock(c.getStock() - 1);
+            this.dados.setComponente(c);
+        }
+    }
 }
