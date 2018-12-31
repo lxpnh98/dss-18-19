@@ -15,7 +15,7 @@ public class ComponenteDAO extends DAO {
         HashSet<Integer> r = new HashSet<>();
 
         Statement s = this.connection.createStatement();
-        ResultSet rs = s.executeQuery("select id from ConfiguraFacil.componente;");
+        ResultSet rs = s.executeQuery("select id from ConfiguraFacil.Componente;");
 
         while (rs.next()) {
             r.add(rs.getInt("id"));
