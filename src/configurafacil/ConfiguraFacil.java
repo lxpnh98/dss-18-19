@@ -240,11 +240,12 @@ public class ConfiguraFacil extends java.util.Observable {
     public Configuracao calculaConfiguracaoOtima(float orcamento) {
         Configuracao config = this.dados.getConfiguracaoAtual();
         Set<Integer> listaPacotes = this.dados.listaPacotes();
-
+        
         List<Pacote> pacotes = listaPacotes.stream()
                                         .map(i -> (Pacote)this.dados.getPacote(i))
                                         .collect(Collectors.toList());
-        Collections.sort(pacotes, (p1, p2) -> (new Float (p1.getPreco())).compareTo(p2.getPreco()));
+
+        Collections.sort(pacotes, (p1, p2) -> (new Float (p2.getPreco())).compareTo(p1.getPreco()));
         
         float orcamentoDisp = orcamento;
         for(Pacote p : pacotes) {
@@ -267,25 +268,25 @@ public class ConfiguraFacil extends java.util.Observable {
         return config;
     }
 
-    public boolean pacotesIncompativeis(Set<Integer> idPacote1, Set<Integer> idPacote2) {
+    public boolean pacotesIncompativeis(int idPacote1, int idPacote2) {
     	Pacote p1 = this.dados.getPacote(idPacote1);
     	Pacote p2 = this.dados.getPacote(idPacote2);
 
     	Set<Integer> componentes1 = p1.getComponentes();
     	Set<Integer> componentes2 = p2.getComponentes();
 
-	 	Set<Integer> incompataveis;
-	 	for(Integer id : componentes1) {
-	 		Componente c = this.dados.getComponente(id);
-	 		incompataveis.addAll(c.getIncompativeis());
-	 	}
+	Set<Integer> incompataveis = new HashSet<>();
+	for(Integer id : componentes1) {
+	 	Componente c = this.dados.getComponente(id);
+	 	incompataveis.addAll(c.getIncompativeis());
+	}
     	
     	for(Integer idComp2 : componentes2) {
     		if(incompataveis.contains(idComp2)) {
-    			return false;
+    		return true;
     		}
     	}
-    	return true;
+    	return false;
     }
 
     public CarroInfo verCarro(int id) {
