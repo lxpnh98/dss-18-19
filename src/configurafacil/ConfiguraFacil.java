@@ -260,6 +260,27 @@ public class ConfiguraFacil extends java.util.Observable {
         return config;
     }
 
+    public boolean pacotesIncompativeis(Set<Integer> idPacote1, Set<Integer> idPacote2) {
+    	Pacote p1 = this.dados.getPacote(idPacote1);
+    	Pacote p2 = this.dados.getPacote(idPacote2);
+
+    	Set<Integer> componentes1 = p1.getComponentes();
+    	Set<Integer> componentes2 = p2.getComponentes();
+
+	 	Set<Integer> incompataveis;
+	 	for(Integer id : componentes1) {
+	 		Componente c = this.dados.getComponente(id);
+	 		incompataveis.addAll(c.getIncompativeis());
+	 	}
+    	
+    	for(Integer idComp2 : componentes2) {
+    		if(incompataveis.contains(idComp2)) {
+    			return false;
+    		}
+    	}
+    	return true;
+    }
+
     public CarroInfo verCarro(int id) {
         QueueProducao q = this.dados.getQueueProducao();
         Carro car = q.getCarro(id);
