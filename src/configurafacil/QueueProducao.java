@@ -4,7 +4,7 @@ import java.util.*;
 
 public class QueueProducao extends java.util.Observable {
     public LinkedList<Carro> queue;
-    
+
     public QueueProducao() {
         this.queue = new LinkedList<>();
     }
