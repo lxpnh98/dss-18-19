@@ -204,7 +204,7 @@ public class Individuais extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if (jTextField_ID.getText() == "" || !isDigit(jTextField_ID.getText())) {
+        if (jTextField_ID.getText() == "" || isDigit(jTextField_ID.getText())) {
             infoBox("Id incorreto.", "Informação de Id");
         } else {
             int id = Integer.parseInt(jTextField_ID.getText());

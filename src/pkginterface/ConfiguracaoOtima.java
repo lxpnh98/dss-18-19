@@ -222,7 +222,7 @@ public class ConfiguracaoOtima extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if (jText_orc.getText() == "" || !isDigit(jText_orc.getText())) {
+        if (jText_orc.getText() == "" || isDigit(jText_orc.getText())) {
             infoBox("Orçamento incorreto.", "Informação de Orçamento");
         } else {
             float orcamento = Float.parseFloat(jText_orc.getText());
