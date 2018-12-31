@@ -122,7 +122,7 @@ public class Fabricante extends javax.swing.JFrame {
         if (this.q.queue.size()<=0){
             infoBox("Queue de produção vazia.", "Informação de queue de produção");
         } else {
-            this.cf.atualizaQueue();
+            this.cf.carroProduzido();
             infoBox("Queue atualizada com sucesso!", "Informação de queue de produção");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
