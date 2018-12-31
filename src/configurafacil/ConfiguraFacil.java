@@ -256,7 +256,8 @@ public class ConfiguraFacil extends java.util.Observable {
             } else {
                 boolean comp = true;
                 for (Integer id: config.getPacotes()) {
-                    if (pacotesIncompativeis(p.getId(), id)){
+                    Set<Integer> componentes = config.getComponentes();
+                    if (pacotesIncompativeis(p.getId(), id, componentes)){
                         comp = false;
                         break;
                     }
@@ -270,19 +271,24 @@ public class ConfiguraFacil extends java.util.Observable {
         return config;
     }
 
-    public boolean pacotesIncompativeis(int idPacote1, int idPacote2) {
+    public boolean pacotesIncompativeis(int idPacote1, int idPacote2, Set<Integer> componentesExistentes) {
         Pacote p1 = this.dados.getPacote(idPacote1);
-        Pacote p2 = this.dados.getPacote(idPacote2);
-
         Set<Integer> componentes1 = p1.getComponentes();
-        Set<Integer> componentes2 = p2.getComponentes();
 
         Set<Integer> incompataveis = new HashSet<>();
-           for(Integer id : componentes1) {
-         Componente c = this.dados.getComponente(id);
-        incompataveis.addAll(c.getIncompativeis());
+        for(Integer id : componentes1) {
+            Componente c = this.dados.getComponente(id);
+            incompataveis.addAll(c.getIncompativeis());
         }
 
+        for(Integer idComp : componentesExistentes) {
+            if(incompataveis.contains(idComp)) {
+            return true;
+            }
+        }
+
+        Pacote p2 = this.dados.getPacote(idPacote2);
+        Set<Integer> componentes2 = p2.getComponentes();
         for(Integer idComp2 : componentes2) {
             if(incompataveis.contains(idComp2)) {
             return true;
