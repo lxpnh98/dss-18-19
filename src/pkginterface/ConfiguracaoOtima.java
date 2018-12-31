@@ -28,40 +28,45 @@ public class ConfiguracaoOtima extends javax.swing.JFrame implements Observer {
         this.cf = cf;
         this.configA = this.cf.getConfiguracaoAtual();
         this.configA.addObserver(this);
-        this.configO.addObserver(this);
         initComponents();
         showConfiguracaoAtual();
     }
     
-    public Configuracao getConfigOtima(){
-        return this.configO;
-    }
-    
     public void showConfiguracaoAtual() {
-
-       Collection<Integer> ids = this.configA.getComponentes();
+        
+       Collection<Integer> ids = this.cf.getConfiguracaoAtual().getComponentes();
+       Collection<Integer> pacotes = this.cf.getConfiguracaoAtual().getPacotes();
        DefaultTableModel model = (DefaultTableModel)jTable_Atual.getModel();
-       Object[] row = new Object[2];
+       Object[] row = new Object[1];
        model.setRowCount(0);
        int i = 0;
        for(Integer id : ids) {
            row[0] = this.cf.getComponente(id).getNome();
-           row[1] = this.cf.getComponente(id).getPreco();
+           i++;
+           model.addRow(row);
+       }
+       for(Integer p : pacotes) {
+           row[0] = this.cf.getPacote(p).getNome();
            i++;
            model.addRow(row);
        }
     }
     
-    public void showConfiguracaoOtima() {
+    public void showConfiguracaoOtima(Configuracao config) {
 
-       Collection<Integer> ids = this.configO.getComponentes();
+       Collection<Integer> ids = config.getComponentes();
+       Collection<Integer> pacotes = config.getPacotes();
        DefaultTableModel model = (DefaultTableModel)jTable_Otima.getModel();
-       Object[] row = new Object[2];
+       Object[] row = new Object[1];
        model.setRowCount(0);
        int i = 0;
        for(Integer id : ids) {
            row[0] = this.cf.getComponente(id).getNome();
-           row[1] = this.cf.getComponente(id).getPreco();
+           i++;
+           model.addRow(row);
+       }
+       for(Integer id : pacotes) {
+           row[0] = this.cf.getPacote(id).getNome();
            i++;
            model.addRow(row);
        }
@@ -90,7 +95,7 @@ public class ConfiguracaoOtima extends javax.swing.JFrame implements Observer {
 
             },
             new String [] {
-                "Componente", "Preço"
+                "Componente"
             }
         ));
         jScrollPane1.setViewportView(jTable_Atual);
@@ -102,7 +107,7 @@ public class ConfiguracaoOtima extends javax.swing.JFrame implements Observer {
 
             },
             new String [] {
-                "Componente", "Preço"
+                "Componente"
             }
         ));
         jScrollPane2.setViewportView(jTable_Otima);
@@ -174,12 +179,11 @@ public class ConfiguracaoOtima extends javax.swing.JFrame implements Observer {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3))
-                        .addComponent(jText_orc)))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton2)
+                        .addComponent(jButton3))
+                    .addComponent(jText_orc))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -192,7 +196,7 @@ public class ConfiguracaoOtima extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.cf.setConfigAtual(configO);
+        this.cf.setConfigAtual(this.configO);
         showConfiguracaoAtual();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -200,7 +204,7 @@ public class ConfiguracaoOtima extends javax.swing.JFrame implements Observer {
         float orcamento = Float.parseFloat(jText_orc.getText());
         
         this.configO = this.cf.calculaConfiguracaoOtima(orcamento);
-        showConfiguracaoOtima();
+        showConfiguracaoOtima(this.cf.calculaConfiguracaoOtima(orcamento));
     }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

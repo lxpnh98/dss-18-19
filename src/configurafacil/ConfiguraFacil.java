@@ -247,14 +247,21 @@ public class ConfiguraFacil extends java.util.Observable {
         Collections.sort(pacotes, (p1, p2) -> (new Float (p1.getPreco())).compareTo(p2.getPreco()));
         
         float orcamentoDisp = orcamento;
-
         for(Pacote p : pacotes) {
             if(p.getPreco() > orcamentoDisp) {
-                return null; // calculaComponentes(orcamento); 
+                break; // calculaComponentes(orcamento); 
             } else {
-                config.addPacote(p.getId());
-                this.dados.setConfiguracaoAtual(config);
-                orcamentoDisp = orcamentoDisp - p.getPreco();
+                boolean comp = true;
+                for (Integer id: config.getPacotes()) {
+                    if (pacotesIncompativeis(p.getId(), id)){
+                        comp = false;
+                        break;
+                    }
+                }
+                if (comp){
+                    config.addPacote(p.getId());
+                    orcamentoDisp = orcamentoDisp - p.getPreco();
+                }
             }
         }
         return config;

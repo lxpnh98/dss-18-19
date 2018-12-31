@@ -144,7 +144,7 @@ public class ConfiguracaoDAO extends DAO {
         ps3.setInt(1, conf.getId());
         ResultSet rs3 = ps3.executeQuery();
         while (rs3.next()) {
-            conf.addComponente(rs3.getInt("id"));
+            conf.addPacote(rs3.getInt("id"));
         }
         rs3.close();
         ps3.close();
