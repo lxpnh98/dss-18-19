@@ -294,7 +294,7 @@ public class ConfiguracaoBasica extends javax.swing.JFrame implements Observer {
             new OpcoesdeConfiguracao(this.cf).setVisible(true);
             this.dispose();
         } else {
-            infoBox("Configuração básica não definida.", "Informação de configuração básica");
+           infoBox("Configuração básica não definida.", "Informação de configuração básica");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

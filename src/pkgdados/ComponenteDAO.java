@@ -2,6 +2,8 @@ package pkgdados;
 
 import configurafacil.*;
 import java.sql.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ComponenteDAO extends DAO {
 
@@ -9,6 +11,22 @@ public class ComponenteDAO extends DAO {
         super(c);
     }
 
+    public Set<Integer> keySet() throws SQLException {
+        HashSet<Integer> r = new HashSet<>();
+
+        Statement s = this.connection.createStatement();
+        ResultSet rs = s.executeQuery("select id from ConfiguraFacil.componente;");
+
+        while (rs.next()) {
+            r.add(rs.getInt("id"));
+        }
+
+        rs.close();
+        s.close();
+
+        return r;
+    }
+    
     public Componente get(int id) throws SQLException {
         Componente r = null;
 

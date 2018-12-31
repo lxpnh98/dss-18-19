@@ -88,6 +88,23 @@ public class DadosFacade {
         }
         return null;
 	}
+        
+        public Set<Integer> listaComponentes() {
+        Connection c = connect();
+        try {
+            Set<Integer> r = (new ComponenteDAO(c)).keySet();
+            return r;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                c.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+	}
 
 	public Pacote getPacote(int id) {
         Connection c = connect();

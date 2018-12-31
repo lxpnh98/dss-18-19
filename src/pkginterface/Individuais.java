@@ -7,8 +7,6 @@ package pkginterface;
  */
 import configurafacil.*;
 import java.util.Collection;
-import java.util.Observable;
-import java.util.Observer;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ASUS
  */
-public class Individuais extends javax.swing.JFrame implements Observer {
+public class Individuais extends javax.swing.JFrame {
     
     private static final long serialVersionUID = 1;
     private ConfiguraFacil cf;
@@ -28,6 +26,7 @@ public class Individuais extends javax.swing.JFrame implements Observer {
     public Individuais(ConfiguraFacil cf) {
         this.cf = cf;
         initComponents();
+        showComponentes();
         
     }
     
@@ -48,9 +47,9 @@ public class Individuais extends javax.swing.JFrame implements Observer {
        }
     }
     
-    /*
     public void showComponentes() {
-        // Adicionar lista de todos os componentes
+        
+        Collection<Integer> ids = this.cf.listaComponetes();
         DefaultTableModel model = (DefaultTableModel)jTable_Individuais.getModel();
         Object[] row = new Object[3];
         model.setRowCount(0);
@@ -63,7 +62,6 @@ public class Individuais extends javax.swing.JFrame implements Observer {
            model.addRow(row);
        }
     }
-    */
     
     public static void infoBox(String infoMessage, String titleBar) {
         
@@ -210,7 +208,6 @@ public class Individuais extends javax.swing.JFrame implements Observer {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         int id = Integer.parseInt(jTextField_ID.getText());
-        // TODO returnar Incompativeis
         this.cf.adicionaComponente(id);
         this.cf.adicionaComponentes(this.cf.listaDependencias(id));
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -229,9 +226,4 @@ public class Individuais extends javax.swing.JFrame implements Observer {
     private javax.swing.JTable jTable_Necesarios;
     private javax.swing.JTextField jTextField_ID;
     // End of variables declaration//GEN-END:variables
-    
-    @Override
-    public void update(Observable o, Object arg) {
-       //showComponentes();
-    }
 }
