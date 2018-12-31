@@ -35,11 +35,9 @@ public class EntregarComponentes extends javax.swing.JFrame {
         Componente comp = this.cf.getComponente(id);
         DefaultTableModel model = (DefaultTableModel)jTable_Componentes.getModel();
         Object[] row = new Object[2];
-        int i = 0;
         row[0] = comp.getNome();
         row[1] = stock;
         this.listaEncomendas.add(new Encomenda(id, stock));
-        i++;
         model.addRow(row);
     }
     
@@ -186,6 +184,8 @@ public class EntregarComponentes extends javax.swing.JFrame {
         // Liberta a lsita para não permitir que o utilizador adicione duas vezes;
         DefaultTableModel model = (DefaultTableModel)jTable_Componentes.getModel();
         model.setRowCount(0);
+        Object[] row = new Object[2];
+        model.addRow(row);
         this.listaEncomendas.clear();
     }//GEN-LAST:event_jButton2ActionPerformed
 

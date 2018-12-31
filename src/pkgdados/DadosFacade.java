@@ -196,7 +196,7 @@ public class DadosFacade {
 
 	public Componente setComponente(Componente componente) {
         Connection c = connect();
-        try {
+        try {   
             c.setAutoCommit(false);
             (new ComponenteDAO(c)).set(componente);
             c.commit();

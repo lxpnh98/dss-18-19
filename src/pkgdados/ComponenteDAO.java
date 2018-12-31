@@ -53,11 +53,11 @@ public class ComponenteDAO extends DAO {
         int id = c.getId();
         // set nome, preco e stock do componente
         PreparedStatement ps1 = this.connection.prepareStatement(
-            "update ConfiguraFacil.Componente set nome=?, preco=?, stock=? where id=?");
+            "update ConfiguraFacil.componente set nome=?, preco=?, stock=? where id=?;");
         ps1.setString(1, c.getNome()); 
         ps1.setFloat(2, c.getPreco()); 
-        ps1.setInt(3, c.getStock()); 
-        ps1.setInt(4, id); 
+        ps1.setInt(3, c.getStock());
+        ps1.setInt(4, id);
 
         // detele antigas dependencias
         PreparedStatement ps2 = this.connection.prepareStatement(
