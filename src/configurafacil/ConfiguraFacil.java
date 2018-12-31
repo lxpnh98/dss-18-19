@@ -296,6 +296,7 @@ public class ConfiguraFacil extends java.util.Observable {
                 return true;
             }
         }
+        return false;
     }
 
     public boolean pacotesIncompativeis(int idPacote1, int idPacote2) {
