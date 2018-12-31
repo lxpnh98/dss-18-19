@@ -9,7 +9,9 @@ import configurafacil.*;
 import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static pkginterface.Vendedor.infoBox;
 
 /**
  * @author ASUS
@@ -70,6 +72,25 @@ public class ConfiguracaoOtima extends javax.swing.JFrame implements Observer {
            i++;
            model.addRow(row);
        }
+    }
+    
+    public static boolean isDigit(String numeros) {
+        int length = numeros.length();
+
+        for (int i = 0; i < length; i++) {
+            if(numeros.charAt(i)=='1' || numeros.charAt(i)=='2' || numeros.charAt(i)=='3' ||
+               numeros.charAt(i)=='4' || numeros.charAt(i)=='5' || numeros.charAt(i)=='6' ||
+               numeros.charAt(i)=='7' || numeros.charAt(i)=='8' || numeros.charAt(i)=='9'    ) {
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public static void infoBox(String infoMessage, String titleBar) {
+        
+        JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
     }
     
     @SuppressWarnings("unchecked")
@@ -201,10 +222,13 @@ public class ConfiguracaoOtima extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        float orcamento = Float.parseFloat(jText_orc.getText());
-        
-        this.configO = this.cf.calculaConfiguracaoOtima(orcamento);
-        showConfiguracaoOtima(this.cf.calculaConfiguracaoOtima(orcamento));
+        if (jText_orc.getText() == "" || !isDigit(jText_orc.getText())) {
+            infoBox("Orçamento incorreto.", "Informação de Orçamento");
+        } else {
+            float orcamento = Float.parseFloat(jText_orc.getText());
+            this.configO = this.cf.calculaConfiguracaoOtima(orcamento);
+            showConfiguracaoOtima(this.cf.calculaConfiguracaoOtima(orcamento));
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

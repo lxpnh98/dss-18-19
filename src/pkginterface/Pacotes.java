@@ -237,7 +237,7 @@ public class Pacotes extends javax.swing.JFrame{
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        this.pacote.deleteObservers();
+        if (this.pacote != null) this.pacote.deleteObservers();
     }//GEN-LAST:event_formWindowClosed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
