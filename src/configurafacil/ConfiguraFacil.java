@@ -54,7 +54,7 @@ public class ConfiguraFacil extends java.util.Observable {
 
         Componente componente = this.dados.getComponente(id);
         deps = componente.getDependencias();
-        
+
         for(Integer dep : deps) {
             if(!lista.contains(dep)) {
                 lista.add(dep);
@@ -62,7 +62,7 @@ public class ConfiguraFacil extends java.util.Observable {
                 lista.addAll(depDeps);
             } 
         }
-        
+
         return lista;
     }
 
@@ -212,7 +212,7 @@ public class ConfiguraFacil extends java.util.Observable {
                 componentes.add(j);
             }
         }
-        
+
         for(Integer k : componentes) {
             Componente c = this.dados.getComponente(k);
             int quantidade = c.getStock()-1;
@@ -252,7 +252,7 @@ public class ConfiguraFacil extends java.util.Observable {
         float orcamentoDisp = orcamento;
         for(Pacote p : pacotes) {
             if(p.getPreco() > orcamentoDisp) {
-                break; // calculaComponentes(orcamento); 
+                break;
             } else {
                 boolean comp = true;
                 for (Integer id: config.getPacotes()) {
@@ -324,7 +324,7 @@ public class ConfiguraFacil extends java.util.Observable {
 
     public void atualizarQueue() {
         QueueProducao q = this.dados.getQueueProducao();
-        
+
         for(Carro c : q.queue) {
             if (c.getPronto() == false) {
                 int idConfig = c.getIdConfig();

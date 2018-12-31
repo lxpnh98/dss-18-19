@@ -5,8 +5,8 @@ public class Encomenda extends java.util.Observable {
     private int quantidade;
 
     public Encomenda() {
-    	this.idComponente = 0;
-    	this.quantidade = 0;
+        this.idComponente = 0;
+        this.quantidade = 0;
     }
 
     public Encomenda(int idComponente, int quantidade) {
@@ -28,10 +28,10 @@ public class Encomenda extends java.util.Observable {
     }
 
     public void setIdComponente(int idComponente) {
-    	this.idComponente = idComponente;
+        this.idComponente = idComponente;
     }
 
     public void setQuantidade(int quantidade) {
-    	this.quantidade = quantidade;
+        this.quantidade = quantidade;
     }
 }

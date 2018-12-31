@@ -7,15 +7,12 @@ package pkginterface;
  */
 import configurafacil.*;
 import java.util.Collection;
-import java.util.Observable;
-import java.util.Observer;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
  * @author ASUS
  */
-public class Pacotes extends javax.swing.JFrame implements Observer {
+public class Pacotes extends javax.swing.JFrame{
     
     private static final long serialVersionUID = 1;
     private ConfiguraFacil cf;
@@ -264,9 +261,4 @@ public class Pacotes extends javax.swing.JFrame implements Observer {
     private javax.swing.JTable jTable_Componentes;
     private javax.swing.JTable jTable_Preco;
     // End of variables declaration//GEN-END:variables
-    
-    @Override
-    public void update(Observable o, Object arg) {
-        
-    }
 }

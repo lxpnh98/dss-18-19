@@ -82,7 +82,7 @@ public class Carro extends java.util.Observable {
     }
 
     public void setPronto(boolean pronto) {
-    	this.pronto = pronto;
+        this.pronto = pronto;
     }
 
     public void setDataEncomenda(LocalDateTime dataEncomenda) {
