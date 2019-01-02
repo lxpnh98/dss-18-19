@@ -252,9 +252,7 @@ public class ConfiguraFacil extends java.util.Observable {
         float orcamentoDisp = orcamento;
         for(Pacote p : pacotes) {
             int idPacote = p.getId();
-            if(p.getPreco() > orcamentoDisp) {
-                break;
-            } else {
+            if(p.getPreco() <= orcamentoDisp) {
                 boolean comp = true;
                 Set<Integer> componentes = config.getComponentes();
 
