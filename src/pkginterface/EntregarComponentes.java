@@ -167,7 +167,7 @@ public class EntregarComponentes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (jText_ID.getText() == "" || isDigit(jText_ID.getText()) || jText_Stock.getText() == "" || isDigit(jText_Stock.getText())) {
+        if ("".equals(jText_ID.getText()) || !isDigit(jText_ID.getText()) || "".equals(jText_Stock.getText()) || !isDigit(jText_Stock.getText())) {
             infoBox("Id ou Stock incorretos.", "Informação de Id e Stock");
         } else {
             int id = Integer.parseInt(jText_ID.getText());
