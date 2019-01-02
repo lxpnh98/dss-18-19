@@ -6,6 +6,7 @@
 package pkginterface;
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 import configurafacil.*;
 import java.util.Collection;
 
@@ -234,10 +235,15 @@ public class VerificaCarro extends javax.swing.JFrame {
         int id = Integer.parseInt(jText_ID.getText());
         
         carro = this.cf.verCarro(id);
-        showConfiguracaoBasica(carro.getConfig());
-        showComponentes(carro.getConfig());
-        showPacotes(carro.getConfig());
-        showCliente(carro.getClient());
+
+        if (carro == null) {
+            JOptionPane.showMessageDialog(null, "Carro inexistente", "", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            showConfiguracaoBasica(carro.getConfig());
+            showComponentes(carro.getConfig());
+            showPacotes(carro.getConfig());
+            showCliente(carro.getClient());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
