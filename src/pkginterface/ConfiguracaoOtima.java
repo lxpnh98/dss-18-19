@@ -11,7 +11,6 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import static pkginterface.Vendedor.infoBox;
 
 /**
  * @author ASUS
@@ -80,7 +79,8 @@ public class ConfiguracaoOtima extends javax.swing.JFrame implements Observer {
         for (int i = 0; i < length; i++) {
             if(numeros.charAt(i)=='1' || numeros.charAt(i)=='2' || numeros.charAt(i)=='3' ||
                numeros.charAt(i)=='4' || numeros.charAt(i)=='5' || numeros.charAt(i)=='6' ||
-               numeros.charAt(i)=='7' || numeros.charAt(i)=='8' || numeros.charAt(i)=='9'    ) {
+               numeros.charAt(i)=='7' || numeros.charAt(i)=='8' || numeros.charAt(i)=='9' ||  
+               numeros.charAt(i)=='0'  ) {
             } else {
                 return false;
             }

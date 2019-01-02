@@ -5,7 +5,7 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
+import static pkginterface.ConfiguracaoOtima.infoBox;
 
 /**
  * @author ASUS
@@ -125,10 +125,6 @@ public class ConfiguracaoBasica extends javax.swing.JFrame implements Observer {
                this.config.getDetExteriores().equals("");
     }
     
-    public static void infoBox(String infoMessage, String titleBar) {
-        
-        JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

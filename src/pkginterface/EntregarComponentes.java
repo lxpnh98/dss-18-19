@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.swing.table.DefaultTableModel;
 import static pkginterface.ConfiguracaoOtima.isDigit;
-import static pkginterface.Individuais.infoBox;
+import static pkginterface.ConfiguracaoOtima.infoBox;
 
 /**
  * @author ASUS
@@ -188,8 +188,6 @@ public class EntregarComponentes extends javax.swing.JFrame {
         // Liberta a lista para não permitir que o utilizador adicione duas vezes;
         DefaultTableModel model = (DefaultTableModel)jTable_Componentes.getModel();
         model.setRowCount(0);
-        //Object[] row = new Object[2];
-        //model.addRow(row);
         this.listaEncomendas.clear();
         this.cf.atualizarQueue();
     }//GEN-LAST:event_jButton2ActionPerformed

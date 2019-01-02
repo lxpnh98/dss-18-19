@@ -5,7 +5,7 @@ package pkginterface;
  * and open the template in the editor.
  */
 import configurafacil.*;
-import javax.swing.JOptionPane;
+import static pkginterface.ConfiguracaoOtima.infoBox;
 /**
  *
  * @author ASUS
@@ -22,11 +22,7 @@ public class Vendedor extends javax.swing.JFrame {
         this.cf = cf;
         initComponents();
     }
-    
-    public static void infoBox(String infoMessage, String titleBar) {
-        
-        JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

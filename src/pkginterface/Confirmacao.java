@@ -7,16 +7,14 @@ package pkginterface;
  */
 import configurafacil.*;
 import java.util.Collection;
-import java.util.Observable;
-import java.util.Observer;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static pkginterface.ConfiguracaoOtima.infoBox;
 
 /**
  *
  * @author ASUS
  */
-public class Confirmacao extends javax.swing.JFrame implements Observer {
+public class Confirmacao extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
     private Configuracao config;
@@ -28,29 +26,32 @@ public class Confirmacao extends javax.swing.JFrame implements Observer {
     public Confirmacao(ConfiguraFacil cf) {
         this.cf = cf;
         this.config = this.cf.getConfiguracaoAtual();
-        this.config.addObserver(this);
         initComponents();
         showConfiguracao();
+        showPreco();
     }
     
     public void showConfiguracao() {
 
-       Collection<Integer> ids = this.config.getComponentes();
-       DefaultTableModel model = (DefaultTableModel)jTable_ConfigFinal.getModel();
-       Object[] row = new Object[2];
-       model.setRowCount(0);
-       int i = 0;
-       for(Integer id : ids) {
+        Collection<Integer> ids = this.config.getComponentes();
+        DefaultTableModel model = (DefaultTableModel)jTable_ConfigFinal.getModel();
+        Object[] row = new Object[1];
+        model.setRowCount(0);
+        int i = 0;
+        for(Integer id : ids) {
            row[0] = this.cf.getComponente(id).getNome();
-           row[1] = this.cf.getComponente(id).getPreco();
            i++;
            model.addRow(row);
-       }
+        }
     }
     
-    public static void infoBox(String infoMessage, String titleBar) {
-        
-        JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
+    public void showPreco() {
+
+        DefaultTableModel model = (DefaultTableModel)jTable_Preco.getModel();
+        Object[] row = new Object[1];
+        model.setRowCount(0);
+        row[0] = this.cf.getPreco(this.cf.getConfiguracaoAtual().getComponentes(), this.cf.getConfiguracaoAtual().getPacotes());
+        model.addRow(row);
     }
     
     /**
@@ -62,11 +63,28 @@ public class Confirmacao extends javax.swing.JFrame implements Observer {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_ConfigFinal = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable_Preco = new javax.swing.JTable();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -96,10 +114,20 @@ public class Confirmacao extends javax.swing.JFrame implements Observer {
 
             },
             new String [] {
-                "Componente", "Preço"
+                "Componente"
             }
         ));
         jScrollPane1.setViewportView(jTable_ConfigFinal);
+
+        jTable_Preco.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Preço"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable_Preco);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,21 +143,26 @@ public class Confirmacao extends javax.swing.JFrame implements Observer {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         pack();
@@ -156,11 +189,10 @@ public class Confirmacao extends javax.swing.JFrame implements Observer {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable_ConfigFinal;
+    private javax.swing.JTable jTable_Preco;
     // End of variables declaration//GEN-END:variables
-    
-    @Override
-    public void update(Observable o, Object arg) {
-       showConfiguracao();
-    }
 }
