@@ -8,6 +8,7 @@ package pkginterface;
 import configurafacil.*;
 import java.util.Collection;
 import javax.swing.table.DefaultTableModel;
+import static pkginterface.ConfiguracaoOtima.infoBox;
 /**
  *
  * @author ASUS
@@ -157,9 +158,9 @@ public class OpcoesdeConfiguracao extends javax.swing.JFrame {
                         .addComponent(jButton_Otima, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton4)
+                    .addComponent(jButton3))
                 .addContainerGap())
         );
 
@@ -173,7 +174,7 @@ public class OpcoesdeConfiguracao extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         new Confirmacao(this.cf).setVisible(true);
-        this.dispose();
+        this.dispose(); 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

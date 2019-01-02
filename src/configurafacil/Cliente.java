@@ -89,7 +89,8 @@ public class Cliente {
         for (int i = 0; i < length; i++) {
             if(numeros.charAt(i)=='1' || numeros.charAt(i)=='2' || numeros.charAt(i)=='3' ||
                numeros.charAt(i)=='4' || numeros.charAt(i)=='5' || numeros.charAt(i)=='6' ||
-               numeros.charAt(i)=='7' || numeros.charAt(i)=='8' || numeros.charAt(i)=='9'    ) {
+               numeros.charAt(i)=='7' || numeros.charAt(i)=='8' || numeros.charAt(i)=='9' ||
+               numeros.charAt(i)=='0'  ) {
             } else {
                 return false;
             }

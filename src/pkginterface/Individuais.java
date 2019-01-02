@@ -7,7 +7,6 @@ package pkginterface;
  */
 import configurafacil.*;
 import java.util.Collection;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static pkginterface.ConfiguracaoOtima.infoBox;
 import static pkginterface.ConfiguracaoOtima.isDigit;
@@ -63,11 +62,6 @@ public class Individuais extends javax.swing.JFrame {
            i++;
            model.addRow(row);
        }
-    }
-    
-    public static void infoBox(String infoMessage, String titleBar) {
-        
-        JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
     }
     
     /**
