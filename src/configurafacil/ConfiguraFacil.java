@@ -221,9 +221,9 @@ public class ConfiguraFacil extends java.util.Observable {
         }
     }
 
-    public void carroProduzido() { //nome antigo: atualizaQueue ->  TODO: mudar use case etc
+    public void carroProduzido() {
         QueueProducao q = this.dados.getQueueProducao();
-        q.queue.remove();
+        q.remove();
         this.dados.setQueueProducao(q);
     }
 
@@ -323,6 +323,8 @@ public class ConfiguraFacil extends java.util.Observable {
     public CarroInfo verCarro(int id) {
         QueueProducao q = this.dados.getQueueProducao();
         Carro car = q.getCarro(id);
+
+        if (car == null) return null;
 
         int idCliente = car.getIdCliente();
         int idConfig = car.getIdConfig();
