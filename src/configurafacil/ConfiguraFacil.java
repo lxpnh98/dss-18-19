@@ -48,6 +48,30 @@ public class ConfiguraFacil extends java.util.Observable {
         return this.dados.listaComponentes();
     }
 
+    public Set<Integer> listaIncompativeis(int id) {
+        Set<Integer> lista = new HashSet<Integer>();
+        Set<Integer> deps = new HashSet<Integer>();
+
+        Componente componente = this.dados.getComponente(id);
+        deps = componente.getDependencias();
+
+        for (Integer inc : componente.getIncompativeis()){
+            if(!lista.contains(inc)) {
+                lista.add(inc);
+            }
+        }
+        
+        for(Integer dep : deps) {
+            Set<Integer> depDeps = listaIncompativeis(dep);
+            for (Integer de : depDeps){
+                if(!lista.contains(de)) {
+                    lista.add(de);
+                }
+            }
+        }
+        return lista;
+    }
+    
     public Set<Integer> listaDependencias(int id) {
         Set<Integer> lista = new HashSet<Integer>();
         Set<Integer> deps = new HashSet<Integer>();
@@ -130,7 +154,7 @@ public class ConfiguraFacil extends java.util.Observable {
                 }
                 this.dados.setConfiguracaoAtual(config);        
         } else {
-            System.out.println("Componente incompativel: " + id);
+            System.out.println("Componente incompativel");
         }
     }
 

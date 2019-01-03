@@ -7,19 +7,16 @@ package pkginterface;
 
 import configurafacil.*;
 import java.util.Collection;
-import java.util.Observable;
-import java.util.Observer;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  * @author ASUS
  */
-public class ConfiguracaoOtima extends javax.swing.JFrame implements Observer {
+public class ConfiguracaoOtima extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
     private ConfiguraFacil cf;
-    private Configuracao configA;
     private Configuracao configO;
     
     /**
@@ -27,8 +24,6 @@ public class ConfiguracaoOtima extends javax.swing.JFrame implements Observer {
      */
     public ConfiguracaoOtima(ConfiguraFacil cf) {
         this.cf = cf;
-        this.configA = this.cf.getConfiguracaoAtual();
-        this.configA.addObserver(this);
         initComponents();
         showConfiguracaoAtual();
     }
@@ -244,9 +239,4 @@ public class ConfiguracaoOtima extends javax.swing.JFrame implements Observer {
     private javax.swing.JTable jTable_Otima;
     private javax.swing.JTextField jText_orc;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void update(Observable o, Object arg) {
-       showConfiguracaoAtual();
-    }
 }
