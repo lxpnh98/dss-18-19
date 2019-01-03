@@ -66,19 +66,19 @@ public class ConfiguraFacil extends java.util.Observable {
         return lista;
     }
 
-    public boolean verificaIncompatibilidades(int id, Set<Integer> componentes, Set<Integer> idComponentes, Set<Integer> componentesPacotes) {
+    public boolean verificaIncompatibilidades(int id, Set<Integer> componentes, Set<Integer> idComponentesConfig, Set<Integer> componentesPacotes) {
         Set<Integer> listaIncompativeis = new HashSet<Integer>();
 
-        for(Integer a : idComponentes) {
-            Componente cConfig = this.dados.getComponente(a);
-            Set<Integer> cConfigIncompatibilidades = cConfig.getIncompativeis();
-            listaIncompativeis.addAll(cConfigIncompatibilidades);
+        for(Integer j : idComponentesConfig) {
+            Componente componenteConfig = this.getComponente(j);
+            Set<Integer> componentesIncompativeis = componenteConfig.getIncompativeis();
+            listaIncompativeis.addAll(componentesIncompativeis);
         }
 
-        for(Integer b : componentesPacotes) {
-            Componente c = this.dados.getComponente(b);
-            Set<Integer> cIncompativel = c.getIncompativeis();
-            listaIncompativeis.addAll(cIncompativel);
+        for(Integer k : componentesPacotes) {
+            Componente c = this.getComponente(k);
+            Set<Integer> cIncompativeis = c.getIncompativeis();
+            listaIncompativeis.addAll(cIncompativeis);
         }
 
         if(listaIncompativeis.contains(id)) {
@@ -86,7 +86,6 @@ public class ConfiguraFacil extends java.util.Observable {
         } else if(!Collections.disjoint(listaIncompativeis,componentes)) {
             return false;
         }
-
         return true;
     }
 
@@ -96,10 +95,11 @@ public class ConfiguraFacil extends java.util.Observable {
         }
     }
 
+    // Modificado até aqui ------
     public void adicionaComponente(int id) {
         Set<Integer> listaDep = listaDependencias(id);
         Configuracao config = this.dados.getConfiguracaoAtual();
-        Set<Integer> idComponentes = config.getComponentes();
+        Set<Integer> idComponentesConfig = config.getComponentes();
         Set<Integer> idPacotesConfig = config.getPacotes();
         Set<Integer> componentesPacotes = new HashSet<>();
         
@@ -108,12 +108,12 @@ public class ConfiguraFacil extends java.util.Observable {
             componentesPacotes.addAll(pacote.getComponentes());
         }
 
-        if(verificaIncompatibilidades(id,listaDep,idComponentes,componentesPacotes)) {
+        if(verificaIncompatibilidades(id,listaDep,idComponentesConfig,componentesPacotes)) {
                 config.addComponente(id);
 
                 this.dados.setConfiguracaoAtual(config);
                 config = this.dados.getConfiguracaoAtual();
-                idComponentes = config.getComponentes();
+                idComponentesConfig = config.getComponentes();
 
                 Set<Integer> idPacotes = this.dados.listaPacotes();
 
@@ -122,7 +122,7 @@ public class ConfiguraFacil extends java.util.Observable {
                         Pacote p = this.dados.getPacote(idPacote);
                         Set<Integer> pacoteComps = p.getComponentes();
 
-                        if(idComponentes.containsAll(pacoteComps)) {
+                        if(idComponentesConfig.containsAll(pacoteComps)) {
                             addPacote(idPacote);
                             break;
                         }
