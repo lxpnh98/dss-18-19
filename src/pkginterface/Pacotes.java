@@ -16,7 +16,7 @@ public class Pacotes extends javax.swing.JFrame{
     
     private static final long serialVersionUID = 1;
     private ConfiguraFacil cf;
-    private Pacote pacote;
+    private int id;
 
     /**
      * Creates new form Pacotes
@@ -27,22 +27,22 @@ public class Pacotes extends javax.swing.JFrame{
         initComponents();
     }
     
-    public void showPacote(Pacote pacote) {
+    public void showPacote(int id) {
 
-       Collection<Integer> componentes = pacote.getComponentes();
+       Collection<Integer> componentes = this.cf.getPacote(id).getComponentes();
        DefaultTableModel model = (DefaultTableModel)jTable_Componentes.getModel();
        DefaultTableModel model2 = (DefaultTableModel)jTable_Preco.getModel();
        Object[] row = new Object[1];
        model.setRowCount(0);
        int i = 0;
-       for(Integer id : componentes) {
-           row[0] = this.cf.getComponente(id).getNome();
+       for(Integer idc : componentes) {
+           row[0] = this.cf.getComponente(idc).getNome();
            i++;
            model.addRow(row);
        }
        
         model2.setRowCount(0);
-        row[0] = pacote.getPreco();
+        row[0] = this.cf.getPacote(id).getPreco();
         model2.addRow(row);
     }
 
@@ -84,11 +84,6 @@ public class Pacotes extends javax.swing.JFrame{
         jScrollPane2.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
-        });
 
         jLabel1.setText("Pacotes disponíveis");
 
@@ -213,7 +208,7 @@ public class Pacotes extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        this.cf.addPacote(pacote.getId());
+        this.cf.addPacote(id);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -222,27 +217,23 @@ public class Pacotes extends javax.swing.JFrame{
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.pacote = new Pacote(this.cf.getPacote(1));
-        showPacote(pacote);
+        this.id = 1;
+        showPacote(1);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.pacote = new Pacote(this.cf.getPacote(3));
-        showPacote(pacote);
+        this.id = 3;
+        showPacote(3);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        this.pacote = new Pacote(this.cf.getPacote(4));
-        showPacote(pacote);
+        this.id = 4;
+        showPacote(4);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        if (this.pacote != null) this.pacote.deleteObservers();
-    }//GEN-LAST:event_formWindowClosed
-
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        this.pacote = new Pacote(this.cf.getPacote(2));
-        showPacote(pacote);
+        this.id = 2;
+        showPacote(2);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
