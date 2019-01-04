@@ -165,7 +165,7 @@ public class ConfiguraFacil extends java.util.Observable {
 
         Set<Integer> pacotesConfig = config.getPacotes();
         Set<Integer> componentesInd = config.getComponentes();
-        Set<Integer> componentesConfig = componentesInd;
+        Set<Integer> componentesConfig = new HashSet<>(componentesInd);
 
         for(Integer idPacoteConfig : pacotesConfig) {
             Pacote pConfig = this.dados.getPacote(idPacoteConfig);
