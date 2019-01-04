@@ -8,3 +8,4 @@ clean:
 
 clear: clean
 	rm -f $(FILENAME).pdf
+

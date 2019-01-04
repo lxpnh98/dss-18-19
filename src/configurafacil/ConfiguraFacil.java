@@ -74,7 +74,7 @@ public class ConfiguraFacil extends java.util.Observable {
     
     public Set<Integer> listaDependencias(int id) {
         Set<Integer> lista = new HashSet<Integer>();
-        Set<Integer> deps = new HashSet<Integer>();
+        Set<Integer> deps;
 
         Componente componente = this.dados.getComponente(id);
         deps = componente.getDependencias();
