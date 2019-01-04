@@ -94,12 +94,18 @@ public class ConfiguraFacil extends java.util.Observable {
         Set<Integer> listaIncompativeis = new HashSet<Integer>();
 
         for(Integer j : idComponentesConfig) {
+            if(j==id) {
+                return false;
+            }
             Componente componenteConfig = this.getComponente(j);
             Set<Integer> componentesIncompativeis = componenteConfig.getIncompativeis();
             listaIncompativeis.addAll(componentesIncompativeis);
         }
 
         for(Integer k : componentesPacotes) {
+            if(k==id) {
+                return false;
+            }
             Componente c = this.getComponente(k);
             Set<Integer> cIncompativeis = c.getIncompativeis();
             listaIncompativeis.addAll(cIncompativeis);
