@@ -2,7 +2,7 @@ USER=root
 PASS=password
 CJ=n
 
-build:
+build: clean
 	javac Main.java
 
 # utilizar credenciais do MySQL
@@ -11,4 +11,4 @@ run:
 	java -cp .:/usr/share/java/mysql-connector-java.jar Main $(USER) $(PASS) $(CJ)
 
 clean:
-	rm *.class */*.class
+	rm -f *.class */*.class
