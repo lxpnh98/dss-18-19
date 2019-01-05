@@ -1,6 +1,6 @@
 USER=root
 PASS=password
-CJ=n
+CJ=n # deixar vazio se url de ligação do MySQL for "com.mysql.cj.jdbc.Driver"
 
 build: clean
 	javac Main.java
