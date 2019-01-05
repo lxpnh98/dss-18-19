@@ -1,8 +1,6 @@
 package pkginterface;
 
 import configurafacil.*;
-import java.util.Observable;
-import java.util.Observer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.DefaultListModel;
 import static pkginterface.ConfiguracaoOtima.infoBox;
@@ -10,7 +8,7 @@ import static pkginterface.ConfiguracaoOtima.infoBox;
 /**
  * @author ASUS
  */
-public class ConfiguracaoBasica extends javax.swing.JFrame implements Observer {
+public class ConfiguracaoBasica extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
     private ConfiguraFacil cf;
@@ -24,7 +22,6 @@ public class ConfiguracaoBasica extends javax.swing.JFrame implements Observer {
         this.cf = cf;
         this.cf.createConfiguracao();
         this.config = this.cf.getConfiguracaoAtual();
-        this.config.addObserver(this);
         this.categoria = null;
         initComponents();
         showCategorias();
@@ -74,38 +71,36 @@ public class ConfiguracaoBasica extends javax.swing.JFrame implements Observer {
         } else {
             switch(s){
                 case "Motor":
-                    opcoes.addElement("Motor A                     2500");
-                    opcoes.addElement("Motor B                     3000");
-                    opcoes.addElement("Motor C                     3500");
+                    opcoes.addElement("Motor A");
+                    opcoes.addElement("Motor B");
+                    opcoes.addElement("Motor C");
                     jList_Opcoes.setModel(opcoes);
                     break;
                 case "Jantes":
-                    opcoes.addElement("Jantes A                   100");
-                    opcoes.addElement("Jantes B                   200");
-                    opcoes.addElement("Jantes C                   400");
+                    opcoes.addElement("Jantes A");
+                    opcoes.addElement("Jantes B");
+                    opcoes.addElement("Jantes C");
                     jList_Opcoes.setModel(opcoes);
                     break;
                 case "Pneus":
-                    opcoes.addElement("Pneus A                    100");
-                    opcoes.addElement("Pneus B                    200");
-                    opcoes.addElement("Pneus C                    300");
+                    opcoes.addElement("Pneus A");
+                    opcoes.addElement("Pneus B");
+                    opcoes.addElement("Pneus C");
                     jList_Opcoes.setModel(opcoes);
                     break;
                 case "Pintura":
-                    opcoes.addElement("Preto                         200");
-                    opcoes.addElement("Cinzento                   200");
-                    opcoes.addElement("Branco                      200");
-                    opcoes.addElement("Vermelho                 200");
-                    opcoes.addElement("Preto e Branco       300");
-                    opcoes.addElement("Preto Mate               350");
+                    opcoes.addElement("Preto");
+                    opcoes.addElement("Cinzento");
+                    opcoes.addElement("Branco");
                     jList_Opcoes.setModel(opcoes);
                     break;
                 case "Detalhes Internos":
-                    opcoes.addElement("Tipo 1");
+                    opcoes.addElement("Estofos simples");
+                    opcoes.addElement("Estofos de pele");
                     jList_Opcoes.setModel(opcoes);
                     break;
                 case "Detalhes Externos":
-                    opcoes.addElement("Tipo 1");
+                    opcoes.addElement("Textura simples");
                     jList_Opcoes.setModel(opcoes);
                     break;
                 default:
@@ -287,6 +282,7 @@ public class ConfiguracaoBasica extends javax.swing.JFrame implements Observer {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (!verificaBasica()){
+            this.cf.setConfigAtual(this.config);
             new OpcoesdeConfiguracao(this.cf).setVisible(true);
             this.dispose();
         } else {
@@ -396,10 +392,4 @@ public class ConfiguracaoBasica extends javax.swing.JFrame implements Observer {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable_Configuracao;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void update(Observable o, Object arg) {
-       showConfiguracao();
-       showOpcoes();
-    }
 }

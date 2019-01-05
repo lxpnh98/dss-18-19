@@ -34,16 +34,27 @@ public class OpcoesdeConfiguracao extends javax.swing.JFrame {
        Collection<Integer> pacotes = this.cf.getConfiguracaoAtual().getPacotes();
        DefaultTableModel model = (DefaultTableModel)jTable_Atual.getModel();
        Object[] row = new Object[1];
+       
        model.setRowCount(0);
-       int i = 0;
+        row[0] = this.cf.getConfiguracaoAtual().getMotor();
+        model.addRow(row);
+        row[0] = this.cf.getConfiguracaoAtual().getJantes();
+        model.addRow(row);
+        row[0] = this.cf.getConfiguracaoAtual().getPneus();
+        model.addRow(row);
+        row[0] = this.cf.getConfiguracaoAtual().getPintura();
+        model.addRow(row);
+        row[0] = this.cf.getConfiguracaoAtual().getDetInteriores();
+        model.addRow(row);
+        row[0] = this.cf.getConfiguracaoAtual().getDetExteriores();
+        model.addRow(row);
+       
        for(Integer id : ids) {
            row[0] = this.cf.getComponente(id).getNome();
-           i++;
            model.addRow(row);
        }
        for(Integer p : pacotes) {
            row[0] = this.cf.getPacote(p).getNome();
-           i++;
            model.addRow(row);
        }
     }
