@@ -34,24 +34,161 @@ public class Confirmacao extends javax.swing.JFrame {
     public void showConfiguracao() {
 
         Collection<Integer> ids = this.config.getComponentes();
+        Collection<Integer> pacotes = this.cf.getConfiguracaoAtual().getPacotes();
         DefaultTableModel model = (DefaultTableModel)jTable_ConfigFinal.getModel();
         Object[] row = new Object[1];
+        
         model.setRowCount(0);
-        int i = 0;
+        row[0] = this.config.getMotor();
+        model.addRow(row);
+        row[0] = this.config.getJantes();
+        model.addRow(row);
+        row[0] = this.config.getPneus();
+        model.addRow(row);
+        row[0] = this.config.getPintura();
+        model.addRow(row);
+        row[0] = this.config.getDetInteriores();
+        model.addRow(row);
+        row[0] = this.config.getDetExteriores();
+        model.addRow(row);
+        
         for(Integer id : ids) {
            row[0] = this.cf.getComponente(id).getNome();
-           i++;
            model.addRow(row);
         }
+        
+        for(Integer p : pacotes) {
+           row[0] = this.cf.getPacote(p).getNome();
+           model.addRow(row);
+       }
     }
     
     public void showPreco() {
-
+        float r = getPrecoMotor();
+        r += getPrecoPintura();
+        r += getPrecoJantes();
+        r += getPrecoPneus();
+        r += getPrecoDetEx();
+        r += getPrecoDetIn();
+        
         DefaultTableModel model = (DefaultTableModel)jTable_Preco.getModel();
         Object[] row = new Object[1];
         model.setRowCount(0);
-        row[0] = this.cf.getPreco(this.cf.getConfiguracaoAtual().getComponentes(), this.cf.getConfiguracaoAtual().getPacotes());
+        row[0] = r + this.cf.getPreco(this.cf.getConfiguracaoAtual().getComponentes(), this.cf.getConfiguracaoAtual().getPacotes());
         model.addRow(row);
+    }
+    
+    public float getPrecoMotor(){
+        String s = this.config.getMotor();
+        float p = 0;
+        
+        switch(s){
+            case "Motor A":
+                p = 2500;
+                break;
+            case "Motor B":
+                p = 3000;
+                break;
+            case "Motor C":
+                p = 3500;
+                break;
+            default:
+                    p = 0;
+        }
+        return p;
+    }
+    
+    public float getPrecoPintura(){
+        String s = this.config.getPintura();
+        float p = 0;
+        
+        switch(s){
+                case "Preto":
+                    p = 200;
+                    break;
+                case "Cinzento":
+                    p = 200;
+                    break;
+                case "Branco":
+                    p = 3500;
+                    break;
+                default:
+                    p = 0;
+        }
+        return p;
+    }
+    
+    public float getPrecoJantes(){
+        String s = this.config.getJantes();
+        float p = 0;
+        
+        switch(s){
+                case "Jantes A":
+                    p = 100;
+                    break;
+                case "Jantes B":
+                    p = 200;
+                    break;
+                case "Jantes C":
+                    p = 400;
+                    break;
+                default:
+                    p = 0;
+        }
+        return p;
+    }
+    
+    public float getPrecoPneus(){
+        String s = this.config.getPneus();
+        float p = 0;
+        
+        switch(s){
+                case "Pneus A":
+                    p = 100;
+                    break;
+                case "Pneus B":
+                    p = 200;
+                    break;
+                case "Pneus C":
+                    p = 300;
+                    break;
+                default:
+                    p = 0;
+        }
+        return p;
+    }
+    
+    public float getPrecoDetIn(){
+        String s = this.config.getDetInteriores();
+        System.out.println(s);
+        float p = 0;
+        
+        switch(s){
+                case "Estofos simples":
+                    p = 500;
+                    break;
+                case "Estofos de pele":
+                    p = 1000;
+                    break;
+                default:
+                    p = 0;
+        }
+        return p;
+    }
+    
+    public float getPrecoDetEx(){
+        String s = this.config.getDetExteriores();
+        System.out.println(s);
+        float p = 0;
+        
+        switch(s){
+                case "Textura simples":
+                    p = 500;
+                    break;
+                default:
+                    p = 0;
+        }
+        return p;
     }
     
     /**
@@ -87,11 +224,6 @@ public class Confirmacao extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
-        });
 
         jLabel1.setText("Configuração final do carro:");
 
@@ -173,11 +305,8 @@ public class Confirmacao extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        this.config.deleteObservers();
-    }//GEN-LAST:event_formWindowClosed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.cf.setConfigAtual(this.config);
         this.cf.adicionaCarro();
         infoBox("Encomenda realizada com sucesso!", "Informação de encomenda");
         new MenuInicial(this.cf).setVisible(true);
