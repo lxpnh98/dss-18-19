@@ -112,7 +112,15 @@ A camada de dados é responsável por implementar a persistência dos dados da a
 
 \subsection{Camada de negócio}
 
-% descrever as classes e justificar escolhas de design (eg. por identificadores em vez dos próprios objetos para utilizar menos memória central).
+A camada de negócio contém a classe ConfiguraFacil, sendo esta a principal classe desta camada. A ConfiguraFacil possui todos os métodos que permitem responder ás várias funcionalidades da aplicação. Esta classe é o elo de ligação entre a interface e a camada de dados. Para conseguir efetuar a ligação à camada de dados ela possui uma variável privada, \textit{dados} da classe \textit{DadosFacade}, sendo inicializada através do construtor parametrizado.
+
+Para além da ConfiguraFacil, a camada possui as classes Carro, Cliente, Componente, Configuracao e Pacote que representam os objetos usados aplicação. Todas estas classes possuiem um identificador, \textit{id}, que é utilizado nas restantes classes. A escolha entre a utilização de um identificador ao invés de um objeto foi feita a pensar na base de dados, para ter custos de memória reduzidos. Desta forma, em vez de carregar para memória um objeto e ainda os objetos associados a que este faz referencia apenas é necessário carregar o objeto em questão e os identificadores dos outros objetos referenciados por este. 
+
+A classe CarroInfo é utilizada para retornar a informação de um carro que se encontra na queue, assim como da informação sobre o utilizador que o possuí e ainda da sua configuração.
+
+A classe Encomenda é usada para que o utilizador \textit{funcionário} adicione os componentes indivduais ao stock da fábrica.
+
+Por fim, esta camada utiliza ainda a classe QueueProducao. Esta classe contém os métodos que permitem adicionar e remover elementos da queue, e ainda consultar os elementos da mesma.
 
 \subsection{Camada de dados}
 
