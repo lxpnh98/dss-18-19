@@ -116,9 +116,24 @@ A camada de dados é responsável por implementar a persistência dos dados da a
 
 \subsection{Camada de dados}
 
-% descrever a base de dados
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.33]{esquema_conceptual.png}
+\end{center}
+\caption{\label{fig:esquema_conceptual}Esquema conceptual da base de dados}
+\end{figure}
 
-% descrever a arquitetura de classes
+Como motor de base de dados, foi utilizado o MySQL pois tem um modelo relacional e devido à familiarididade com o sistema dos elementos do grupo.
+
+Como podemos verificar na figura \ref{fig:esquema_conceptual}, o esquema conceptual da base de dados, as classes escolhidas para representar a informação necessária foram as classes Carro, Cliente, Componente, Configuração e Pacote. Combinado com os restantes elementos (atributos e relacionamentos) do esquema, dá origem a um esquema físico com uma tabela para cada classe escolhida, e uma tabela para cada relacionamento N para N.
+
+A arquitetura de classes utiliza o padrão Facade para simplificar o acesso pela camada de negócio. A classe DadosFacade é responsável por iniciar a conexão à base de dados, de tratar da definição de transações, ao capturar qualquer exceção e nesse caso fazer rollback das mudanças.
+
+Existe uma classe DAO para cada classe escolhida para o esquema da base de dados, com a exceção da classe Carro. Isto deve-se ao facto dos carros estarem associados fortemente com a queue de produção, pelo que existe a classe QueueProducaoDAO para tratar dos carros nela presentes como uma estrutura apenas.
+
+Todas as classes de acesso de dados são subclasses da classe DAO. Esta classe implementa todo o comportamento em comum entre as suas subclasses, o que neste momento é apenas guardar uma referência ao objeto de conexão à base de dados, mas no futuro é possível acrescentar a este comportamento de necessário.
+
+Assim, a camada de dados implementa as operações necessárias para o correto funcionamento da aplicação: o acesso e alteração da configuração (componentes individuais e pacotes), e o acesso e alteração da queue de produção.
 
 \clearpage
 \section{Conclusão}
