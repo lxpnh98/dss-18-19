@@ -95,7 +95,7 @@ public class ConfiguraFacil extends java.util.Observable {
 
         for(Integer j : idComponentesConfig) {
             if(j==id) {
-                return false;
+                return true;
             }
             Componente componenteConfig = this.getComponente(j);
             Set<Integer> componentesIncompativeis = componenteConfig.getIncompativeis();
@@ -104,7 +104,7 @@ public class ConfiguraFacil extends java.util.Observable {
 
         for(Integer k : componentesPacotes) {
             if(k==id) {
-                return false;
+                return true;
             }
             Componente c = this.getComponente(k);
             Set<Integer> cIncompativeis = c.getIncompativeis();
@@ -112,11 +112,11 @@ public class ConfiguraFacil extends java.util.Observable {
         }
 
         if(listaIncompativeis.contains(id)) {
-            return false;
+            return true;
         } else if(!Collections.disjoint(listaIncompativeis,componentes)) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     public void adicionaComponentes(Set<Integer> ids) {
@@ -125,7 +125,6 @@ public class ConfiguraFacil extends java.util.Observable {
         }
     }
 
-    // Modificado até aqui ------
     public void adicionaComponente(int id) {
         Set<Integer> listaDep = listaDependencias(id);
 
@@ -139,7 +138,7 @@ public class ConfiguraFacil extends java.util.Observable {
             componentesPacotes.addAll(pacote.getComponentes());
         }
 
-        if(verificaIncompatibilidades(id,listaDep,idComponentesConfig,componentesPacotes)) {
+        if(!verificaIncompatibilidades(id,listaDep,idComponentesConfig,componentesPacotes)) {
                 config.addComponente(id);
 
                 this.dados.setConfiguracaoAtual(config);
