@@ -160,7 +160,6 @@ public class Confirmacao extends javax.swing.JFrame {
     
     public float getPrecoDetIn(){
         String s = this.config.getDetInteriores();
-        System.out.println(s);
         float p = 0;
         
         switch(s){
@@ -178,7 +177,6 @@ public class Confirmacao extends javax.swing.JFrame {
     
     public float getPrecoDetEx(){
         String s = this.config.getDetExteriores();
-        System.out.println(s);
         float p = 0;
         
         switch(s){
