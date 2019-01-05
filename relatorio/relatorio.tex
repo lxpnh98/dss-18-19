@@ -106,9 +106,14 @@ A camada de dados é responsável por implementar a persistência dos dados da a
 
 \subsection{Camada de interface}
 
-% falar um pouco do padrão MVC (Model-View-Controller)?
+Para o desenvolvimento da interface foi seguida a arquitetura MVC (Model-view-controller). Com esta arquitetura existe uma separação entre a representação da informação e a interação do usuário com ela.
 
-% descrever a funcionalidade das janelas, não as classes
+Esta arquitetura divide uma aplicação em três partes interconectadas, modelo, vista e controladores. Desta forma existe separação das representações de informação internas dos modos como a informação é apresentada e aceite pelo utilizador. O padrão de projetos MVC separa os componentes maiores, possibilitando a reutilização de código e o desenvolvimento paralelo de forma eficiente. 
+
+Seguindo esta arquitetura a interface desenvolvida iniciasse com o "Menu Inicial" onde é possível decidir se se quer iniciar a aplicação no modo "Vendedor", modo que permite configurar um carro, ou no modo "Fabricante", modo a usar no chão da fábrica.
+Quando o modo "Vendedor" é iniciado é pedido para que o cliente se identifique, introduzindo os seus dados. Quando a identificação for concluída o cliente pode proceder à escolha das características básicas de configuração. Depois deste passo é aberta uma janela com a configuração atual do cliente e três opções de configuração avançada, "Adicionar Pacote", "Adicionar Componente Individual" e "Solução Ótima". Na opção "Adicionar Pacote" pode ser adicionado um ou mais pacotes dos quatro pacotes definidos no sistema, desde que não existam incompatibilidades. Quando um pacote é selecionado na janela são mostrados os componentes e preço do pacote. Já na opção "Adicionar Componente Individual" é possível adicionar um componente individual. Primeiro é necessário selecionar o id do componente a adicionar e depois de verificar as dependências e incompatibilidades (mostradas na janela) pode ser adicionado o componente e todos os componentes de que este é dependente. A opção "Solução Ótima" mostra, mediante um orçamento fornecido, a melhor solução disponível no sistema. Por fim, clicando em "Próximo" na janela de opções avançadas procede-se à finalização da encomenda. Nesta última janela do modo "vendedor" é possível observar a configuração final do carro e o preço.
+
+O modo "Fabricante" tem quatro opções disponíveis. "Verificar Queue de Produção", "Atualizar Produção", "Verificar Carro" e "Entregar Componentes". Na opção de "Verificar Queue de Produção" é possível ver todos os carros que estão em espera para serem produzidos, bem como a informação de que se podem ou não ser produzidos. "Atualizar Produção" remove o primeiro carro da queue de produção se este tiver stock disponível para produção. A opção "Verificar Carro" permite ver as informações de um carro dado o seu id. Por fim, "Entregar Componentes" permite que seja registada a chegada de stock, adicionando os componentes um a um numa lista, dado o seu id e a quantidade.
 
 \subsection{Camada de negócio}
 
